@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+#
+# Usage:
+#   Save this script as `deploy.sh` and update the environment-specific variables before execution.
+#
+#   This script must be executed from the directory containing the relevant Dockerfile.
+#   To deploy, run:
+#       sh ./deploy.sh
+#
+
+# The name of the connector service. This will be used as a prefix for all GCP resources.
+SERVICE_NAME=my-connector
+
+# The Google Cloud project where the connector will be deployed.
+GCP_PROJECT_ID=my-gcp-project-id
+
+# The GCP region to deploy the connector to.
+GCP_REGION=europe-west2
+
+# Get the absolute path of the directory containing this script.
+# This allows the script to reference relative files even if run from another location.
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+# Path to the configuration override file (used when the EE Configuration API is not available).
+CONFIG_OVERRIDE_JSON=${SCRIPT_DIR}/config-override.json
+
+# Configure Docker to use GCP's Artifact Registry.
+gcloud auth configure-docker ${GCP_REGION}-docker.pkg.dev
+
+# Read the version from package.json.
+VERSION=$(cat package.json | jq -r .version)
+
+# Define the full container image path and tag.
+CONTAINER_IMAGE=${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT_ID}/${SERVICE_NAME}/${SERVICE_NAME}:${VERSION}
+
+# Optional: EE Configuration API URL. Leave blank to rely on the override.
+CONFIG_URL=""
+
+# Read and format the configuration override as a compact JSON string.
+CONFIG_OVERRIDE=$(cat ${CONFIG_OVERRIDE_JSON} | jq . -c)
+
+# Build and push a multi-architecture Docker image.
+docker buildx build --platform linux/amd64,linux/arm64 . -t ${CONTAINER_IMAGE}
+docker push ${CONTAINER_IMAGE}
+
+# Deploy the container to Cloud Run with required environment variables.
+gcloud run deploy ${SERVICE_NAME} \
+  --project=${GCP_PROJECT_ID} \
+  --region=${GCP_REGION} \
+  --image=${CONTAINER_IMAGE} \
+  --platform=managed \
+  --allow-unauthenticated \
+  --set-env-vars=PLATFORM=GCP \
+  --set-env-vars=GCP_PROJECT_ID=${GCP_PROJECT_ID} \
+  --set-env-vars=GCP_INTERNAL_MESSAGES_TOPIC_NAME=${SERVICE_NAME} \
+  --set-env-vars=GCP_CDP_DEAD_LETTER_QUEUE_TOPIC_NAME=${SERVICE_NAME}-dlq \
+  --set-env-vars=CONFIG_PLATFORM=my-platform \
+  --set-env-vars=CONFIG_URL=${CONFIG_URL} \
+  --set-env-vars=GCP_PUBSUB_AUTHENTICATED_PUSH_AUDIENCE=${SERVICE_NAME}-${GCP_REGION} \
+  --set-env-vars=GCP_PUBSUB_AUTHENTICATED_PUSH_SERVICE_ACCOUNT=${SERVICE_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com \
+  --set-env-vars="^%^CONFIG_OVERRIDE=${CONFIG_OVERRIDE}"
+
+# Retrieve the deployed service URL from Cloud Run.
+SERVICE_URL=$(gcloud run services describe ${SERVICE_NAME} \
+  --platform managed \
+  --region ${GCP_REGION} \
+  --format='value(status.url)')
+
+# Construct the push endpoint URL for Pub/Sub.
+PUSH_ENDPOINT=${SERVICE_URL}/internal
+
+# Create or update a Pub/Sub subscription for internal messages, with dead-letter queue and retry policy.
+gcloud pubsub subscriptions create ${SERVICE_NAME} \
+  --topic=${SERVICE_NAME} \
+  --push-endpoint=${PUSH_ENDPOINT} \
+  --push-auth-service-account="${SERVICE_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com" \
+  --push-auth-token-audience="${SERVICE_NAME}-${GCP_REGION}" \
+  --dead-letter-topic="${SERVICE_NAME}-dlq" \
+  --min-retry-delay=10 \
+  --max-retry-delay=600 \
+  || gcloud pubsub subscriptions update ${SERVICE_NAME} \
+  --push-endpoint=${PUSH_ENDPOINT} \
+  --push-auth-service-account="${SERVICE_NAME}@${GCP_PROJECT_ID}.iam.gserviceaccount.com" \
+  --push-auth-token-audience="${SERVICE_NAME}-${GCP_REGION}" \
+  --dead-letter-topic="${SERVICE_NAME}-dlq" \
+  --min-retry-delay=10 \
+  --max-retry-delay=600

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Usage:
+#   Save this script as `create-base-resources.sh` and update the environment variables below.
+#   Then execute it to provision the base GCP resources required for connector deployment.
+#
+#   To run:
+#       sh ./create-base-resources.sh
+#
+
+# Name of the connector service. This will be used as a prefix for all GCP resources.
+SERVICE_NAME=my-connector
+
+# Google Cloud project ID where resources will be provisioned.
+GCP_PROJECT_ID=my-gcp-project-id
+
+# GCP region where the resources will be created.
+GCP_REGION=europe-west2
+
+# Create the primary Pub/Sub topic for internal connector messaging.
+gcloud --project=${GCP_PROJECT_ID} pubsub topics create ${SERVICE_NAME}
+
+# Create a Pub/Sub dead-letter topic to handle undeliverable messages.
+gcloud --project=${GCP_PROJECT_ID} pubsub topics create ${SERVICE_NAME}-dlq
+
+# Create a dedicated service account for authenticating Pub/Sub push requests.
+gcloud --project=${GCP_PROJECT_ID} iam service-accounts create ${SERVICE_NAME}
+
+# Create an Artifact Registry repository to store Docker images for the connector.
+gcloud --project=${GCP_PROJECT_ID} artifacts repositories create ${SERVICE_NAME} \
+  --repository-format=docker \
+  --location=${GCP_REGION}

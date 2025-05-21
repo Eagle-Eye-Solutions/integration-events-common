@@ -1,0 +1,15 @@
+services:
+  connector-generic:
+    image: integration-generic:latest
+    ports:
+      - 8080
+    environment:
+      - PORT=8080
+      - PLATFORM=GCP
+      - GCP_PROJECT_ID=some-project
+      - GCP_INTERNAL_MESSAGES_TOPIC_NAME=internal-messages-generic
+      - GCP_CDP_DEAD_LETTER_QUEUE_TOPIC_NAME=internal-messages-dlq-generic
+      - CONFIG_PLATFORM=GENERIC
+      - CONFIG_URL=https://connect.sandbox.uk.eagleeye.com
+      - GCP_PUBSUB_AUTHENTICATED_PUSH_AUDIENCE=""
+      - GCP_PUBSUB_AUTHENTICATED_PUSH_SERVICE_ACCOUNT=""

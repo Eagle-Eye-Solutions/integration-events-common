@@ -1,0 +1,102 @@
+{
+  "name": "@eagleeye-solutions/integration-events-common",
+  "version": "1.0.0-rc.0",
+  "description": "Eagle Eye CDP connector common functionality",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest -c jest.unit.config.js",
+    "test:integration": "npm run test:integration:examples:generic-connector",
+    "test:integration:examples:generic-connector": "PUBSUB_EMULATOR_HOST=\"${PUBSUB_EMULATOR_HOST:=localhost:$(npm run --silent gcp:pubsub:getPort)}\" jest -c jest.integration.config.js --runInBand",
+    "gcp:pubsub:start": "docker-compose -f examples/generic-connector/test/integration/docker-compose.yaml up -d",
+    "gcp:pubsub:getPort": "docker-compose -f examples/generic-connector/test/integration/docker-compose.yaml ps --format json | jq '. | .Publishers[] | select(.TargetPort==8085) | .PublishedPort'",
+    "gcp:pubsub:stop": "docker-compose -f examples/generic-connector/test/integration/docker-compose.yaml down",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "build": "tsc",
+    "fix": "gts fix",
+    "prepare": "husky && npm run compile",
+    "create-image:examples:generic-connector:dev": "npm run compile && node build/examples/generic-connector/scripts/docker-build.js",
+    "coverage:report": "istanbul-merge --out coverage/coverage.json coverage/unit/coverage-final.json coverage/integration/coverage-final.json && nyc report --temp-dir ./coverage",
+    "posttest": "npm run coverage:report",
+    "semver:prerelease": "semver --preid rc -i prerelease $npm_package_version",
+    "semver:patch": "semver -i patch $npm_package_version",
+    "semver:minor": "semver -i minor $npm_package_version",
+    "semver:major": "semver -i major $npm_package_version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eagle-Eye-Solutions/integration-events-common.git"
+  },
+  "keywords": [
+    "Eagle",
+    "Eye",
+    "AIR",
+    "CDP",
+    "connector"
+  ],
+  "contributors": [
+    {
+      "name": "Gareth John",
+      "email": "gareth.john@applydigital.com"
+    },
+    {
+      "name": "Andrés Hernández",
+      "email": "andres.hernandez@applydigital.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Eagle-Eye-Solutions/integration-events-common/issues"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "homepage": "https://github.com/Eagle-Eye-Solutions/integration-events-common#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@faker-js/faker": "^9.7.0",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/memoizee": "^0.4.12",
+    "@types/nock": "^10.0.3",
+    "@types/node": "^22.7.5",
+    "@types/supertest": "^6.0.2",
+    "dotenv": "^16.4.7",
+    "gts": "^6.0.2",
+    "husky": "^9.1.7",
+    "istanbul-merge": "^2.0.0",
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
+    "nock": "^13.5.6",
+    "nyc": "^17.1.0",
+    "semver": "^7.7.2",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.3.2",
+    "typescript": "^5.7.2",
+    "wait-for-expect": "^3.0.2"
+  },
+  "dependencies": {
+    "@google-cloud/pino-logging-gcp-config": "^1.0.2",
+    "@google-cloud/pubsub": "^4.9.0",
+    "date-fns": "^4.1.0",
+    "envalid": "^8.1.0-beta.1",
+    "express": "^5.0.1",
+    "google-auth-library": "^9.15.0",
+    "http-errors": "^2.0.0",
+    "memoizee": "^0.4.17",
+    "pino": "^9.6.0",
+    "pino-http": "^10.4.0",
+    "pino-pretty": "^13.0.0",
+    "tozod": "^3.0.0",
+    "uuid": "^11.1.0",
+    "zod": "3.24.2"
+  },
+  "files": [
+    "/build/src",
+    "/build/test"
+  ]
+}

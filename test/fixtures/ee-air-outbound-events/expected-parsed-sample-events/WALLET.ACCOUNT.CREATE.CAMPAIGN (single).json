@@ -1,0 +1,130 @@
+{
+    "headers": {
+        "eventName": "WALLET.ACCOUNT.CREATE.CAMPAIGN",
+        "eventDate": "2025-01-22T20:08:37.976600",
+        "eesEnvironmentType": "sandbox-uk",
+        "eesSubsystemId": "wallet.sandbox.uk.eagleeye.com",
+        "callerIp": "35.244.186.249",
+        "unitId": "197332",
+        "unitFriendlyName": "Apply Digital",
+        "clientId": "mgtgpt5ewhj5fwvdm6d1",
+        "clientIdFriendlyName": "api",
+        "eesEventId": "ea5d756e-b8fb-4bc0-896d-1cec42141c1d",
+        "eesMasterEventId": "Z5FQRQ_FnfCQKzpCsPuB1wAAAkY",
+        "externalMessageId": null,
+        "eesApiVersion": "2.0"
+    },
+    "request": {
+        "resource": "\/wallet\/216245437\/campaign\/100641679\/account",
+        "method": "POST",
+        "body": "{\n  \"status\": \"ACTIVE\",\n  \"state\": \"LOADED\"\n}",
+        "contentType": "application\/json",
+        "customHeaders": []
+    },
+    "response": {
+        "code": 201,
+        "body": {
+            "accountId": "4083750088",
+            "walletId": "216245437",
+            "campaignId": "100641679",
+            "type": "ECOUPON",
+            "clientType": "OFFER",
+            "status": "ACTIVE",
+            "state": "LOADED",
+            "dates": {
+                "start": "2025-01-22T20:08:38+00:00",
+                "end": "2025-12-31T23:59:00+00:00"
+            },
+            "meta": [],
+            "dateCreated": "2025-01-22T20:08:38+00:00",
+            "lastUpdated": "2025-01-22T20:08:38+00:00",
+            "overrides": [],
+            "balances": {
+                "available": 0,
+                "refundable": 0
+            },
+            "relationships": [],
+            "mobileWallet": "https:\/\/sb.uk.mypass.is\/a\/4083750088\/f0b211b44f23c78"
+        },
+        "contentType": "application\/json;charset=utf-8"
+    },
+    "atomicOperations": [
+        {
+            "objectType": "walletAccountTransactionEntity",
+            "operationType": "CREATE",
+            "objectValue": {
+                "accountTransactionId": "7877320303",
+                "parentAccountTransactionId": null,
+                "accountId": "4083750088",
+                "account": {
+                    "accountId": "4083750088",
+                    "walletId": "216245437",
+                    "campaignId": "100641679",
+                    "type": "ECOUPON",
+                    "clientType": "OFFER",
+                    "status": "ACTIVE",
+                    "state": "LOADED",
+                    "dates": {
+                        "start": "2025-01-22T20:08:38+00:00",
+                        "end": "2025-12-31T23:59:00+00:00"
+                    },
+                    "meta": [],
+                    "dateCreated": "2025-01-22T20:08:38+00:00",
+                    "lastUpdated": "2025-01-22T20:08:38+00:00",
+                    "overrides": [],
+                    "balances": {
+                        "available": 0,
+                        "refundable": 0
+                    },
+                    "relationships": [],
+                    "mobileWallet": "https:\/\/sb.uk.mypass.is\/a\/4083750088\/f0b211b44f23c78"
+                },
+                "event": "CREATE",
+                "value": 0,
+                "source": 1,
+                "balancesBefore": {
+                    "available": 0,
+                    "refundable": 0
+                },
+                "balancesAfter": {
+                    "available": 0,
+                    "refundable": 0
+                },
+                "transactionDetails": [],
+                "properties": [],
+                "dateCreated": "2025-01-22T20:08:38+00:00",
+                "lastUpdated": "2025-01-22T20:08:38+00:00"
+            }
+        }
+    ],
+    "enrichmentData": {
+        "walletEntity_216245437": {
+            "identities": [
+                {
+                    "identityId": "186980781",
+                    "walletId": "216245437",
+                    "type": "CUSTOMER_ID",
+                    "value": "3333333333333333",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "186980782",
+                    "walletId": "216245437",
+                    "type": "CARD",
+                    "value": "4444444444444444",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "186980783",
+                    "walletId": "216245437",
+                    "type": "MOBILE",
+                    "value": "+1(416)-222-2222",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                }
+            ]
+        }
+    }
+}

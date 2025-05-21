@@ -1,0 +1,184 @@
+{
+    "headers": {
+        "eventName": "WALLET.CONSUMER.UPDATE",
+        "eventDate": "2025-01-22T20:09:58.655740",
+        "eesEnvironmentType": "sandbox-uk",
+        "eesSubsystemId": "wallet.sandbox.uk.eagleeye.com",
+        "callerIp": "35.244.186.249",
+        "unitId": "197332",
+        "unitFriendlyName": "Apply Digital",
+        "clientId": "mgtgpt5ewhj5fwvdm6d1",
+        "clientIdFriendlyName": "api",
+        "eesEventId": "fab1149b-4436-4ba3-b192-7e34e4114cff",
+        "eesMasterEventId": "Z5FQlpghC9E671hIj86QGQAAACo",
+        "externalMessageId": "",
+        "eesApiVersion": "2.0"
+    },
+    "request": {
+        "resource": "\/wallet\/216245437\/consumer\/47791829",
+        "method": "PATCH",
+        "body": "{\n    \"friendlyName\": \"Naush test wallet 1\",\n    \"meta\": {\n        \"meta1\": \"Naush test meta value 1\",\n        \"meta2\": \"Naush test meta value 2\"\n    },\n    \"data\": {\n        \"personal\": {\n            \"title\": \"Ms.\",\n            \"firstName\": \"Naush\",\n            \"lastName\": \"S\",\n            \"preferredName\": \"Naush\",\n            \"language\": \"English\",\n            \"gender\": \"M\",\n            \"birthDate\": \"1980-01-01\"\n        },\n        \"address\": [\n            {\n                \"name\": \"default\",\n                \"type\": \"local\",\n                \"line1\": \"line1\",\n                \"line2\": \"line2\",\n                \"line3\": \"line3\",\n                \"city\": \"Toronto\",\n                \"county\": \"\",\n                \"postcode\": \"M1M1M1\",\n                \"state\": \"ON\",\n                \"country\": \"Canada\"\n            }\n        ],\n        \"contact\": [\n            {\n                \"type\": \"email\",\n                \"name\": \"default\",\n                \"value\": \"example@eagleeye.com\"\n            },\n            {\n                \"type\": \"phone\",\n                \"name\": \"default\",\n                \"value\": \"01234567890\"\n            }\n        ],\n        \"communication\": [\n            {\n                \"type\": \"default\",\n                \"optin\": {\n                    \"admin\": true,\n                    \"marketing\": false\n                }\n            }\n        ]\n    }\n}",
+        "contentType": "application\/json",
+        "customHeaders": []
+    },
+    "response": {
+        "code": 200,
+        "body": {
+            "consumerId": "47791829",
+            "walletId": "216245437",
+            "friendlyName": "Naush test wallet 1",
+            "type": "INDIVIDUAL",
+            "state": "DEFAULT",
+            "status": "ACTIVE",
+            "data": {
+                "personal": {
+                    "title": "Ms.",
+                    "firstName": "Naush",
+                    "lastName": "S",
+                    "preferredName": "Naush",
+                    "language": "English",
+                    "gender": "M",
+                    "birthDate": "1980-01-01"
+                },
+                "address": [
+                    {
+                        "name": "default",
+                        "type": "local",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "line3": "line3",
+                        "city": "Toronto",
+                        "county": "",
+                        "postcode": "M1M1M1",
+                        "state": "ON",
+                        "country": "Canada"
+                    }
+                ],
+                "contact": [
+                    {
+                        "type": "email",
+                        "name": "default",
+                        "value": "example@eagleeye.com"
+                    },
+                    {
+                        "type": "phone",
+                        "name": "default",
+                        "value": "01234567890"
+                    }
+                ],
+                "communication": [
+                    {
+                        "type": "default",
+                        "optin": {
+                            "admin": true,
+                            "marketing": false
+                        }
+                    }
+                ]
+            },
+            "meta": {
+                "meta1": "Naush test meta value 1",
+                "meta2": "Naush test meta value 2"
+            },
+            "dateCreated": "2025-01-22T20:07:58+00:00",
+            "lastUpdated": "2025-01-22T20:09:58+00:00"
+        },
+        "contentType": "application\/json;charset=utf-8"
+    },
+    "atomicOperations": [
+        {
+            "objectType": "walletConsumerEntity",
+            "operationType": "UPDATE",
+            "objectValue": {
+                "consumerId": "47791829",
+                "walletId": "216245437",
+                "friendlyName": "Naush test wallet 1",
+                "type": "INDIVIDUAL",
+                "state": "DEFAULT",
+                "status": "ACTIVE",
+                "data": {
+                    "personal": {
+                        "title": "Ms.",
+                        "firstName": "Naush",
+                        "lastName": "S",
+                        "preferredName": "Naush",
+                        "language": "English",
+                        "gender": "M",
+                        "birthDate": "1980-01-01"
+                    },
+                    "address": [
+                        {
+                            "name": "default",
+                            "type": "local",
+                            "line1": "line1",
+                            "line2": "line2",
+                            "line3": "line3",
+                            "city": "Toronto",
+                            "county": "",
+                            "postcode": "M1M1M1",
+                            "state": "ON",
+                            "country": "Canada"
+                        }
+                    ],
+                    "contact": [
+                        {
+                            "type": "email",
+                            "name": "default",
+                            "value": "example@eagleeye.com"
+                        },
+                        {
+                            "type": "phone",
+                            "name": "default",
+                            "value": "01234567890"
+                        }
+                    ],
+                    "communication": [
+                        {
+                            "type": "default",
+                            "optin": {
+                                "admin": true,
+                                "marketing": false
+                            }
+                        }
+                    ]
+                },
+                "meta": {
+                    "meta1": "Naush test meta value 1",
+                    "meta2": "Naush test meta value 2"
+                },
+                "dateCreated": "2025-01-22T20:07:58+00:00",
+                "lastUpdated": "2025-01-22T20:09:58+00:00"
+            }
+        }
+    ],
+    "enrichmentData": {
+        "walletEntity_216245437": {
+            "identities": [
+                {
+                    "identityId": "186980781",
+                    "walletId": "216245437",
+                    "type": "CUSTOMER_ID",
+                    "value": "3333333333333333",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "186980782",
+                    "walletId": "216245437",
+                    "type": "CARD",
+                    "value": "4444444444444444",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "186980783",
+                    "walletId": "216245437",
+                    "type": "MOBILE",
+                    "value": "+1(416)-222-2222",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                }
+            ]
+        }
+    }
+}

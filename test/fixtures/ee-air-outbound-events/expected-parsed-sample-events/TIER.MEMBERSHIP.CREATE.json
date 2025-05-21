@@ -1,0 +1,98 @@
+{
+    "headers": {
+        "eventName": "TIER.MEMBERSHIP.CREATE",
+        "eventDate": "2025-01-29T19:40:48.965235",
+        "eesEnvironmentType": "sandbox-uk",
+        "eesSubsystemId": "wallet.sandbox.uk.eagleeye.com",
+        "callerIp": "35.244.186.249",
+        "unitId": "197332",
+        "unitFriendlyName": "Apply Digital",
+        "clientId": "mgtgpt5ewhj5fwvdm6d1",
+        "clientIdFriendlyName": "api",
+        "eesEventId": "35c5dd7e-ce75-4137-8846-98a03d2af08b",
+        "eesMasterEventId": "Z5qEQBf7PWVypK5Y7EYJ2gAAA_Q",
+        "externalMessageId": null,
+        "eesApiVersion": "2.0"
+    },
+    "request": {
+        "resource": "\/tier\/177\/membership",
+        "method": "POST",
+        "body": "{\n    \"status\": \"ACTIVE\",\n    \"accountIds\": [\n        \"4083750045\"\n    ]\n}",
+        "contentType": "application\/json",
+        "customHeaders": []
+    },
+    "response": {
+        "code": 201,
+        "body": {
+            "tierMembershipId": "1291015",
+            "tierId": "177",
+            "status": "ACTIVE",
+            "accountIds": [
+                "4083750045"
+            ],
+            "balances": {
+                "points": 0,
+                "spend": 0,
+                "transactions": 0
+            },
+            "expiryDate": "2025-07-31T23:59:59+00:00",
+            "tierBalancesResetDate": "2031-01-31T23:59:59+00:00",
+            "dateCreated": "2025-01-29T19:40:49+00:00",
+            "lastUpdated": "2025-01-29T19:40:49+00:00"
+        },
+        "contentType": "application\/json;charset=utf-8"
+    },
+    "atomicOperations": [
+        {
+            "objectType": "tierMembershipEntity",
+            "operationType": "CREATE",
+            "objectValue": {
+                "tierMembershipId": "1291015",
+                "tierId": "177",
+                "status": "ACTIVE",
+                "accountIds": [
+                    "4083750045"
+                ],
+                "balances": {
+                    "points": 0,
+                    "spend": 0,
+                    "transactions": 0
+                },
+                "expiryDate": "2025-07-31T23:59:59+00:00",
+                "tierBalancesResetDate": "2031-01-31T23:59:59+00:00",
+                "dateCreated": "2025-01-29T19:40:49+00:00",
+                "lastUpdated": "2025-01-29T19:40:49+00:00"
+            }
+        }
+    ],
+    "enrichmentData": {
+        "walletEntity_216396239": {
+            "identities": [
+                {
+                    "identityId": "187129875",
+                    "walletId": "216396239",
+                    "type": "CUSTOMER_ID",
+                    "value": "1111111111111124",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "187129876",
+                    "walletId": "216396239",
+                    "type": "CARD",
+                    "value": "2222222222222214",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "187129877",
+                    "walletId": "216396239",
+                    "type": "MOBILE",
+                    "value": "+1(416)-111-1124",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                }
+            ]
+        }
+    }
+}

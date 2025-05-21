@@ -1,0 +1,476 @@
+{
+	"headers": {
+		"eventName": "SERVICE.WALLET.DELETE",
+		"eventDate": "2025-04-03T18:13:25.532208",
+		"eesEnvironmentType": "sandbox-uk",
+		"eesSubsystemId": "wallet.sandbox.uk.eagleeye.com",
+		"callerIp": "35.244.186.249",
+		"unitId": "197332",
+		"unitFriendlyName": "Apply Digital",
+		"clientId": "mgtgpt5ewhj5fwvdm6d1",
+		"clientIdFriendlyName": "api",
+		"eesEventId": "7dc8588b-affe-431e-b675-df0f1810b7e9",
+		"eesMasterEventId": "Z-7PxSoDFSdauibqrjBI5gAAAn0",
+		"externalMessageId": null,
+		"eesApiVersion": "2.0"
+	},
+	"request": {
+		"resource": "/services/wallet/217992433",
+		"method": "DELETE",
+		"body": null,
+		"contentType": "application/json",
+		"customHeaders": []
+	},
+	"response": {
+		"code": 204,
+		"body": null,
+		"contentType": "application/json;charset=utf-8"
+	},
+	"atomicOperations": [
+		{
+			"objectType": "walletAccountTransactionEntity",
+			"operationType": "UPDATE",
+			"objectValue": {
+				"accountTransactionId": "8166333585",
+				"parentAccountTransactionId": null,
+				"accountId": "4177168319",
+				"account": {
+					"accountId": "4177168319",
+					"walletId": "217992433",
+					"campaignId": "100641542",
+					"type": "ECOUPON",
+					"clientType": "OFFER",
+					"status": "CANCELLED",
+					"state": "LOADED",
+					"dates": {
+						"start": "2025-04-03T18:10:52+00:00",
+						"end": "2025-12-31T23:59:00+00:00"
+					},
+					"meta": [],
+					"dateCreated": "2025-04-03T18:10:52+00:00",
+					"lastUpdated": "2025-04-03T18:13:25+00:00",
+					"overrides": [],
+					"balances": {"available": 0, "refundable": 0},
+					"relationships": [],
+					"mobileWallet": "https://sb.uk.mypass.is/a/4177168319/146dcc0f764c06d"
+				},
+				"event": "CANCEL",
+				"value": 0,
+				"source": 1,
+				"balancesBefore": {"available": 0, "refundable": 0},
+				"balancesAfter": {"available": 0, "refundable": 0},
+				"transactionDetails": [],
+				"properties": [],
+				"dateCreated": "2025-04-03T18:13:25+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletAccountTransactionEntity",
+			"operationType": "UPDATE",
+			"objectValue": {
+				"accountTransactionId": "8166333586",
+				"parentAccountTransactionId": null,
+				"accountId": "4177168320",
+				"account": {
+					"accountId": "4177168320",
+					"walletId": "217992433",
+					"campaignId": "100641543",
+					"type": "ECOUPON",
+					"clientType": "OFFER",
+					"status": "CANCELLED",
+					"state": "LOADED",
+					"dates": {
+						"start": "2025-04-03T18:10:52+00:00",
+						"end": "2025-12-31T23:59:00+00:00"
+					},
+					"meta": [],
+					"dateCreated": "2025-04-03T18:10:52+00:00",
+					"lastUpdated": "2025-04-03T18:13:25+00:00",
+					"overrides": [],
+					"balances": {"available": 0, "refundable": 0},
+					"relationships": [],
+					"mobileWallet": "https://sb.uk.mypass.is/a/4177168320/b3167f97269c37f"
+				},
+				"event": "CANCEL",
+				"value": 0,
+				"source": 1,
+				"balancesBefore": {"available": 0, "refundable": 0},
+				"balancesAfter": {"available": 0, "refundable": 0},
+				"transactionDetails": [],
+				"properties": [],
+				"dateCreated": "2025-04-03T18:13:25+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletAccountTransactionEntity",
+			"operationType": "UPDATE",
+			"objectValue": {
+				"accountTransactionId": "8166333587",
+				"parentAccountTransactionId": null,
+				"accountId": "4177168321",
+				"account": {
+					"accountId": "4177168321",
+					"walletId": "217992433",
+					"campaignId": "100641544",
+					"type": "ECOUPON",
+					"clientType": "OFFER",
+					"status": "CANCELLED",
+					"state": "LOADED",
+					"dates": {
+						"start": "2025-04-03T18:10:52+00:00",
+						"end": "2025-12-31T23:59:00+00:00"
+					},
+					"meta": [],
+					"dateCreated": "2025-04-03T18:10:52+00:00",
+					"lastUpdated": "2025-04-03T18:13:25+00:00",
+					"overrides": [],
+					"balances": {"available": 0, "refundable": 0},
+					"relationships": [],
+					"mobileWallet": "https://sb.uk.mypass.is/a/4177168321/7c0d5a6aa0a55e9"
+				},
+				"event": "CANCEL",
+				"value": 0,
+				"source": 1,
+				"balancesBefore": {"available": 0, "refundable": 0},
+				"balancesAfter": {"available": 0, "refundable": 0},
+				"transactionDetails": [],
+				"properties": [],
+				"dateCreated": "2025-04-03T18:13:25+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletAccountTransactionEntity",
+			"operationType": "UPDATE",
+			"objectValue": {
+				"accountTransactionId": "8166333588",
+				"parentAccountTransactionId": null,
+				"accountId": "4177168322",
+				"account": {
+					"accountId": "4177168322",
+					"walletId": "217992433",
+					"campaignId": "100620987",
+					"type": "POINTS",
+					"clientType": "RETAILPOINTS",
+					"status": "CANCELLED",
+					"state": "LOADED",
+					"dates": {
+						"start": "2025-04-03T18:10:52+00:00",
+						"end": "2038-01-19T03:14:07+00:00"
+					},
+					"meta": [],
+					"dateCreated": "2025-04-03T18:10:52+00:00",
+					"lastUpdated": "2025-04-03T18:13:25+00:00",
+					"overrides": [],
+					"balances": {
+						"current": 0,
+						"usable": 0,
+						"locked": 0,
+						"lifetime": 0,
+						"lifetimeSpend": 0,
+						"lifetimeSpendValue": 0,
+						"pending": 0
+					},
+					"relationships": [],
+					"mobileWallet": "https://sb.uk.mypass.is/a/4177168322/5d8ff67df03fdae"
+				},
+				"event": "DEBIT",
+				"value": 0,
+				"source": 2,
+				"balancesBefore": {"current": 0, "lifetime": 0},
+				"balancesAfter": {"current": 0, "lifetime": 0},
+				"transactionDetails": [],
+				"properties": [],
+				"dateCreated": "2025-04-03T18:13:25+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletAccountTransactionEntity",
+			"operationType": "UPDATE",
+			"objectValue": {
+				"accountTransactionId": "8166333589",
+				"parentAccountTransactionId": null,
+				"accountId": "4177168322",
+				"account": {
+					"accountId": "4177168322",
+					"walletId": "217992433",
+					"campaignId": "100620987",
+					"type": "POINTS",
+					"clientType": "RETAILPOINTS",
+					"status": "CANCELLED",
+					"state": "LOADED",
+					"dates": {
+						"start": "2025-04-03T18:10:52+00:00",
+						"end": "2038-01-19T03:14:07+00:00"
+					},
+					"meta": [],
+					"dateCreated": "2025-04-03T18:10:52+00:00",
+					"lastUpdated": "2025-04-03T18:13:25+00:00",
+					"overrides": [],
+					"balances": {
+						"current": 0,
+						"usable": 0,
+						"locked": 0,
+						"lifetime": 0,
+						"lifetimeSpend": 0,
+						"lifetimeSpendValue": 0,
+						"pending": 0
+					},
+					"relationships": [],
+					"mobileWallet": "https://sb.uk.mypass.is/a/4177168322/5d8ff67df03fdae"
+				},
+				"event": "CANCEL",
+				"value": 0,
+				"source": 1,
+				"balancesBefore": {"current": 0, "lifetime": 0},
+				"balancesAfter": {"current": 0, "lifetime": 0},
+				"transactionDetails": [],
+				"properties": [],
+				"dateCreated": "2025-04-03T18:13:25+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletAccountTransactionEntity",
+			"operationType": "UPDATE",
+			"objectValue": {
+				"accountTransactionId": "8166333589",
+				"parentAccountTransactionId": null,
+				"accountId": "4177168322",
+				"account": {
+					"accountId": "4177168322",
+					"walletId": "217992433",
+					"campaignId": "100620987",
+					"type": "POINTS",
+					"clientType": "RETAILPOINTS",
+					"status": "CANCELLED",
+					"state": "LOADED",
+					"dates": {
+						"start": "2025-04-03T18:10:52+00:00",
+						"end": "2038-01-19T03:14:07+00:00"
+					},
+					"meta": [],
+					"dateCreated": "2025-04-03T18:10:52+00:00",
+					"lastUpdated": "2025-04-03T18:13:25+00:00",
+					"overrides": [],
+					"balances": {
+						"current": 0,
+						"usable": 0,
+						"locked": 0,
+						"lifetime": 0,
+						"lifetimeSpend": 0,
+						"lifetimeSpendValue": 0,
+						"pending": 0
+					},
+					"relationships": [],
+					"mobileWallet": "https://sb.uk.mypass.is/a/4177168322/5d8ff67df03fdae"
+				},
+				"event": "CANCEL",
+				"value": 0,
+				"source": 1,
+				"balancesBefore": {"current": 0, "lifetime": 0},
+				"balancesAfter": {"current": 0, "lifetime": 0},
+				"transactionDetails": [],
+				"properties": [],
+				"dateCreated": "2025-04-03T18:13:25+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletAccountTransactionEntity",
+			"operationType": "UPDATE",
+			"objectValue": {
+				"accountTransactionId": "8166333588",
+				"parentAccountTransactionId": "8166333589",
+				"accountId": "4177168322",
+				"account": {
+					"accountId": "4177168322",
+					"walletId": "217992433",
+					"campaignId": "100620987",
+					"type": "POINTS",
+					"clientType": "RETAILPOINTS",
+					"status": "CANCELLED",
+					"state": "LOADED",
+					"dates": {
+						"start": "2025-04-03T18:10:52+00:00",
+						"end": "2038-01-19T03:14:07+00:00"
+					},
+					"meta": [],
+					"dateCreated": "2025-04-03T18:10:52+00:00",
+					"lastUpdated": "2025-04-03T18:13:25+00:00",
+					"overrides": [],
+					"balances": {
+						"current": 0,
+						"usable": 0,
+						"locked": 0,
+						"lifetime": 0,
+						"lifetimeSpend": 0,
+						"lifetimeSpendValue": 0,
+						"pending": 0
+					},
+					"relationships": [],
+					"mobileWallet": "https://sb.uk.mypass.is/a/4177168322/5d8ff67df03fdae"
+				},
+				"event": "DEBIT",
+				"value": 0,
+				"source": 2,
+				"balancesBefore": {"current": 0, "lifetime": 0},
+				"balancesAfter": {"current": 0, "lifetime": 0},
+				"transactionDetails": [],
+				"properties": [],
+				"dateCreated": "2025-04-03T18:13:25+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletAccountTransactionEntity",
+			"operationType": "UPDATE",
+			"objectValue": {
+				"accountTransactionId": "8166333590",
+				"parentAccountTransactionId": null,
+				"accountId": "4177168344",
+				"account": {
+					"accountId": "4177168344",
+					"walletId": "217992433",
+					"campaignId": "100641678",
+					"type": "ECOUPON",
+					"clientType": "OFFER",
+					"status": "CANCELLED",
+					"state": "LOADED",
+					"dates": {
+						"start": "2025-04-03T18:12:47+00:00",
+						"end": "2025-12-31T23:59:00+00:00"
+					},
+					"meta": [],
+					"dateCreated": "2025-04-03T18:12:47+00:00",
+					"lastUpdated": "2025-04-03T18:13:25+00:00",
+					"overrides": [],
+					"balances": {"available": 0, "refundable": 0},
+					"relationships": {
+						"BEHAVIOURAL_ACTION_REWARD_OF": {
+							"BEHAVIOURAL_ACTION": [
+								{
+									"accountId": "4177168343",
+									"dateCreated": "2025-04-03T18:12:47+00:00"
+								}
+							]
+						}
+					},
+					"mobileWallet": "https://sb.uk.mypass.is/a/4177168344/4e6d1f19ba895f9"
+				},
+				"event": "CANCEL",
+				"value": 0,
+				"source": 1,
+				"balancesBefore": {"available": 0, "refundable": 0},
+				"balancesAfter": {"available": 0, "refundable": 0},
+				"transactionDetails": [],
+				"properties": [],
+				"dateCreated": "2025-04-03T18:13:25+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletIdentityEntity",
+			"operationType": "DELETE",
+			"objectValue": {
+				"identityId": "189077372",
+				"walletId": "217992433",
+				"type": "CUSTOMER_ID",
+				"friendlyName": null,
+				"value": "DELETED_189077372_ZSmOIUY_1743704005",
+				"safeValue": null,
+				"secret": null,
+				"dates": {"start": "2025-04-03T18:10:52+00:00", "end": null},
+				"meta": [],
+				"state": "DEFAULT",
+				"status": "DELETED",
+				"dateCreated": "2025-04-03T18:10:52+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00",
+				"mobileWallet": "https://sb.uk.mypass.is/identity/197332/217992433/189077372/d70a2ea5c8edc8232b0a8c7bee119d3050acbd1be536e44846b3d41656b0c96a"
+			}
+		},
+		{
+			"objectType": "walletIdentityEntity",
+			"operationType": "DELETE",
+			"objectValue": {
+				"identityId": "189077373",
+				"walletId": "217992433",
+				"type": "CARD",
+				"friendlyName": null,
+				"value": "DELETED_189077373_JUj21Az_1743704005",
+				"safeValue": null,
+				"secret": null,
+				"dates": {"start": "2025-04-03T18:10:52+00:00", "end": null},
+				"meta": [],
+				"state": "DEFAULT",
+				"status": "DELETED",
+				"dateCreated": "2025-04-03T18:10:52+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00",
+				"mobileWallet": "https://sb.uk.mypass.is/identity/197332/217992433/189077373/5a92c1aaebee217b5b558d7a7637517edd7c85b109eed206c2fd408149785984"
+			}
+		},
+		{
+			"objectType": "walletIdentityEntity",
+			"operationType": "DELETE",
+			"objectValue": {
+				"identityId": "189077374",
+				"walletId": "217992433",
+				"type": "MOBILE",
+				"friendlyName": null,
+				"value": "DELETED_189077374_iI35xHw_1743704005",
+				"safeValue": null,
+				"secret": null,
+				"dates": {"start": "2025-04-03T18:10:52+00:00", "end": null},
+				"meta": [],
+				"state": "DEFAULT",
+				"status": "DELETED",
+				"dateCreated": "2025-04-03T18:10:52+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00",
+				"mobileWallet": "https://sb.uk.mypass.is/identity/197332/217992433/189077374/f99ad4aad644ad6b7aa6717a6d85461838fc09d39b52881ff6e85d4af72029aa"
+			}
+		},
+		{
+			"objectType": "walletConsumerEntity",
+			"operationType": "DELETE",
+			"objectValue": {
+				"consumerId": "48251372",
+				"walletId": "217992433",
+				"friendlyName": null,
+				"type": "INDIVIDUAL",
+				"state": "DEFAULT",
+				"status": "DELETED",
+				"data": [],
+				"meta": {
+					"meta1": "Naush test meta value 1",
+					"meta2": "Naush test meta value 2"
+				},
+				"dateCreated": "2025-04-03T18:10:52+00:00",
+				"lastUpdated": "2025-04-03T18:13:25+00:00"
+			}
+		},
+		{
+			"objectType": "walletEntity",
+			"operationType": "DELETE",
+			"objectValue": {
+				"walletId": "217992433",
+				"friendlyName": null,
+				"status": "DELETED",
+				"type": "CONSUMER",
+				"state": "DEFAULT",
+				"meta": [],
+				"dateCreated": "2025-04-03T18:10:52+00:00",
+				"lastUpdated": "2025-04-03T18:13:26+00:00",
+				"relationships": {
+					"parent": [],
+					"child": [],
+					"associate": [],
+					"donor": []
+				}
+			}
+		}
+	],
+	"enrichmentData": {"walletEntity_217992433": {"identities": []}}
+}
