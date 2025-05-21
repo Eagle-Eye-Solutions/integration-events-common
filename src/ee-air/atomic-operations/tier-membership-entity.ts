@@ -10,9 +10,10 @@ export function getTierAttributesFromTierMembershipEntity(
     tierBalancesSpend: tierMembershipEntity.objectValue.balances.spend,
     tierBalancesTransactions:
       tierMembershipEntity.objectValue.balances.transactions,
-    tierBalancesResetDate: parseISO(
-      tierMembershipEntity.objectValue.tierBalancesResetDate,
-    ),
+    tierBalancesResetDate: tierMembershipEntity.objectValue
+      .tierBalancesResetDate
+      ? parseISO(tierMembershipEntity.objectValue.tierBalancesResetDate)
+      : null,
   };
 }
 export default {
