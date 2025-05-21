@@ -1,0 +1,689 @@
+{
+    "headers": {
+        "eventName": "POSCONNECT.WALLET.FULFIL",
+        "eventDate": "2025-02-11T04:46:41.676162",
+        "eesEnvironmentType": "sandbox-uk",
+        "eesSubsystemId": "pos.sandbox.uk.eagleeye.com",
+        "callerIp": "35.244.190.158",
+        "unitId": "197332",
+        "unitFriendlyName": "Apply Digital",
+        "clientId": "mgtgpt5ewhj5fwvdm6d1",
+        "clientIdFriendlyName": "api",
+        "eesEventId": "1d1cf309-1845-4898-9323-c802775f8388",
+        "eesMasterEventId": "Z6rWMbNB4ITFAxI2MoRmAgAAAC0",
+        "externalMessageId": "",
+        "eesApiVersion": "7.6"
+    },
+    "request": {
+        "resource": "\/connect\/wallet\/fulfil",
+        "method": "POST",
+        "body": "{\n    \"originalTransaction\": {\n        \"reference\": \"TransactionReferenceFeb10e\"\n    },\n    \"reference\": \"Final_TransactionReferenceFeb10e\",\n    \"identity\": {\n        \"identityValue\": \"1111111111111127\"\n    },\n    \"location\": {\n        \"incomingIdentifier\": \"outlet1\",\n        \"parentIncomingIdentifier\": \"banner1\"\n    },\n    \"finalise\": true,\n    \"basket\": {\n        \"type\": \"STANDARD\",\n        \"summary\": {\n            \"totalItems\": 6,\n            \"totalBasketValue\": 7000\n        },\n        \"contents\": [\n            {\n                \"upc\": \"245875\",\n                \"itemUnitCost\": 1000,\n                \"salesKey\": \"SALE\",\n                \"totalUnitCostAfterDiscount\": 1000,\n                \"totalUnitCost\": 1000,\n                \"description\": \"Coffee\",\n                \"itemUnitCount\": 1\n            },\n            {\n                \"upc\": \"245887\",\n                \"itemUnitCost\": 1000,\n                \"salesKey\": \"SALE\",\n                \"totalUnitCostAfterDiscount\": 1000,\n                \"totalUnitCost\": 1000,\n                \"description\": \"Oranges\",\n                \"itemUnitCount\": 1\n            },\n            {\n                \"upc\": \"245886\",\n                \"itemUnitCost\": 1000,\n                \"salesKey\": \"SALE\",\n                \"totalUnitCostAfterDiscount\": 1000,\n                \"totalUnitCost\": 1000,\n                \"description\": \"Carrot\",\n                \"itemUnitCount\": 1\n            },\n            {\n                \"upc\": \"245868\",\n                \"itemUnitCost\": 1000,\n                \"salesKey\": \"SALE\",\n                \"totalUnitCostAfterDiscount\": 1000,\n                \"totalUnitCost\": 1000,\n                \"description\": \"Pizza\",\n                \"itemUnitCount\": 1\n            },\n            {\n                \"upc\": \"245872\",\n                \"itemUnitCost\": 1000,\n                \"salesKey\": \"SALE\",\n                \"totalUnitCostAfterDiscount\": 1000,\n                \"totalUnitCost\": 1000,\n                \"description\": \"Wine\",\n                \"itemUnitCount\": 1\n            }\n        ]\n    }\n}",
+        "contentType": "application\/json",
+        "customHeaders": []
+    },
+    "response": {
+        "code": 200,
+        "body": "{\"walletTransactions\":[{\"walletTransactionId\":\"444110293\",\"parentWalletTransactionId\":\"444110257\",\"walletId\":\"216418806\",\"reference\":\"Final_TransactionReferenceFeb10e\",\"transactionDateTime\":\"2025-02-11T04:46:41+00:00\",\"transactionDateTimeOffset\":\"+00:00\",\"identityId\":null,\"identity\":null,\"type\":\"FULFIL\",\"status\":\"FULFILLED\",\"meta\":null,\"state\":\"ORIGINAL\",\"expiryDate\":null,\"accounts\":[{\"accountId\":\"4102294539\",\"accountTransactionId\":\"8006066949\"}],\"basket\":{\"contents\":[{\"sku\":null,\"upc\":\"245875\",\"salesKey\":\"SALE\",\"description\":\"Coffee\",\"itemUnitCost\":1000,\"itemUnitMetric\":null,\"itemUnitCount\":1,\"itemFulfilCount\":null,\"itemUnitDiscount\":null,\"totalUnitCost\":1000,\"totalUnitCostAfterDiscount\":1000,\"taxRate\":null,\"taxAmount\":null,\"qualifies\":{\"points\":true,\"discount\":true},\"relatedContents\":null,\"qualifiesResults\":null,\"contributionResults\":null,\"meta\":null,\"redemptionPartnerIncomingIdentifier\":null,\"outletIncomingIdentifier\":null,\"adjudicationResults\":null,\"adjustmentResults\":null,\"bounceBackResults\":null,\"tenderResults\":null,\"adjustmentRules\":null},{\"sku\":null,\"upc\":\"245887\",\"salesKey\":\"SALE\",\"description\":\"Oranges\",\"itemUnitCost\":1000,\"itemUnitMetric\":null,\"itemUnitCount\":1,\"itemFulfilCount\":null,\"itemUnitDiscount\":null,\"totalUnitCost\":1000,\"totalUnitCostAfterDiscount\":1000,\"taxRate\":null,\"taxAmount\":null,\"qualifies\":{\"points\":true,\"discount\":true},\"relatedContents\":null,\"qualifiesResults\":null,\"contributionResults\":null,\"meta\":null,\"redemptionPartnerIncomingIdentifier\":null,\"outletIncomingIdentifier\":null,\"adjudicationResults\":null,\"adjustmentResults\":null,\"bounceBackResults\":null,\"tenderResults\":null,\"adjustmentRules\":null},{\"sku\":null,\"upc\":\"245886\",\"salesKey\":\"SALE\",\"description\":\"Carrot\",\"itemUnitCost\":1000,\"itemUnitMetric\":null,\"itemUnitCount\":1,\"itemFulfilCount\":null,\"itemUnitDiscount\":null,\"totalUnitCost\":1000,\"totalUnitCostAfterDiscount\":1000,\"taxRate\":null,\"taxAmount\":null,\"qualifies\":{\"points\":true,\"discount\":true},\"relatedContents\":null,\"qualifiesResults\":null,\"contributionResults\":null,\"meta\":null,\"redemptionPartnerIncomingIdentifier\":null,\"outletIncomingIdentifier\":null,\"adjudicationResults\":null,\"adjustmentResults\":null,\"bounceBackResults\":null,\"tenderResults\":null,\"adjustmentRules\":null},{\"sku\":null,\"upc\":\"245868\",\"salesKey\":\"SALE\",\"description\":\"Pizza\",\"itemUnitCost\":1000,\"itemUnitMetric\":null,\"itemUnitCount\":1,\"itemFulfilCount\":null,\"itemUnitDiscount\":null,\"totalUnitCost\":1000,\"totalUnitCostAfterDiscount\":1000,\"taxRate\":null,\"taxAmount\":null,\"qualifies\":{\"points\":true,\"discount\":true},\"relatedContents\":null,\"qualifiesResults\":null,\"contributionResults\":null,\"meta\":null,\"redemptionPartnerIncomingIdentifier\":null,\"outletIncomingIdentifier\":null,\"adjudicationResults\":null,\"adjustmentResults\":null,\"bounceBackResults\":null,\"tenderResults\":null,\"adjustmentRules\":null},{\"sku\":null,\"upc\":\"245872\",\"salesKey\":\"SALE\",\"description\":\"Wine\",\"itemUnitCost\":1000,\"itemUnitMetric\":null,\"itemUnitCount\":1,\"itemFulfilCount\":null,\"itemUnitDiscount\":null,\"totalUnitCost\":1000,\"totalUnitCostAfterDiscount\":1000,\"taxRate\":null,\"taxAmount\":null,\"qualifies\":{\"points\":true,\"discount\":true},\"relatedContents\":null,\"qualifiesResults\":null,\"contributionResults\":null,\"meta\":null,\"redemptionPartnerIncomingIdentifier\":null,\"outletIncomingIdentifier\":null,\"adjudicationResults\":null,\"adjustmentResults\":null,\"bounceBackResults\":null,\"tenderResults\":null,\"adjustmentRules\":null}],\"summary\":{\"totalItems\":0,\"totalBasketValue\":0,\"totalQualifyingAmount\":null,\"totalDiscountAmount\":{\"promotions\":0,\"staff\":null,\"general\":null},\"totalTaxAmount\":null,\"fulfilledBaseEarn\":null,\"expectedPoints\":null,\"originalQualifiedAccounts\":null,\"spendAdjudicationResults\":null,\"results\":{\"points\":{\"spend\":0,\"debit\":0,\"refund\":0,\"totalPointsTaken\":0,\"earn\":18,\"credit\":0,\"totalPointsGiven\":18,\"totalMonetaryValue\":0},\"pointsByScheme\":null,\"tiers\":null},\"qualifiesResults\":null,\"reporting\":null,\"tierMembershipResults\":null,\"redemptionChannel\":null,\"adjudicationResults\":[{\"value\":null,\"isRefundable\":true,\"balances\":{\"current\":18},\"resourceType\":\"SCHEME\",\"resourceId\":\"100620987\",\"instanceId\":\"100620987-1\",\"relatedAccountIds\":[],\"success\":true,\"type\":\"earn\",\"isUnredeemable\":false,\"targetedAccountId\":\"4102294539\",\"targetedWalletId\":\"216418806\",\"totalMatchingUnits\":null,\"playOrderPosition\":2,\"totalRewardUnits\":null}],\"adjustmentResults\":null,\"bounceBackResults\":null,\"tenderResults\":null,\"adjustmentRules\":null},\"payment\":null},\"channel\":\"api\",\"location\":{\"storeId\":\"outlet1\",\"storeParentId\":\"banner1\"},\"dateCreated\":\"2025-02-11T04:46:41+00:00\",\"lastUpdated\":\"2025-02-11T04:46:41+00:00\"}],\"accountTransactions\":[{\"accountTransactionId\":\"8006066949\",\"parentAccountTransactionId\":\"\",\"accountId\":\"4102294539\",\"event\":\"EARN\",\"value\":18,\"source\":1,\"balancesBefore\":{\"current\":1371,\"lifetime\":0},\"balancesAfter\":{\"current\":1389,\"lifetime\":0},\"transactionDetails\":{\"merchant_store_id\":\"outlet1\",\"merchant_store_parent_id\":\"banner1\"},\"properties\":[],\"dateCreated\":\"2025-02-11T04:46:41+00:00\",\"lastUpdated\":\"2025-02-11T04:46:41+00:00\"}]}",
+        "contentType": "application\/json;charset=utf-8"
+    },
+    "atomicOperations": [
+        {
+            "objectType": "walletAccountTransactionEntity",
+            "operationType": "UPDATE",
+            "objectValue": {
+                "accountTransactionId": "8006066949",
+                "parentAccountTransactionId": "",
+                "accountId": "4102294539",
+                "account": {
+                    "accountId": "4102294539",
+                    "walletId": "216418806",
+                    "campaignId": "100620987",
+                    "type": "POINTS",
+                    "clientType": "RETAILPOINTS",
+                    "status": "ACTIVE",
+                    "state": "LOADED",
+                    "dates": {
+                        "start": "2025-01-30T23:36:09+00:00",
+                        "end": "2038-01-19T03:14:07+00:00"
+                    },
+                    "meta": [],
+                    "dateCreated": "2025-01-30T23:36:09+00:00",
+                    "lastUpdated": "2025-02-11T04:46:41+00:00",
+                    "overrides": [],
+                    "balances": {
+                        "current": 1389,
+                        "usable": 1389,
+                        "lifetime": 1389,
+                        "pending": 0,
+                        "locked": 0,
+                        "lifetimeSpend": 0,
+                        "lifetimeSpendValue": 0
+                    },
+                    "relationships": [],
+                    "mobileWallet": "https:\/\/sb.uk.mypass.is\/a\/4102294539\/ce950987a41f560"
+                },
+                "event": "EARN",
+                "value": 18,
+                "source": 1,
+                "balancesBefore": {
+                    "current": 1371,
+                    "lifetime": 0
+                },
+                "balancesAfter": {
+                    "current": 1389,
+                    "lifetime": 0
+                },
+                "transactionDetails": {
+                    "merchant_store_id": "outlet1",
+                    "merchant_store_parent_id": "banner1"
+                },
+                "properties": [],
+                "dateCreated": "2025-02-11T04:46:41+00:00",
+                "lastUpdated": "2025-02-11T04:46:41+00:00"
+            }
+        },
+        {
+            "objectType": "walletTransactionEntity",
+            "operationType": "UPDATE",
+            "objectValue": {
+                "walletTransactionId": "444110257",
+                "parentWalletTransactionId": "0",
+                "walletId": "216418806",
+                "reference": "TransactionReferenceFeb10e",
+                "transactionDateTime": "2025-02-11T04:40:59+00:00",
+                "transactionDateTimeOffset": "+00:00",
+                "identityId": "187158510",
+                "identity": null,
+                "type": "SETTLE",
+                "status": "FULFILLING",
+                "meta": null,
+                "state": "ORIGINAL",
+                "expiryDate": null,
+                "accounts": [
+                    {
+                        "accountId": "4102294539",
+                        "accountTransactionId": "8006066949"
+                    }
+                ],
+                "basket": {
+                    "contents": [
+                        {
+                            "sku": null,
+                            "upc": "245874",
+                            "salesKey": "SALE",
+                            "description": "Lemonade",
+                            "itemUnitCost": 1000,
+                            "itemUnitMetric": null,
+                            "itemUnitCount": 2,
+                            "itemFulfilCount": 2,
+                            "itemUnitDiscount": null,
+                            "totalUnitCost": 2000,
+                            "totalUnitCostAfterDiscount": 2000,
+                            "taxRate": null,
+                            "taxAmount": null,
+                            "qualifies": {
+                                "points": true,
+                                "discount": true
+                            },
+                            "relatedContents": null,
+                            "qualifiesResults": null,
+                            "contributionResults": [
+                                {
+                                    "value": 200,
+                                    "instanceId": "100792525-1"
+                                },
+                                {
+                                    "value": 18,
+                                    "instanceId": "100620987-1"
+                                }
+                            ],
+                            "meta": null,
+                            "redemptionPartnerIncomingIdentifier": null,
+                            "outletIncomingIdentifier": null,
+                            "adjudicationResults": null,
+                            "adjustmentResults": null,
+                            "bounceBackResults": null,
+                            "tenderResults": null,
+                            "adjustmentRules": null
+                        }
+                    ],
+                    "summary": {
+                        "totalItems": 2,
+                        "totalBasketValue": 2000,
+                        "totalQualifyingAmount": null,
+                        "totalDiscountAmount": {
+                            "promotions": 0,
+                            "staff": null,
+                            "general": null
+                        },
+                        "totalTaxAmount": null,
+                        "fulfilledBaseEarn": [
+                            {
+                                "targetedAccountId": "4102294539",
+                                "points": 18
+                            }
+                        ],
+                        "expectedPoints": [
+                            {
+                                "schemeId": "100620987",
+                                "earn": 63,
+                                "credit": 0,
+                                "isPending": false
+                            }
+                        ],
+                        "originalQualifiedAccounts": null,
+                        "spendAdjudicationResults": null,
+                        "results": {
+                            "points": {
+                                "spend": 0,
+                                "debit": 0,
+                                "refund": 0,
+                                "totalPointsTaken": 0,
+                                "earn": 18,
+                                "credit": 0,
+                                "totalPointsGiven": 18,
+                                "totalMonetaryValue": 0
+                            },
+                            "pointsByScheme": null,
+                            "tiers": null
+                        },
+                        "qualifiesResults": [
+                            {
+                                "totalMatchingUnits": null,
+                                "totalMatchingSpend": 1000,
+                                "totalOverallMatchingSpend": null,
+                                "instanceId": "100792525-1"
+                            }
+                        ],
+                        "reporting": null,
+                        "tierMembershipResults": [
+                            {
+                                "tierMembershipId": "1291239",
+                                "type": "credit",
+                                "balances": {
+                                    "points": 63,
+                                    "transactions": 0,
+                                    "spend": 6300
+                                },
+                                "success": null
+                            }
+                        ],
+                        "redemptionChannel": null,
+                        "adjudicationResults": [
+                            {
+                                "value": null,
+                                "isRefundable": true,
+                                "balances": {
+                                    "current": 18
+                                },
+                                "resourceType": "SCHEME",
+                                "resourceId": "100620987",
+                                "instanceId": "100620987-1",
+                                "relatedAccountIds": [],
+                                "success": true,
+                                "type": "earn",
+                                "isUnredeemable": false,
+                                "targetedAccountId": "4102294539",
+                                "targetedWalletId": "216418806",
+                                "totalMatchingUnits": null,
+                                "playOrderPosition": 2,
+                                "totalRewardUnits": null
+                            }
+                        ],
+                        "adjustmentResults": null,
+                        "bounceBackResults": null,
+                        "tenderResults": null,
+                        "adjustmentRules": null
+                    },
+                    "payment": null
+                },
+                "channel": "api",
+                "location": {
+                    "storeId": null,
+                    "storeParentId": null
+                },
+                "dateCreated": "2025-02-11T04:40:59+00:00",
+                "lastUpdated": "2025-02-11T04:46:41+00:00"
+            }
+        },
+        {
+            "objectType": "walletTransactionEntity",
+            "operationType": "UPDATE",
+            "objectValue": {
+                "walletTransactionId": "444110257",
+                "parentWalletTransactionId": "0",
+                "walletId": "216418806",
+                "reference": "TransactionReferenceFeb10e",
+                "transactionDateTime": "2025-02-11T04:40:59+00:00",
+                "transactionDateTimeOffset": "+00:00",
+                "identityId": "187158510",
+                "identity": null,
+                "type": "SETTLE",
+                "status": "SETTLED",
+                "meta": null,
+                "state": "ORIGINAL",
+                "expiryDate": null,
+                "accounts": [
+                    {
+                        "accountId": "4102294539",
+                        "accountTransactionId": "8006066949"
+                    }
+                ],
+                "basket": {
+                    "contents": [
+                        {
+                            "sku": null,
+                            "upc": "245874",
+                            "salesKey": "SALE",
+                            "description": "Lemonade",
+                            "itemUnitCost": 1000,
+                            "itemUnitMetric": null,
+                            "itemUnitCount": 2,
+                            "itemFulfilCount": 2,
+                            "itemUnitDiscount": null,
+                            "totalUnitCost": 2000,
+                            "totalUnitCostAfterDiscount": 2000,
+                            "taxRate": null,
+                            "taxAmount": null,
+                            "qualifies": {
+                                "points": true,
+                                "discount": true
+                            },
+                            "relatedContents": null,
+                            "qualifiesResults": null,
+                            "contributionResults": [
+                                {
+                                    "value": 200,
+                                    "instanceId": "100792525-1"
+                                },
+                                {
+                                    "value": 18,
+                                    "instanceId": "100620987-1"
+                                }
+                            ],
+                            "meta": null,
+                            "redemptionPartnerIncomingIdentifier": null,
+                            "outletIncomingIdentifier": null,
+                            "adjudicationResults": null,
+                            "adjustmentResults": null,
+                            "bounceBackResults": null,
+                            "tenderResults": null,
+                            "adjustmentRules": null
+                        }
+                    ],
+                    "summary": {
+                        "totalItems": 2,
+                        "totalBasketValue": 2000,
+                        "totalQualifyingAmount": null,
+                        "totalDiscountAmount": {
+                            "promotions": 0,
+                            "staff": null,
+                            "general": null
+                        },
+                        "totalTaxAmount": null,
+                        "fulfilledBaseEarn": [
+                            {
+                                "targetedAccountId": "4102294539",
+                                "points": 18
+                            }
+                        ],
+                        "expectedPoints": [
+                            {
+                                "schemeId": "100620987",
+                                "earn": 63,
+                                "credit": 0,
+                                "isPending": false
+                            }
+                        ],
+                        "originalQualifiedAccounts": null,
+                        "spendAdjudicationResults": null,
+                        "results": {
+                            "points": {
+                                "spend": 0,
+                                "debit": 0,
+                                "refund": 0,
+                                "totalPointsTaken": 0,
+                                "earn": 18,
+                                "credit": 0,
+                                "totalPointsGiven": 18,
+                                "totalMonetaryValue": 0
+                            },
+                            "pointsByScheme": null,
+                            "tiers": null
+                        },
+                        "qualifiesResults": [
+                            {
+                                "totalMatchingUnits": null,
+                                "totalMatchingSpend": 1000,
+                                "totalOverallMatchingSpend": null,
+                                "instanceId": "100792525-1"
+                            }
+                        ],
+                        "reporting": null,
+                        "tierMembershipResults": [
+                            {
+                                "tierMembershipId": "1291239",
+                                "type": "credit",
+                                "balances": {
+                                    "points": 63,
+                                    "transactions": 0,
+                                    "spend": 6300
+                                },
+                                "success": null
+                            }
+                        ],
+                        "redemptionChannel": null,
+                        "adjudicationResults": [
+                            {
+                                "value": null,
+                                "isRefundable": true,
+                                "balances": {
+                                    "current": 18
+                                },
+                                "resourceType": "SCHEME",
+                                "resourceId": "100620987",
+                                "instanceId": "100620987-1",
+                                "relatedAccountIds": [],
+                                "success": true,
+                                "type": "earn",
+                                "isUnredeemable": false,
+                                "targetedAccountId": "4102294539",
+                                "targetedWalletId": "216418806",
+                                "totalMatchingUnits": null,
+                                "playOrderPosition": 2,
+                                "totalRewardUnits": null
+                            }
+                        ],
+                        "adjustmentResults": null,
+                        "bounceBackResults": null,
+                        "tenderResults": null,
+                        "adjustmentRules": null
+                    },
+                    "payment": null
+                },
+                "channel": "api",
+                "location": {
+                    "storeId": null,
+                    "storeParentId": null
+                },
+                "dateCreated": "2025-02-11T04:40:59+00:00",
+                "lastUpdated": "2025-02-11T04:46:41+00:00"
+            }
+        },
+        {
+            "objectType": "walletTransactionEntity",
+            "operationType": "CREATE",
+            "objectValue": {
+                "walletTransactionId": "444110293",
+                "parentWalletTransactionId": "444110257",
+                "walletId": "216418806",
+                "reference": "Final_TransactionReferenceFeb10e",
+                "transactionDateTime": "2025-02-11T04:46:41+00:00",
+                "transactionDateTimeOffset": "+00:00",
+                "identityId": null,
+                "identity": null,
+                "type": "FULFIL",
+                "status": "FULFILLED",
+                "meta": null,
+                "state": "ORIGINAL",
+                "expiryDate": null,
+                "accounts": [
+                    {
+                        "accountId": "4102294539",
+                        "accountTransactionId": "8006066949"
+                    }
+                ],
+                "basket": {
+                    "contents": [
+                        {
+                            "sku": null,
+                            "upc": "245875",
+                            "salesKey": "SALE",
+                            "description": "Coffee",
+                            "itemUnitCost": 1000,
+                            "itemUnitMetric": null,
+                            "itemUnitCount": 1,
+                            "itemFulfilCount": null,
+                            "itemUnitDiscount": null,
+                            "totalUnitCost": 1000,
+                            "totalUnitCostAfterDiscount": 1000,
+                            "taxRate": null,
+                            "taxAmount": null,
+                            "qualifies": {
+                                "points": true,
+                                "discount": true
+                            },
+                            "relatedContents": null,
+                            "qualifiesResults": null,
+                            "contributionResults": null,
+                            "meta": null,
+                            "redemptionPartnerIncomingIdentifier": null,
+                            "outletIncomingIdentifier": null,
+                            "adjudicationResults": null,
+                            "adjustmentResults": null,
+                            "bounceBackResults": null,
+                            "tenderResults": null,
+                            "adjustmentRules": null
+                        },
+                        {
+                            "sku": null,
+                            "upc": "245887",
+                            "salesKey": "SALE",
+                            "description": "Oranges",
+                            "itemUnitCost": 1000,
+                            "itemUnitMetric": null,
+                            "itemUnitCount": 1,
+                            "itemFulfilCount": null,
+                            "itemUnitDiscount": null,
+                            "totalUnitCost": 1000,
+                            "totalUnitCostAfterDiscount": 1000,
+                            "taxRate": null,
+                            "taxAmount": null,
+                            "qualifies": {
+                                "points": true,
+                                "discount": true
+                            },
+                            "relatedContents": null,
+                            "qualifiesResults": null,
+                            "contributionResults": null,
+                            "meta": null,
+                            "redemptionPartnerIncomingIdentifier": null,
+                            "outletIncomingIdentifier": null,
+                            "adjudicationResults": null,
+                            "adjustmentResults": null,
+                            "bounceBackResults": null,
+                            "tenderResults": null,
+                            "adjustmentRules": null
+                        },
+                        {
+                            "sku": null,
+                            "upc": "245886",
+                            "salesKey": "SALE",
+                            "description": "Carrot",
+                            "itemUnitCost": 1000,
+                            "itemUnitMetric": null,
+                            "itemUnitCount": 1,
+                            "itemFulfilCount": null,
+                            "itemUnitDiscount": null,
+                            "totalUnitCost": 1000,
+                            "totalUnitCostAfterDiscount": 1000,
+                            "taxRate": null,
+                            "taxAmount": null,
+                            "qualifies": {
+                                "points": true,
+                                "discount": true
+                            },
+                            "relatedContents": null,
+                            "qualifiesResults": null,
+                            "contributionResults": null,
+                            "meta": null,
+                            "redemptionPartnerIncomingIdentifier": null,
+                            "outletIncomingIdentifier": null,
+                            "adjudicationResults": null,
+                            "adjustmentResults": null,
+                            "bounceBackResults": null,
+                            "tenderResults": null,
+                            "adjustmentRules": null
+                        },
+                        {
+                            "sku": null,
+                            "upc": "245868",
+                            "salesKey": "SALE",
+                            "description": "Pizza",
+                            "itemUnitCost": 1000,
+                            "itemUnitMetric": null,
+                            "itemUnitCount": 1,
+                            "itemFulfilCount": null,
+                            "itemUnitDiscount": null,
+                            "totalUnitCost": 1000,
+                            "totalUnitCostAfterDiscount": 1000,
+                            "taxRate": null,
+                            "taxAmount": null,
+                            "qualifies": {
+                                "points": true,
+                                "discount": true
+                            },
+                            "relatedContents": null,
+                            "qualifiesResults": null,
+                            "contributionResults": null,
+                            "meta": null,
+                            "redemptionPartnerIncomingIdentifier": null,
+                            "outletIncomingIdentifier": null,
+                            "adjudicationResults": null,
+                            "adjustmentResults": null,
+                            "bounceBackResults": null,
+                            "tenderResults": null,
+                            "adjustmentRules": null
+                        },
+                        {
+                            "sku": null,
+                            "upc": "245872",
+                            "salesKey": "SALE",
+                            "description": "Wine",
+                            "itemUnitCost": 1000,
+                            "itemUnitMetric": null,
+                            "itemUnitCount": 1,
+                            "itemFulfilCount": null,
+                            "itemUnitDiscount": null,
+                            "totalUnitCost": 1000,
+                            "totalUnitCostAfterDiscount": 1000,
+                            "taxRate": null,
+                            "taxAmount": null,
+                            "qualifies": {
+                                "points": true,
+                                "discount": true
+                            },
+                            "relatedContents": null,
+                            "qualifiesResults": null,
+                            "contributionResults": null,
+                            "meta": null,
+                            "redemptionPartnerIncomingIdentifier": null,
+                            "outletIncomingIdentifier": null,
+                            "adjudicationResults": null,
+                            "adjustmentResults": null,
+                            "bounceBackResults": null,
+                            "tenderResults": null,
+                            "adjustmentRules": null
+                        }
+                    ],
+                    "summary": {
+                        "totalItems": 0,
+                        "totalBasketValue": 0,
+                        "totalQualifyingAmount": null,
+                        "totalDiscountAmount": {
+                            "promotions": 0,
+                            "staff": null,
+                            "general": null
+                        },
+                        "totalTaxAmount": null,
+                        "fulfilledBaseEarn": null,
+                        "expectedPoints": null,
+                        "originalQualifiedAccounts": null,
+                        "spendAdjudicationResults": null,
+                        "results": {
+                            "points": {
+                                "spend": 0,
+                                "debit": 0,
+                                "refund": 0,
+                                "totalPointsTaken": 0,
+                                "earn": 18,
+                                "credit": 0,
+                                "totalPointsGiven": 18,
+                                "totalMonetaryValue": 0
+                            },
+                            "pointsByScheme": null,
+                            "tiers": null
+                        },
+                        "qualifiesResults": null,
+                        "reporting": null,
+                        "tierMembershipResults": null,
+                        "redemptionChannel": null,
+                        "adjudicationResults": [
+                            {
+                                "value": null,
+                                "isRefundable": true,
+                                "balances": {
+                                    "current": 18
+                                },
+                                "resourceType": "SCHEME",
+                                "resourceId": "100620987",
+                                "instanceId": "100620987-1",
+                                "relatedAccountIds": [],
+                                "success": true,
+                                "type": "earn",
+                                "isUnredeemable": false,
+                                "targetedAccountId": "4102294539",
+                                "targetedWalletId": "216418806",
+                                "totalMatchingUnits": null,
+                                "playOrderPosition": 2,
+                                "totalRewardUnits": null
+                            }
+                        ],
+                        "adjustmentResults": null,
+                        "bounceBackResults": null,
+                        "tenderResults": null,
+                        "adjustmentRules": null
+                    },
+                    "payment": null
+                },
+                "channel": "api",
+                "location": {
+                    "storeId": "outlet1",
+                    "storeParentId": "banner1"
+                },
+                "dateCreated": "2025-02-11T04:46:41+00:00",
+                "lastUpdated": "2025-02-11T04:46:41+00:00"
+            }
+        }
+    ],
+    "enrichmentData": {
+        "walletEntity_216418806": {
+            "identities": [
+                {
+                    "identityId": "187158510",
+                    "walletId": "216418806",
+                    "type": "CUSTOMER_ID",
+                    "value": "1111111111111127",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "187158511",
+                    "walletId": "216418806",
+                    "type": "CARD",
+                    "value": "2222222222222217",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "187158512",
+                    "walletId": "216418806",
+                    "type": "MOBILE",
+                    "value": "+1(416)-111-1127",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                }
+            ]
+        }
+    }
+}

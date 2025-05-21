@@ -1,0 +1,16 @@
+@startuml CDP -> AIR
+
+CDP -> Connector: POST /in/:slug/:connectorId [cdp-outbound-request]
+Connector -> "Config API": GET /connectors/:connectorId/config
+"Config API" -> Connector: [Config]
+Connector -> "Pub/Sub": cdp-outbound-event
+"Pub/Sub" -> Connector: cdp-outbound-event
+note over Connector
+Transform cdp-outbound-event
+to ee-air-inbound-event
+end note
+Connector -> "Pub/Sub": ee-air-inbound-event
+"Pub/Sub" -> Connector: ee-air-inbound-event
+Connector -> AIR: ee-air-outbound-request
+
+@enduml

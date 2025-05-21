@@ -1,0 +1,253 @@
+{
+    "headers": {
+        "eventName": "POSCONNECT.WALLET.SPEND",
+        "eventDate": "2025-01-22T21:12:34.587762",
+        "eesEnvironmentType": "sandbox-uk",
+        "eesSubsystemId": "pos.sandbox.uk.eagleeye.com",
+        "callerIp": "35.244.190.158",
+        "unitId": "197332",
+        "unitFriendlyName": "Apply Digital",
+        "clientId": "mgtgpt5ewhj5fwvdm6d1",
+        "clientIdFriendlyName": "api",
+        "eesEventId": "d0ac24a5-87c8-49b7-ac36-6e399a0b1e80",
+        "eesMasterEventId": "Z5FfQm1six2mdb6nuQZ4AQAAADc",
+        "externalMessageId": null,
+        "eesApiVersion": "7.6"
+    },
+    "request": {
+        "resource": "\/connect\/wallet\/spend\/spend",
+        "method": "POST",
+        "body": "{\n    \"identity\": {\n        \"identityValue\": \"1111111111111122\"\n    },\n    \"location\": {\n        \"incomingIdentifier\": \"outlet1\",\n        \"parentIncomingIdentifier\": \"banner1\"\n    },\n    \"reference\": \"NSSpendTestabc123\",\n    \"lock\": true,\n    \"parentWalletTransactionReference\": \"TransactionReferenceJan22abc333\",\n    \"spendAdjudicationResults\": {\n        \"pointsValue\": 20000,\n        \"pointsRemainder\": 0,\n        \"monetaryValue\": 20000,\n        \"balanceAfter\": {\n            \"current\": 5670,\n            \"usable\": 5670,\n            \"locked\": 0,\n            \"lifetime\": 25670,\n            \"lifetimeSpend\": 20000,\n            \"lifetimeSpendValue\": 20000,\n            \"pending\": 0\n        },\n        \"appliedTier\": {\n            \"bonus\": 0,\n            \"ceiling\": 999999,\n            \"floor\": 1,\n            \"pointsBack\": 0,\n            \"rate\": 1,\n            \"step\": 1\n        },\n        \"operations\": [\n            {\n                \"resourceType\": \"SCHEME\",\n                \"resourceId\": \"100620987\",\n                \"accountId\": \"4083750463\",\n                \"walletId\": \"216245571\",\n                \"operationType\": \"spend\",\n                \"details\": null,\n                \"value\": 20000,\n                \"balances\": {\n                    \"current\": 20000,\n                    \"lifetime_spend\": 20000,\n                    \"lifetime_spend_value\": 20000\n                }\n            }\n        ],\n        \"analysedDateTime\": \"2025-01-22T21:08:19+00:00\"\n    }\n}",
+        "contentType": "application\/json",
+        "customHeaders": []
+    },
+    "response": {
+        "code": 200,
+        "body": "{\"walletTransactions\":[{\"walletTransactionId\":\"437908084\",\"parentWalletTransactionId\":\"437907485\",\"walletId\":\"216245571\",\"reference\":\"NSSpendTestabc123\",\"transactionDateTime\":\"2025-01-22T21:12:34+00:00\",\"transactionDateTimeOffset\":\"+00:00\",\"identityId\":\"186980856\",\"identity\":null,\"type\":\"SPEND\",\"status\":\"ACTIVE\",\"meta\":null,\"state\":\"ORIGINAL\",\"expiryDate\":null,\"accounts\":[{\"accountId\":\"4083750463\",\"accountTransactionId\":\"7877348820\"}],\"basket\":{\"contents\":null,\"summary\":{\"totalItems\":null,\"totalBasketValue\":null,\"totalQualifyingAmount\":null,\"totalDiscountAmount\":null,\"totalTaxAmount\":null,\"fulfilledBaseEarn\":null,\"expectedPoints\":null,\"originalQualifiedAccounts\":null,\"spendAdjudicationResults\":{\"pointsValue\":20000,\"pointsRemainder\":0,\"monetaryValue\":20000,\"balanceAfter\":{\"current\":5670,\"usable\":5670,\"locked\":0,\"lifetime\":25670,\"lifetimeSpend\":20000,\"lifetimeSpendValue\":20000,\"pending\":0},\"appliedTier\":{\"bonus\":0,\"ceiling\":999999,\"floor\":1,\"pointsBack\":0,\"rate\":1,\"step\":1},\"operations\":[{\"resourceType\":\"SCHEME\",\"resourceId\":\"100620987\",\"accountId\":\"4083750463\",\"walletId\":\"216245571\",\"operationType\":\"spend\",\"value\":20000,\"details\":null,\"balances\":{\"current\":20000,\"lifetime_spend\":20000,\"lifetime_spend_value\":20000}}],\"analysedDateTime\":\"2025-01-22T21:08:19+00:00\",\"excludedProducts\":[]},\"results\":{\"points\":{\"spend\":20000,\"debit\":0,\"refund\":0,\"totalPointsTaken\":20000,\"earn\":0,\"credit\":0,\"totalPointsGiven\":0,\"totalMonetaryValue\":20000},\"tiers\":null},\"qualifiesResults\":null,\"reporting\":null,\"tierMembershipResults\":null,\"redemptionChannel\":null,\"adjudicationResults\":null,\"adjustmentResults\":null,\"bounceBackResults\":null,\"tenderResults\":null,\"adjustmentRules\":null},\"payment\":null},\"channel\":\"api\",\"location\":{\"storeId\":\"outlet1\",\"storeParentId\":\"banner1\"},\"dateCreated\":\"2025-01-22T21:12:34+00:00\",\"lastUpdated\":\"2025-01-22T21:12:34+00:00\"}],\"accountTransactions\":[{\"accountTransactionId\":\"7877348820\",\"parentAccountTransactionId\":\"\",\"accountId\":\"4083750463\",\"event\":\"LOCK\",\"value\":20000,\"source\":1,\"balancesBefore\":{\"current\":25670,\"lifetime\":0},\"balancesAfter\":{\"current\":25670,\"lifetime\":0},\"transactionDetails\":[],\"properties\":[],\"dateCreated\":\"2025-01-22T21:12:34+00:00\",\"lastUpdated\":\"2025-01-22T21:12:34+00:00\"}]}",
+        "contentType": "application\/json;charset=utf-8"
+    },
+    "atomicOperations": [
+        {
+            "objectType": "walletTransactionEntity",
+            "operationType": "CREATE",
+            "objectValue": {
+                "walletTransactionId": "437908084",
+                "parentWalletTransactionId": "0",
+                "walletId": "216245571",
+                "reference": "NSSpendTestabc123",
+                "transactionDateTime": "2025-01-22T21:12:34+00:00",
+                "transactionDateTimeOffset": "+00:00",
+                "identityId": "186980856",
+                "identity": null,
+                "type": "SPEND",
+                "status": "ACTIVE",
+                "meta": null,
+                "state": "ORIGINAL",
+                "expiryDate": null,
+                "accounts": [],
+                "basket": {
+                    "contents": null,
+                    "summary": null,
+                    "payment": null
+                },
+                "channel": "api",
+                "location": {
+                    "storeId": "outlet1",
+                    "storeParentId": "banner1"
+                },
+                "dateCreated": "2025-01-22T21:12:34+00:00",
+                "lastUpdated": "2025-01-22T21:12:34+00:00"
+            }
+        },
+        {
+            "objectType": "walletAccountTransactionEntity",
+            "operationType": "UPDATE",
+            "objectValue": {
+                "accountTransactionId": "7877348820",
+                "parentAccountTransactionId": null,
+                "accountId": "4083750463",
+                "account": {
+                    "accountId": "4083750463",
+                    "walletId": "216245571",
+                    "campaignId": "100620987",
+                    "type": "POINTS",
+                    "clientType": "RETAILPOINTS",
+                    "status": "ACTIVE",
+                    "state": "LOADED",
+                    "dates": {
+                        "start": "2025-01-22T20:45:00+00:00",
+                        "end": "2038-01-19T03:14:07+00:00"
+                    },
+                    "meta": [],
+                    "dateCreated": "2025-01-22T20:45:00+00:00",
+                    "lastUpdated": "2025-01-22T20:59:10+00:00",
+                    "overrides": [],
+                    "balances": {
+                        "current": 25670,
+                        "usable": 25670,
+                        "lifetime": 25670,
+                        "pending": 0,
+                        "locked": 0,
+                        "lifetimeSpend": 0,
+                        "lifetimeSpendValue": 0
+                    },
+                    "relationships": [],
+                    "mobileWallet": "https:\/\/sb.uk.mypass.is\/a\/4083750463\/09136f8886d943f"
+                },
+                "event": "LOCK",
+                "value": 20000,
+                "source": 1,
+                "balancesBefore": {
+                    "current": 25670,
+                    "lifetime": 0
+                },
+                "balancesAfter": {
+                    "current": 25670,
+                    "lifetime": 0
+                },
+                "transactionDetails": [],
+                "properties": [],
+                "dateCreated": "2025-01-22T21:12:34+00:00",
+                "lastUpdated": "2025-01-22T21:12:34+00:00"
+            }
+        },
+        {
+            "objectType": "walletTransactionEntity",
+            "operationType": "UPDATE",
+            "objectValue": {
+                "walletTransactionId": "437908084",
+                "parentWalletTransactionId": "437907485",
+                "walletId": "216245571",
+                "reference": "NSSpendTestabc123",
+                "transactionDateTime": "2025-01-22T21:12:34+00:00",
+                "transactionDateTimeOffset": "+00:00",
+                "identityId": "186980856",
+                "identity": null,
+                "type": "SPEND",
+                "status": "ACTIVE",
+                "meta": null,
+                "state": "ORIGINAL",
+                "expiryDate": null,
+                "accounts": [
+                    {
+                        "accountId": "4083750463",
+                        "accountTransactionId": "7877348820"
+                    }
+                ],
+                "basket": {
+                    "contents": null,
+                    "summary": {
+                        "totalItems": null,
+                        "totalBasketValue": null,
+                        "totalQualifyingAmount": null,
+                        "totalDiscountAmount": null,
+                        "totalTaxAmount": null,
+                        "fulfilledBaseEarn": null,
+                        "expectedPoints": null,
+                        "originalQualifiedAccounts": null,
+                        "spendAdjudicationResults": {
+                            "pointsValue": 20000,
+                            "pointsRemainder": 0,
+                            "monetaryValue": 20000,
+                            "balanceAfter": {
+                                "current": 5670,
+                                "usable": 5670,
+                                "locked": 0,
+                                "lifetime": 25670,
+                                "lifetimeSpend": 20000,
+                                "lifetimeSpendValue": 20000,
+                                "pending": 0
+                            },
+                            "appliedTier": {
+                                "bonus": 0,
+                                "ceiling": 999999,
+                                "floor": 1,
+                                "pointsBack": 0,
+                                "rate": 1,
+                                "step": 1
+                            },
+                            "operations": [
+                                {
+                                    "resourceType": "SCHEME",
+                                    "resourceId": "100620987",
+                                    "accountId": "4083750463",
+                                    "walletId": "216245571",
+                                    "operationType": "spend",
+                                    "value": 20000,
+                                    "details": null,
+                                    "balances": {
+                                        "current": 20000,
+                                        "lifetime_spend": 20000,
+                                        "lifetime_spend_value": 20000
+                                    }
+                                }
+                            ],
+                            "analysedDateTime": "2025-01-22T21:08:19+00:00",
+                            "excludedProducts": []
+                        },
+                        "results": {
+                            "points": {
+                                "spend": 20000,
+                                "debit": 0,
+                                "refund": 0,
+                                "totalPointsTaken": 20000,
+                                "earn": 0,
+                                "credit": 0,
+                                "totalPointsGiven": 0,
+                                "totalMonetaryValue": 20000
+                            },
+                            "tiers": null
+                        },
+                        "qualifiesResults": null,
+                        "reporting": null,
+                        "tierMembershipResults": null,
+                        "redemptionChannel": null,
+                        "adjudicationResults": null,
+                        "adjustmentResults": null,
+                        "bounceBackResults": null,
+                        "tenderResults": null,
+                        "adjustmentRules": null
+                    },
+                    "payment": null
+                },
+                "channel": "api",
+                "location": {
+                    "storeId": "outlet1",
+                    "storeParentId": "banner1"
+                },
+                "dateCreated": "2025-01-22T21:12:34+00:00",
+                "lastUpdated": "2025-01-22T21:12:34+00:00"
+            }
+        }
+    ],
+    "enrichmentData": {
+        "walletEntity_216245571": {
+            "identities": [
+                {
+                    "identityId": "186980856",
+                    "walletId": "216245571",
+                    "type": "CUSTOMER_ID",
+                    "value": "1111111111111122",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "186980857",
+                    "walletId": "216245571",
+                    "type": "CARD",
+                    "value": "2222222222222211",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "186980858",
+                    "walletId": "216245571",
+                    "type": "MOBILE",
+                    "value": "+1(416)-111-1122",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                }
+            ]
+        }
+    }
+}

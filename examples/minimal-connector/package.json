@@ -1,0 +1,21 @@
+{
+  "name": "minimal-connector",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@eagleeye-solutions/integration-events-common": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "arg": "^5.0.2",
+    "gts": "^6.0.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,188 @@
+{
+    "headers": {
+        "eventName": "TIER.MEMBERSHIP.ADJUST",
+        "eventDate": "2025-02-26T17:57:08.306828",
+        "eesEnvironmentType": "sandbox-uk",
+        "eesSubsystemId": "wallet.sandbox.uk.eagleeye.com",
+        "callerIp": "35.244.186.249",
+        "unitId": "197332",
+        "unitFriendlyName": "Apply Digital",
+        "clientId": "mgtgpt5ewhj5fwvdm6d1",
+        "clientIdFriendlyName": "api",
+        "eesEventId": "cd5ddc6f-52a1-488b-86d5-2ee07494beb1",
+        "eesMasterEventId": "Z79V9Kqg_G0Ig8xL3l3z4AAAAac",
+        "externalMessageId": "",
+        "eesApiVersion": "2.0"
+    },
+    "request": {
+        "resource": "\/wallet\/216245432\/tier\/membership\/1291015\/adjust",
+        "method": "PATCH",
+        "body": "{\n  \"balances\": {\n    \"points\": -1000,\n    \"spend\": -1000,\n    \"transactions\": -1\n  }\n}",
+        "contentType": "application\/json",
+        "customHeaders": []
+    },
+    "response": {
+        "code": 200,
+        "body": {
+            "membership": {
+                "tierMembershipId": "1291015",
+                "tierId": "179",
+                "status": "ACTIVE",
+                "accountIds": [
+                    "4083750045"
+                ],
+                "balances": {
+                    "points": 12001,
+                    "spend": 8000,
+                    "transactions": 6
+                },
+                "expiryDate": "2025-07-31T23:59:59+00:00",
+                "tierBalancesResetDate": "2031-01-31T23:59:59+00:00",
+                "dateCreated": "2025-01-29T19:40:49+00:00",
+                "lastUpdated": "2025-02-26T17:56:23+00:00"
+            },
+            "transactions": [
+                {
+                    "tierMembershipTransactionId": "52613",
+                    "tierId": "179",
+                    "tierIdAfter": null,
+                    "tierMembershipId": "1291015",
+                    "transactionType": "ADJUSTMENT",
+                    "parentTierMembershipTransactionId": null,
+                    "walletTransactionId": null,
+                    "dateCreated": "2025-02-26T17:57:08+00:00",
+                    "lastUpdated": "2025-02-26T17:57:08+00:00",
+                    "actions": [
+                        {
+                            "balanceType": "POINTS",
+                            "amount": -1000,
+                            "balanceBefore": 13001,
+                            "balanceAfter": 12001
+                        },
+                        {
+                            "balanceType": "SPEND",
+                            "amount": -1000,
+                            "balanceBefore": 9000,
+                            "balanceAfter": 8000
+                        },
+                        {
+                            "balanceType": "TRANSACTIONS",
+                            "amount": -1,
+                            "balanceBefore": 7,
+                            "balanceAfter": 6
+                        }
+                    ]
+                }
+            ]
+        },
+        "contentType": "application\/json;charset=utf-8"
+    },
+    "atomicOperations": [
+        {
+            "objectType": "walletEntity",
+            "operationType": "READ",
+            "objectValue": {
+                "walletId": "216245432",
+                "friendlyName": null,
+                "status": "ACTIVE",
+                "type": "CONSUMER",
+                "state": "DEFAULT",
+                "meta": [],
+                "dateCreated": "2025-01-22T20:05:19+00:00",
+                "lastUpdated": "2025-01-22T20:05:19+00:00",
+                "relationships": {
+                    "parent": [],
+                    "child": [],
+                    "associate": [],
+                    "donor": []
+                }
+            }
+        },
+        {
+            "objectType": "tierMembershipTransactionEntity",
+            "operationType": "CREATE",
+            "objectValue": {
+                "tierMembershipTransactionId": "52613",
+                "tierId": "179",
+                "tierIdAfter": null,
+                "tierMembershipId": "1291015",
+                "transactionType": "ADJUSTMENT",
+                "parentTierMembershipTransactionId": null,
+                "walletTransactionId": null,
+                "dateCreated": "2025-02-26T17:57:08+00:00",
+                "lastUpdated": "2025-02-26T17:57:08+00:00",
+                "actions": [
+                    {
+                        "balanceType": "POINTS",
+                        "amount": -1000,
+                        "balanceBefore": 13001,
+                        "balanceAfter": 12001
+                    },
+                    {
+                        "balanceType": "SPEND",
+                        "amount": -1000,
+                        "balanceBefore": 9000,
+                        "balanceAfter": 8000
+                    },
+                    {
+                        "balanceType": "TRANSACTIONS",
+                        "amount": -1,
+                        "balanceBefore": 7,
+                        "balanceAfter": 6
+                    }
+                ]
+            }
+        },
+        {
+            "objectType": "tierMembershipEntity",
+            "operationType": "UPDATE",
+            "objectValue": {
+                "tierMembershipId": "1291015",
+                "tierId": "179",
+                "status": "ACTIVE",
+                "accountIds": [
+                    "4083750045"
+                ],
+                "balances": {
+                    "points": 12001,
+                    "spend": 8000,
+                    "transactions": 6
+                },
+                "expiryDate": "2025-07-31T23:59:59+00:00",
+                "tierBalancesResetDate": "2031-01-31T23:59:59+00:00",
+                "dateCreated": "2025-01-29T19:40:49+00:00",
+                "lastUpdated": "2025-02-26T17:56:23+00:00"
+            }
+        }
+    ],
+    "enrichmentData": {
+        "walletEntity_216245432": {
+            "identities": [
+                {
+                    "identityId": "186980778",
+                    "walletId": "216245432",
+                    "type": "CUSTOMER_ID",
+                    "value": "1111111111111111",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "186980779",
+                    "walletId": "216245432",
+                    "type": "CARD",
+                    "value": "2222222222222222",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                },
+                {
+                    "identityId": "186980780",
+                    "walletId": "216245432",
+                    "type": "MOBILE",
+                    "value": "+1(416)-111-1111",
+                    "state": "DEFAULT",
+                    "status": "ACTIVE"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,79 @@
+//
+// Configuration Override Template for Connector Integration
+//
+// Before using this file, you must generate four UUIDs (or similarly unique identifiers),
+// one for each of the following fields:
+//
+// - <IN connector id>
+// - <IN external key>
+// - <OUT connector id>
+// - <OUT external key>
+//
+// After generating these values, copy this file to `config-override.json`, then replace
+// all placeholder values in angle brackets (<...>) with your actual configuration values.
+//
+// In addition, update the following fields with the appropriate credentials and unit ID
+// for your AIR environment:
+//
+// - <AIR unit id>
+// - <AIR client id>
+// - <AIR client secret>
+//
+// If you do not have access to these values, please contact Eagle Eye support.
+//
+{
+  "in": {
+    "connectorId": "<IN connector id>",
+    "externalKey": "<IN external key>",
+    "connectorConfig": {
+      "unit_id": "<AIR unit id>",
+      "credentials": {
+        "clientId": "<AIR client id>",
+        "secret": "<AIR client secret>"
+      },
+      "connection_url": "https://connect.sandbox.uk.eagleeye.com/in/my-platform/<IN connector id>",
+      "platform": {
+        "id": "",
+        "name": "my-platform",
+        "slug": "my-platform",
+        "description": "",
+        "created_at": "",
+        "updated_at": ""
+      },
+      "domains": {
+        "wallet": "https://wallet.sandbox.uk.eagleeye.com",
+        "resources": "https://resources.sandbox.uk.eagleeye.com",
+        "pos": "https://pos.sandbox.uk.eagleeye.com"
+      }
+    }
+  },
+  "out": {
+    "connectorId": "<OUT connector id>",
+    "externalKey": "<OUT external key>",
+    "connectorConfig": {
+      "unit_id": "<AIR unit id>",
+      "credentials": {
+        "clientId": "<AIR client id>",
+        "secret": "<AIR client secret>"
+      },
+      "connection_url": "https://connect.sandbox.uk.eagleeye.com/in/my-platform/<OUT connector id>",
+      "configuration": {
+        "currency": "USD",
+        "identityType": "CARD"
+      },
+      "platform": {
+        "id": "",
+        "name": "my-platform",
+        "slug": "my-platform",
+        "description": "",
+        "created_at": "",
+        "updated_at": ""
+      },
+      "domains": {
+        "wallet": "https://wallet.sandbox.uk.eagleeye.com",
+        "resources": "https://resources.sandbox.uk.eagleeye.com",
+        "pos": "https://pos.sandbox.uk.eagleeye.com"
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+name: Pull Request Workflow
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - master
+      - release/*
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: |
+          npm run test:unit
+
+      - name: Run lint
+        run: |
+          npm run lint
+
+      - name: Check compilation
+        run: |
+          npm run compile
+
+      - name: 'Install Cloud SDK'
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          install_components: 'beta,pubsub-emulator'
+
+      - name: Run Integration Tests
+        run: |
+          gcloud beta emulators pubsub start --project test-project &
+          sleep 5
+          $(gcloud beta emulators pubsub env-init)
+          npm run test:integration
