@@ -13,7 +13,7 @@ export type TierAttributes = {
   tierBalancesPoints: number;
   tierBalancesSpend: number;
   tierBalancesTransactions: number;
-  tierBalancesResetDate: Date;
+  tierBalancesResetDate: Date | null;
 };
 
 export type BaseAccountAttributes = {

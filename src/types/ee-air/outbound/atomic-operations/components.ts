@@ -149,8 +149,8 @@ export const TierMembershipEntityObjectValueSchema = z
         transactions: z.number(),
       })
       .passthrough(),
-    expiryDate: z.string(),
-    tierBalancesResetDate: z.string(),
+    expiryDate: z.string().nullish(),
+    tierBalancesResetDate: z.string().nullish(),
     dateCreated: z.string(),
     lastUpdated: z.string(),
   })

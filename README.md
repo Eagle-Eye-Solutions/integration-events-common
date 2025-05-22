@@ -1,5 +1,9 @@
 # @eagleeye-solutions/integration-events-common
 
+![Build](https://img.shields.io/github/actions/workflow/status/Eagle-Eye-Solutions/integration-events-common/ci.yml?branch=master)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
+
+
 This package provides a framework for building integrations (Connectors) between the [Eagle Eye AIR](https://eagleeye.com/air-platform) platform and third-party Customer Data Platforms.
 
 Applications built with this framework are intended to be deployed to GCP Cloud Run as container images. GCP Pub/Sub is used to facilitate intra-process communication.
