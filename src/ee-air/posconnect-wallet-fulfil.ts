@@ -75,6 +75,12 @@ function mergeTransactionAttributes(
   if (from.transactionReference !== undefined) {
     to.transactionReference = from.transactionReference;
   }
+  if (from.originalTransactionReference !== undefined) {
+    to.originalTransactionReference = from.originalTransactionReference;
+  }
+  if (from.originalTransactionDate !== undefined) {
+    to.originalTransactionDate = from.originalTransactionDate;
+  }
   if (from.transactionDate !== undefined) {
     to.transactionDate = from.transactionDate;
   }
@@ -173,6 +179,7 @@ function getPosConnectWalletFulfilMiddleEventData(
           fulfilledTransactionAttributes.totalBasketValueAfterDiscount,
         transactionReference:
           fulfilledTransactionAttributes.transactionReference,
+        transactionDate: fulfilledTransactionAttributes.transactionDate,
       });
     } else if (isWalletTransactionEntityUpdateSettleFulfilling(op)) {
       const completeTransactionAttributes =
@@ -183,9 +190,9 @@ function getPosConnectWalletFulfilMiddleEventData(
       mergeTransactionAttributes(transactionAttributes, {
         discountsReceived: completeTransactionAttributes.discountsReceived,
         totalPointsEarned: completeTransactionAttributes.totalPointsEarned,
-        // We want the date of the original transaction, rather than when
-        // this fulfil is triggered.
-        transactionDate: completeTransactionAttributes.transactionDate,
+        originalTransactionReference:
+          completeTransactionAttributes.transactionReference,
+        originalTransactionDate: completeTransactionAttributes.transactionDate,
       });
     } else {
       opts.logger.warn(`unknown atomic operation: ${JSON.stringify({op})}`);
@@ -248,8 +255,8 @@ function getPosConnectWalletFulfilFinalEventData(
           op,
         );
       mergeTransactionAttributes(transactionAttributes, {
-        transactionReference,
-        transactionDate,
+        originalTransactionReference: transactionReference,
+        originalTransactionDate: transactionDate,
       });
     } else if (isWalletTransactionEntityCreateFulfilFulfilled(op)) {
       const fulfilledTransactionAttributes =
@@ -264,6 +271,9 @@ function getPosConnectWalletFulfilFinalEventData(
           fulfilledTransactionAttributes.totalBasketValueAfterDiscount,
         discountsReceived: fulfilledTransactionAttributes.discountsReceived,
         totalPointsEarned: fulfilledTransactionAttributes.totalPointsEarned,
+        transactionReference:
+          fulfilledTransactionAttributes.transactionReference,
+        transactionDate: fulfilledTransactionAttributes.transactionDate,
       });
     }
   }
