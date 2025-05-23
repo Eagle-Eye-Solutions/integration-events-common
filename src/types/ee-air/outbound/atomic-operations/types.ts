@@ -107,13 +107,37 @@ export type TransactionAttributes = {
   totalPointsSpent?: number;
   totalPointsEarned?: number;
   totalPointsDeducted?: number;
+
+  /**
+   * For POSCONNECT.WALLET.SETTLE, the transactionReference of the transaction.
+   *
+   * For POSCONNECT.WALLET.FULFIL (initial) this will be set to the
+   * transactionReference of the main transaction.
+   *
+   * For POSCONNECT.WALLET.FULFIL (middle, final) this will be set to the
+   * transactionReference associated with the items being fulfilled.
+   */
   transactionReference?: string;
-  originalTransactionReference?: string;
 
   /**
    * The date / time at which the transaction took place.
    */
   transactionDate?: Date;
+
+  /**
+   * For POSCONNECT.WALLET.SETTLE, this value will not be set.
+   *
+   * For POSCONNECT.WALLET.FULFIL (initial) this value will not be set.
+   *
+   * For POSCONNECT.WALLET.FULFIL (middle, final) this will be set to the
+   * transactionReference associated with initial transaction.
+   */
+  originalTransactionReference?: string;
+
+  /**
+   * The date / time at which the original transaction took place.
+   */
+  originalTransactionDate?: Date;
 };
 
 /**
