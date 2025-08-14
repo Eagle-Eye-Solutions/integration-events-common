@@ -13,6 +13,25 @@ import {
   WalletAccountTransactionEntityUpdateRefundDebitPoints,
   WalletAccountTransactionEntityCreateStandardSubscription,
   WalletAccountTransactionEntityUpdateStandardSubscription,
+  WalletAccountTransactionEntityCreateContinuity,
+  WalletAccountTransactionEntityCreateQuest,
+  WalletAccountTransactionEntityCreateStampCard,
+  WalletAccountTransactionEntityUpdateContinuity,
+  WalletAccountTransactionEntityUpdateCreditContinuity,
+  WalletAccountTransactionEntityUpdateRedeemContinuity,
+  WalletAccountTransactionEntityUpdateQuest,
+  WalletAccountTransactionEntityUpdateRedeemQuest,
+  WalletAccountTransactionEntityUpdateStampCard,
+  WalletAccountTransactionEntityUpdateCreditStampCard,
+  WalletAccountTransactionEntityUpdateRedeemStampCard,
+  WalletAccountTransactionEntityUpdateDonateInPoints,
+  WalletAccountTransactionEntityUpdateGiftInPoints,
+  WalletAccountTransactionEntityUpdateGoodwillPoints,
+  WalletAccountTransactionEntityUpdateDebitPoints,
+  WalletAccountTransactionEntityUpdateDonatePoints,
+  WalletAccountTransactionEntityUpdateGiftPoints,
+  WalletAccountTransactionEntityUpdateSpendPoints,
+  WalletAccountTransactionEntityUpdateAutoReducePoints,
 } from '../../../types';
 
 export function isWalletAccountTransactionEntity(
@@ -67,6 +86,80 @@ export function isWalletAccountTransactionEntityUpdateRefundDebitPoints(
   return (
     isWalletAccountTransactionEntityUpdatePoints(entity) &&
     entity.objectValue.event === 'REFUND_DEBIT'
+  );
+}
+
+// Points balance increasing events
+export function isWalletAccountTransactionEntityUpdateDonateInPoints(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateDonateInPoints {
+  return (
+    isWalletAccountTransactionEntityUpdatePoints(entity) &&
+    entity.objectValue.event === 'DONATE_IN'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateGiftInPoints(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateGiftInPoints {
+  return (
+    isWalletAccountTransactionEntityUpdatePoints(entity) &&
+    entity.objectValue.event === 'GIFT_IN'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateGoodwillPoints(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateGoodwillPoints {
+  return (
+    isWalletAccountTransactionEntityUpdatePoints(entity) &&
+    entity.objectValue.event === 'GOODWILL'
+  );
+}
+
+// Points balance decreasing events
+export function isWalletAccountTransactionEntityUpdateDebitPoints(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateDebitPoints {
+  return (
+    isWalletAccountTransactionEntityUpdatePoints(entity) &&
+    entity.objectValue.event === 'DEBIT'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateDonatePoints(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateDonatePoints {
+  return (
+    isWalletAccountTransactionEntityUpdatePoints(entity) &&
+    entity.objectValue.event === 'DONATE'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateGiftPoints(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateGiftPoints {
+  return (
+    isWalletAccountTransactionEntityUpdatePoints(entity) &&
+    entity.objectValue.event === 'GIFT'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateSpendPoints(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateSpendPoints {
+  return (
+    isWalletAccountTransactionEntityUpdatePoints(entity) &&
+    entity.objectValue.event === 'SPEND'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateAutoReducePoints(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateAutoReducePoints {
+  return (
+    isWalletAccountTransactionEntityUpdatePoints(entity) &&
+    entity.objectValue.event === 'AUTO_REDUCE'
   );
 }
 
@@ -166,5 +259,119 @@ export function isWalletAccountTransactionEntityUpdateStandardSubscription(
     isWalletAccountTransactionEntity(entity) &&
     entity.operationType === 'UPDATE' &&
     entity.objectValue.account.type === 'STANDARD_SUBSCRIPTION'
+  );
+}
+
+// CONTINUITY accounts
+
+export function isWalletAccountTransactionEntityCreateContinuity(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityCreateContinuity {
+  return (
+    isWalletAccountTransactionEntity(entity) &&
+    entity.operationType === 'CREATE' &&
+    entity.objectValue.account.type === 'CONTINUITY'
+  );
+}
+
+// QUEST accounts
+
+export function isWalletAccountTransactionEntityCreateQuest(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityCreateQuest {
+  return (
+    isWalletAccountTransactionEntity(entity) &&
+    entity.operationType === 'CREATE' &&
+    entity.objectValue.account.type === 'QUEST'
+  );
+}
+
+// STAMP CARD accounts
+
+export function isWalletAccountTransactionEntityCreateStampCard(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityCreateStampCard {
+  return (
+    isWalletAccountTransactionEntity(entity) &&
+    entity.operationType === 'CREATE' &&
+    entity.objectValue.account.type === 'COUPON_STAMP_CARD'
+  );
+}
+
+// UPDATE operations for Continuity accounts
+export function isWalletAccountTransactionEntityUpdateContinuity(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateContinuity {
+  return (
+    isWalletAccountTransactionEntity(entity) &&
+    entity.operationType === 'UPDATE' &&
+    entity.objectValue.account.type === 'CONTINUITY'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateCreditContinuity(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateCreditContinuity {
+  return (
+    isWalletAccountTransactionEntityUpdateContinuity(entity) &&
+    entity.objectValue.event === 'CREDIT'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateRedeemContinuity(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateRedeemContinuity {
+  return (
+    isWalletAccountTransactionEntityUpdateContinuity(entity) &&
+    entity.objectValue.event === 'REDEEM'
+  );
+}
+
+// UPDATE operations for Quest accounts
+export function isWalletAccountTransactionEntityUpdateQuest(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateQuest {
+  return (
+    isWalletAccountTransactionEntity(entity) &&
+    entity.operationType === 'UPDATE' &&
+    entity.objectValue.account.type === 'QUEST'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateRedeemQuest(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateRedeemQuest {
+  return (
+    isWalletAccountTransactionEntityUpdateQuest(entity) &&
+    entity.objectValue.event === 'REDEEM'
+  );
+}
+
+// UPDATE operations for Stamp Card accounts
+export function isWalletAccountTransactionEntityUpdateStampCard(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateStampCard {
+  return (
+    isWalletAccountTransactionEntity(entity) &&
+    entity.operationType === 'UPDATE' &&
+    entity.objectValue.account.type === 'COUPON_STAMP_CARD'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateCreditStampCard(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateCreditStampCard {
+  return (
+    isWalletAccountTransactionEntityUpdateStampCard(entity) &&
+    entity.objectValue.event === 'CREDIT'
+  );
+}
+
+export function isWalletAccountTransactionEntityUpdateRedeemStampCard(
+  entity: AtomicOperation,
+): entity is WalletAccountTransactionEntityUpdateRedeemStampCard {
+  return (
+    isWalletAccountTransactionEntityUpdateStampCard(entity) &&
+    entity.objectValue.event === 'REDEEM'
   );
 }

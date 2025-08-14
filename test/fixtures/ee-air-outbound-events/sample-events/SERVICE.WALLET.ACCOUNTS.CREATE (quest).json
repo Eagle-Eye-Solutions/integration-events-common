@@ -1,0 +1,151 @@
+{
+  "headers": {
+    "eventName": "SERVICE.WALLET.ACCOUNTS.CREATE",
+    "eventDate": "2025-07-24T14:21:39.743531",
+    "eesEnvironmentType": "sandbox-uk",
+    "eesSubsystemId": "wallet.sandbox.uk.eagleeye.com",
+    "callerIp": "35.244.186.249",
+    "unitId": "202316",
+    "unitFriendlyName": "Sample Braze Client 1",
+    "clientId": "xg0jnuu98a5z5flx7e1p",
+    "clientIdFriendlyName": "api",
+    "eesEventId": "d1e058bd-82be-4de5-a1ac-48913a78dea9",
+    "eesMasterEventId": "aIJBcydnMm4i05n-d3T59wAAAls",
+    "externalMessageId": null,
+    "eesApiVersion": "2.0"
+  },
+  "request": {},
+  "response": {
+    "code": 201,
+    "contentType": "application/json;charset=utf-8"
+  },
+  "atomicOperations": [
+    {
+      "objectType": "walletEntity",
+      "operationType": "CREATE",
+      "objectValue": {
+        "walletId": "243053722",
+        "friendlyName": null,
+        "status": "ACTIVE",
+        "type": "CONSUMER",
+        "state": "DEFAULT",
+        "meta": [],
+        "dateCreated": "2025-07-24T14:21:39+00:00",
+        "lastUpdated": "2025-07-24T14:21:39+00:00",
+        "relationships": {
+          "parent": [],
+          "child": [],
+          "associate": [],
+          "donor": []
+        }
+      }
+    },
+    {
+      "objectType": "walletIdentityEntity",
+      "operationType": "CREATE",
+      "objectValue": {
+        "identityId": "195196600",
+        "walletId": "243053722",
+        "type": "CUSTOMER_ID",
+        "friendlyName": null,
+        "value": "1111111111111111_EESD-21",
+        "safeValue": null,
+        "secret": null,
+        "dates": {
+          "start": "2025-07-24T14:21:39+00:00",
+          "end": null
+        },
+        "meta": [],
+        "state": "EARNBURN",
+        "status": "ACTIVE",
+        "dateCreated": "2025-07-24T14:21:39+00:00",
+        "lastUpdated": "2025-07-24T14:21:39+00:00",
+        "mobileWallet": "https://sb.uk.mypass.is/identity/202316/243053722/195196600/9e147839f8f7cfd54a1c0608973f609400a9f983c8f0aa6a074168d75dbe880c"
+      }
+    },
+    {
+      "objectType": "walletAccountTransactionEntity",
+      "operationType": "CREATE",
+      "objectValue": {
+        "accountTransactionId": "8867428290",
+        "parentAccountTransactionId": null,
+        "accountId": "4502097870",
+        "account": {
+          "accountId": "4502097870",
+          "walletId": "243053722",
+          "campaignId": "101210156",
+          "type": "QUEST",
+          "clientType": "OFFER",
+          "status": "ACTIVE",
+          "state": "LOADED",
+          "dates": {
+            "start": "2025-07-24T14:21:40+00:00",
+            "end": "2026-12-31T23:59:00+00:00"
+          },
+          "meta": [],
+          "dateCreated": "2025-07-24T14:21:40+00:00",
+          "lastUpdated": "2025-07-24T14:21:40+00:00",
+          "overrides": [],
+          "balances": {
+            "objectivesMet": 0
+          },
+          "relationships": {
+            "OBJECTIVE": {
+              "ECOUPON": [
+                {
+                  "accountId": "4502097872",
+                  "dateCreated": "2025-07-24T14:21:40+00:00"
+                },
+                {
+                  "accountId": "4502097873",
+                  "dateCreated": "2025-07-24T14:21:40+00:00"
+                }
+              ]
+            }
+          },
+          "mobileWallet": null
+        },
+        "event": "CREATE",
+        "value": 0,
+        "source": 1,
+        "balancesBefore": {
+          "available": 0,
+          "refundable": 0
+        },
+        "balancesAfter": {
+          "available": 0,
+          "refundable": 0
+        },
+        "transactionDetails": [],
+        "properties": [],
+        "dateCreated": "2025-07-24T14:21:40+00:00",
+        "lastUpdated": "2025-07-24T14:21:40+00:00"
+      }
+    }
+  ],
+  "enrichmentData": {
+    "walletEntity_243053722": {
+      "identities": [
+        {
+          "identityId": "195196600",
+          "walletId": "243053722",
+          "type": "CUSTOMER_ID",
+          "friendlyName": null,
+          "value": "1111111111111111_EESD-21",
+          "safeValue": null,
+          "secret": null,
+          "dates": {
+            "start": "2025-07-24T14:21:39+00:00",
+            "end": null
+          },
+          "meta": [],
+          "state": "EARNBURN",
+          "status": "ACTIVE",
+          "dateCreated": "2025-07-24T14:21:39+00:00",
+          "lastUpdated": "2025-07-24T14:21:39+00:00",
+          "mobileWallet": "https://sb.uk.mypass.is/identity/202316/243053722/195196600/9e147839f8f7cfd54a1c0608973f609400a9f983c8f0aa6a074168d75dbe880c"
+        }
+      ]
+    }
+  }
+}

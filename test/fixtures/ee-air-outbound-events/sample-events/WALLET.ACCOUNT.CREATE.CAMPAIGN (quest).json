@@ -1,0 +1,103 @@
+{
+  "headers": {
+    "eventName": "WALLET.ACCOUNT.CREATE.CAMPAIGN",
+    "eventDate": "2025-07-24T14:21:39.743Z",
+    "eesEnvironmentType": "sandbox-uk",
+    "eesSubsystemId": "wallet.sandbox.uk.eagleeye.com",
+    "callerIp": "35.244.186.249",
+    "unitId": "202316",
+    "unitFriendlyName": "Sample Client",
+    "clientId": "mgtgpt5ewhj5fwvdm6d1",
+    "clientIdFriendlyName": "api",
+    "eesEventId": "d1e058bd-82be-4de5-a1ac-48913a78dea9",
+    "eesMasterEventId": "Z5FQakOLBUD2ASYrcUcDaAAAAD8",
+    "externalMessageId": "",
+    "eesApiVersion": "2.0"
+  },
+  "request": {
+    "resource": "/wallet/216245437/campaign/101210156/account",
+    "method": "POST",
+    "body": {
+      "status": "ACTIVE",
+      "state": "LOADED"
+    },
+    "contentType": "application/json",
+    "customHeaders": []
+  },
+  "response": {
+    "code": 201,
+    "body": {
+      "accountId": "4502097870",
+      "walletId": "216245437",
+      "campaignId": "101210156",
+      "type": "QUEST",
+      "clientType": "OFFER",
+      "status": "ACTIVE",
+      "state": "LOADED",
+      "dates": {
+        "start": "2025-07-24T14:21:40+00:00",
+        "end": "2026-12-31T23:59:00+00:00"
+      },
+      "balances": {
+        "objectivesMet": 0
+      },
+      "relationships": {
+        "OBJECTIVE": {
+          "ECOUPON": [
+            {
+              "accountId": "4502097872",
+              "dateCreated": "2025-07-24T14:21:40+00:00"
+            },
+            {
+              "accountId": "4502097873",
+              "dateCreated": "2025-07-24T14:21:40+00:00"
+            }
+          ]
+        }
+      }
+    },
+    "contentType": "application/json;charset=utf-8"
+  },
+  "atomicOperations": [
+    {
+      "objectType": "WALLET_ACCOUNT_TRANSACTION_ENTITY",
+      "operationType": "CREATE",
+      "objectValue": {
+        "account": {
+          "accountId": "4502097870",
+          "campaignId": "101210156",
+          "type": "QUEST",
+          "clientType": "OFFER",
+          "status": "ACTIVE",
+          "state": "LOADED",
+          "dates": {
+            "start": "2025-07-24T14:21:40+00:00",
+            "end": "2026-12-31T23:59:00+00:00"
+          },
+          "balances": {
+            "objectivesMet": 0
+          },
+          "relationships": {
+            "OBJECTIVE": {
+              "ECOUPON": [
+                {
+                  "accountId": "4502097872",
+                  "dateCreated": "2025-07-24T14:21:40+00:00"
+                },
+                {
+                  "accountId": "4502097873",
+                  "dateCreated": "2025-07-24T14:21:40+00:00"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "enrichmentData": {
+    "identities": {
+      "CUSTOMER_ID": "1111111111111111_EESD-21"
+    }
+  }
+}

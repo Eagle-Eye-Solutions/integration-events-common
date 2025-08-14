@@ -25,6 +25,9 @@ describe('getWalletAccountCreateCampaignEventData', () => {
           dateEnd: new Date('2025-12-31T23:59:00+00:00'),
         },
       ],
+      continuityAccounts: [],
+      questAccounts: [],
+      stampCards: [],
     };
 
     // Act
@@ -73,6 +76,9 @@ describe('getWalletAccountCreateCampaignEventData', () => {
           dateEnd: new Date('2025-12-31T23:59:00Z'),
         },
       ],
+      continuityAccounts: [],
+      questAccounts: [],
+      stampCards: [],
     };
 
     // Act
