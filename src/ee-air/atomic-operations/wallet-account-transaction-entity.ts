@@ -4,9 +4,15 @@ import {
   CouponAttributes,
   CouponWithValueAttributes,
   StandardSubscriptionAttributes,
+  ContinuityAttributes,
+  QuestAttributes,
+  StampCardAttributes,
   WalletAccountTransactionEntityCreatePoints,
   WalletAccountTransactionEntityCreateEcoupon,
   WalletAccountTransactionEntityCreateStandardSubscription,
+  WalletAccountTransactionEntityCreateContinuity,
+  WalletAccountTransactionEntityCreateQuest,
+  WalletAccountTransactionEntityCreateStampCard,
   WalletAccountTransactionEntityUpdateStandardSubscription,
   WalletAccountTransactionEntityUpdateEcoupon,
   WalletAccountTransactionEntityUpdateRedeemEcoupon,
@@ -15,6 +21,12 @@ import {
   WalletAccountTransactionEntityUpdateEarnPoints,
   WalletAccountTransactionEntityUpdateRefundDebitPoints,
   WalletAccountTransactionEntityRedeemBehavioralAction,
+  WalletAccountTransactionEntityUpdateCreditContinuity,
+  WalletAccountTransactionEntityUpdateRedeemContinuity,
+  WalletAccountTransactionEntityUpdateQuest,
+  WalletAccountTransactionEntityUpdateRedeemQuest,
+  WalletAccountTransactionEntityUpdateCreditStampCard,
+  WalletAccountTransactionEntityUpdateRedeemStampCard,
   RedeemedBehavioralActionAttributes,
 } from '../../types';
 
@@ -120,6 +132,79 @@ export function getStandardSubscriptionAttributesFromWalletAccountTransactionEnt
   };
 }
 
+export function getContinuityAttributesFromWalletAccountTransactionEntity(
+  entity:
+    | WalletAccountTransactionEntityCreateContinuity
+    | WalletAccountTransactionEntityUpdateCreditContinuity
+    | WalletAccountTransactionEntityUpdateRedeemContinuity,
+): ContinuityAttributes {
+  const account = entity.objectValue.account;
+  return {
+    accountId: account.accountId,
+    campaignId: account.campaignId,
+    type: account.type,
+    clientType: account.clientType ?? null,
+    state: account.state,
+    status: account.status,
+    dateStart: parseISO(account.dates.start),
+    dateEnd: account.dates.end ? parseISO(account.dates.end) : null,
+    balances: {
+      totalSpend: account.balances.totalSpend,
+      currentSpend: account.balances.currentSpend,
+      transactionCount: account.balances.transactionCount,
+      currentTransactions: account.balances.currentTransactions,
+      totalUnits: account.balances.totalUnits,
+      currentUnits: account.balances.currentUnits,
+    },
+  };
+}
+
+export function getQuestAttributesFromWalletAccountTransactionEntity(
+  entity:
+    | WalletAccountTransactionEntityCreateQuest
+    | WalletAccountTransactionEntityUpdateQuest
+    | WalletAccountTransactionEntityUpdateRedeemQuest,
+): QuestAttributes {
+  const account = entity.objectValue.account;
+  return {
+    accountId: account.accountId,
+    campaignId: account.campaignId,
+    type: account.type,
+    clientType: account.clientType ?? null,
+    state: account.state,
+    status: account.status,
+    dateStart: parseISO(account.dates.start),
+    dateEnd: account.dates.end ? parseISO(account.dates.end) : null,
+    balances: {
+      objectivesMet: account.balances.objectivesMet,
+    },
+    relationships: account.relationships,
+  };
+}
+
+export function getStampCardAttributesFromWalletAccountTransactionEntity(
+  entity:
+    | WalletAccountTransactionEntityCreateStampCard
+    | WalletAccountTransactionEntityUpdateCreditStampCard
+    | WalletAccountTransactionEntityUpdateRedeemStampCard,
+): StampCardAttributes {
+  const account = entity.objectValue.account;
+  return {
+    accountId: account.accountId,
+    campaignId: account.campaignId,
+    type: account.type,
+    clientType: account.clientType ?? null,
+    state: account.state,
+    status: account.status,
+    dateStart: parseISO(account.dates.start),
+    dateEnd: account.dates.end ? parseISO(account.dates.end) : null,
+    balances: {
+      available: account.balances.available,
+      refundable: account.balances.refundable,
+    },
+  };
+}
+
 export default {
   CreatePoints: {
     getPointsAttributes: getPointsAttributesFromWalletAccountTransactionEntity,
@@ -132,6 +217,17 @@ export default {
   CreateStandardSubscription: {
     getStandardSubscriptionAttributes:
       getStandardSubscriptionAttributesFromWalletAccountTransactionEntity,
+  },
+  CreateContinuity: {
+    getContinuityAttributes:
+      getContinuityAttributesFromWalletAccountTransactionEntity,
+  },
+  CreateQuest: {
+    getQuestAttributes: getQuestAttributesFromWalletAccountTransactionEntity,
+  },
+  CreateStampCard: {
+    getStampCardAttributes:
+      getStampCardAttributesFromWalletAccountTransactionEntity,
   },
   UpdateStandardSubscription: {
     getStandardSubscriptionAttributes:
@@ -153,5 +249,27 @@ export default {
   UpdateUnredeemEcoupon: {
     getCouponAttributes:
       getCouponAttributesWithValueFromWalletAccountTransactionEntity,
+  },
+  UpdateCreditContinuity: {
+    getContinuityAttributes:
+      getContinuityAttributesFromWalletAccountTransactionEntity,
+  },
+  UpdateRedeemContinuity: {
+    getContinuityAttributes:
+      getContinuityAttributesFromWalletAccountTransactionEntity,
+  },
+  UpdateQuest: {
+    getQuestAttributes: getQuestAttributesFromWalletAccountTransactionEntity,
+  },
+  UpdateRedeemQuest: {
+    getQuestAttributes: getQuestAttributesFromWalletAccountTransactionEntity,
+  },
+  UpdateCreditStampCard: {
+    getStampCardAttributes:
+      getStampCardAttributesFromWalletAccountTransactionEntity,
+  },
+  UpdateRedeemStampCard: {
+    getStampCardAttributes:
+      getStampCardAttributesFromWalletAccountTransactionEntity,
   },
 };

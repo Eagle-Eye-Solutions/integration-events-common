@@ -239,6 +239,144 @@ export type WalletAccountTransactionEntityCreateStandardSubscription =
     };
   };
 
+export type WalletAccountTransactionEntityCreateContinuity =
+  WalletAccountTransactionEntityCreate & {
+    objectValue: WalletAccountTransactionEntityCreate['objectValue'] & {
+      account: WalletAccountTransactionEntityCreate['objectValue']['account'] & {
+        type: 'CONTINUITY';
+        balances: {
+          totalSpend: number;
+          currentSpend: number;
+          transactionCount: number;
+          currentTransactions: number;
+          totalUnits: number;
+          currentUnits: number;
+        };
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityCreateQuest =
+  WalletAccountTransactionEntityCreate & {
+    objectValue: WalletAccountTransactionEntityCreate['objectValue'] & {
+      account: WalletAccountTransactionEntityCreate['objectValue']['account'] & {
+        type: 'QUEST';
+        balances: {
+          objectivesMet: number;
+        };
+        relationships?: {
+          OBJECTIVE?: {
+            ECOUPON?: Array<{
+              accountId: string;
+              dateCreated: string;
+            }>;
+          };
+        };
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityCreateStampCard =
+  WalletAccountTransactionEntityCreate & {
+    objectValue: WalletAccountTransactionEntityCreate['objectValue'] & {
+      account: WalletAccountTransactionEntityCreate['objectValue']['account'] & {
+        type: 'COUPON_STAMP_CARD';
+        balances: {
+          available: number;
+          refundable: number;
+        };
+      };
+    };
+  };
+
+// UPDATE operations for Continuity accounts
+export type WalletAccountTransactionEntityUpdateContinuity =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'CONTINUITY';
+        balances: {
+          totalSpend: number;
+          currentSpend: number;
+          transactionCount: number;
+          currentTransactions: number;
+          totalUnits: number;
+          currentUnits: number;
+        };
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateCreditContinuity =
+  WalletAccountTransactionEntityUpdateContinuity & {
+    objectValue: WalletAccountTransactionEntityUpdateContinuity['objectValue'] & {
+      event: 'CREDIT';
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateRedeemContinuity =
+  WalletAccountTransactionEntityUpdateContinuity & {
+    objectValue: WalletAccountTransactionEntityUpdateContinuity['objectValue'] & {
+      event: 'REDEEM';
+    };
+  };
+
+// UPDATE operations for Quest accounts
+export type WalletAccountTransactionEntityUpdateQuest =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'QUEST';
+        balances: {
+          objectivesMet: number;
+        };
+        relationships?: {
+          OBJECTIVE?: {
+            ECOUPON?: Array<{
+              accountId: string;
+              dateCreated: string;
+            }>;
+          };
+        };
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateRedeemQuest =
+  WalletAccountTransactionEntityUpdateQuest & {
+    objectValue: WalletAccountTransactionEntityUpdateQuest['objectValue'] & {
+      event: 'REDEEM';
+    };
+  };
+
+// UPDATE operations for Stamp Card accounts
+export type WalletAccountTransactionEntityUpdateStampCard =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'COUPON_STAMP_CARD';
+        balances: {
+          available: number;
+          refundable: number;
+        };
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateCreditStampCard =
+  WalletAccountTransactionEntityUpdateStampCard & {
+    objectValue: WalletAccountTransactionEntityUpdateStampCard['objectValue'] & {
+      event: 'CREDIT';
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateRedeemStampCard =
+  WalletAccountTransactionEntityUpdateStampCard & {
+    objectValue: WalletAccountTransactionEntityUpdateStampCard['objectValue'] & {
+      event: 'REDEEM';
+    };
+  };
+
 export type WalletAccountTransactionEntityUpdateStandardSubscription =
   WalletAccountTransactionEntityUpdate & {
     objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
@@ -305,6 +443,88 @@ export type WalletAccountTransactionEntityUpdateRefundDebitPoints =
     objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
       event: 'REFUND_DEBIT';
       type: 'POINTS';
+    };
+  };
+
+// Points balance increasing events
+export type WalletAccountTransactionEntityUpdateDonateInPoints =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      event: 'DONATE_IN';
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'POINTS';
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateGiftInPoints =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      event: 'GIFT_IN';
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'POINTS';
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateGoodwillPoints =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      event: 'GOODWILL';
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'POINTS';
+      };
+    };
+  };
+
+// Points balance decreasing events
+export type WalletAccountTransactionEntityUpdateDebitPoints =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      event: 'DEBIT';
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'POINTS';
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateDonatePoints =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      event: 'DONATE';
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'POINTS';
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateGiftPoints =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      event: 'GIFT';
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'POINTS';
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateSpendPoints =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      event: 'SPEND';
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'POINTS';
+      };
+    };
+  };
+
+export type WalletAccountTransactionEntityUpdateAutoReducePoints =
+  WalletAccountTransactionEntityUpdate & {
+    objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
+      event: 'AUTO_REDUCE';
+      account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
+        type: 'POINTS';
+      };
     };
   };
 

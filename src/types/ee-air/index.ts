@@ -7,6 +7,9 @@ import {
   SpendTransactionAttributes,
   BaseAccountAttributes,
   RedeemedBehavioralActionAttributes,
+  StampCardAttributes,
+  ContinuityAttributes,
+  QuestAttributes,
 } from './outbound';
 export * from './outbound';
 export * from './inbound';
@@ -37,6 +40,12 @@ export enum EeAirEventTypes {
  * is made available to connectors via the getPosConnectWalletSettleEventData API.
  */
 export type POSConnectWalletSettleEventData = {
+  continuityProgression?: ContinuityAttributes[];
+  continuityRedemption?: ContinuityAttributes[];
+  questProgression?: QuestAttributes[];
+  questRedemption?: QuestAttributes[];
+  stampCardProgression?: StampCardAttributes[];
+  stampCardRedemption?: StampCardAttributes[];
   points?: PointsAttributes;
   tier?: TierAttributes;
   transaction?: TransactionAttributes;
@@ -147,6 +156,21 @@ export type WalletAccountCreateCampaignEventData = {
    * List of coupons created.
    */
   coupons: CouponAttributes[];
+
+  /**
+   * List of continuity accounts created.
+   */
+  continuityAccounts: ContinuityAttributes[];
+
+  /**
+   * List of quest accounts created.
+   */
+  questAccounts: QuestAttributes[];
+
+  /**
+   * List of stamp cards created.
+   */
+  stampCards: StampCardAttributes[];
 };
 
 export type ServiceTriggerEventData = {
@@ -188,6 +212,21 @@ export type ServiceWalletAccountsCreateEventData = {
    * List of coupons created.
    */
   coupons: CouponAttributes[];
+
+  /**
+   * List of continuity accounts created.
+   */
+  continuityAccounts: ContinuityAttributes[];
+
+  /**
+   * List of quest accounts created.
+   */
+  questAccounts: QuestAttributes[];
+
+  /**
+   * List of stamp cards created.
+   */
+  stampCards: StampCardAttributes[];
 };
 
 export type TierMembershipEventData = {

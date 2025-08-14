@@ -56,6 +56,9 @@ describe('getServiceWalletAccountsCreateEventData', () => {
           dateEnd: new Date('2025-12-31T23:59:00.000Z'),
         },
       ],
+      continuityAccounts: [],
+      questAccounts: [],
+      stampCards: [],
     };
 
     // Act

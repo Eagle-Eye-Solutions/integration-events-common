@@ -174,3 +174,44 @@ export type SpendTransactionAttributes = {
    */
   originalTransactionReference?: string;
 };
+
+/**
+ * Attributes associated with a CONTINUITY account.
+ */
+export type ContinuityAttributes = BaseAccountAttributes & {
+  balances: {
+    totalSpend: number;
+    currentSpend: number;
+    transactionCount: number;
+    currentTransactions: number;
+    totalUnits: number;
+    currentUnits: number;
+  };
+};
+
+/**
+ * Attributes associated with a QUEST account.
+ */
+export type QuestAttributes = BaseAccountAttributes & {
+  balances: {
+    objectivesMet: number;
+  };
+  relationships?: {
+    OBJECTIVE?: {
+      ECOUPON?: Array<{
+        accountId: string;
+        dateCreated: string;
+      }>;
+    };
+  };
+};
+
+/**
+ * Attributes associated with a STAMP CARD account.
+ */
+export type StampCardAttributes = BaseAccountAttributes & {
+  balances: {
+    available: number;
+    refundable: number;
+  };
+};

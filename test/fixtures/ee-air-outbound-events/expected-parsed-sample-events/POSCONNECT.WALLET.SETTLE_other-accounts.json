@@ -1,0 +1,497 @@
+{
+  "headers": {
+    "eventName": "POSCONNECT.WALLET.SETTLE",
+    "eventDate": "2025-01-29T20:37:03.078234",
+    "eesEnvironmentType": "sandbox-uk",
+    "eesSubsystemId": "pos.sandbox.uk.eagleeye.com",
+    "callerIp": "35.244.190.158",
+    "unitId": "197332",
+    "unitFriendlyName": "Apply Digital",
+    "clientId": "mgtgpt5ewhj5fwvdm6d1",
+    "clientIdFriendlyName": "api",
+    "eesEventId": "d1674d7a-f762-4421-b7cd-0cceb6df73d5",
+    "eesMasterEventId": "Z5qRb0gbPAdAySIKCWM0hgAAAmg",
+    "externalMessageId": "",
+    "eesApiVersion": "7.6"
+  },
+  "request": {
+    "resource": "/connect/wallet/settle",
+    "method": "POST",
+    "body": {
+      "walletId": "216396239",
+      "reference": "NSTEST123pos2225",
+      "location": {
+        "incomingIdentifier": "outlet1",
+        "parentIncomingIdentifier": "banner1"
+      },
+      "mode": "ACTIVE",
+      "basket": {
+        "type": "ENRICHED",
+        "summary": {
+          "totalItems": 6,
+          "totalBasketValue": 6300,
+          "totalDiscountAmount": {
+            "promotions": 700
+          }
+        },
+        "contents": [
+          {
+            "upc": "245874",
+            "itemUnitCost": 1000,
+            "salesKey": "SALE",
+            "totalUnitCostAfterDiscount": 2000,
+            "totalUnitCost": 2000,
+            "description": "Lemonade",
+            "itemUnitCount": 2
+          },
+          {
+            "upc": "245875",
+            "itemUnitCost": 1000,
+            "salesKey": "SALE",
+            "totalUnitCostAfterDiscount": 1000,
+            "totalUnitCost": 1000,
+            "description": "Coffee",
+            "itemUnitCount": 1
+          },
+          {
+            "upc": "245887",
+            "itemUnitCost": 1000,
+            "salesKey": "SALE",
+            "totalUnitCostAfterDiscount": 1000,
+            "totalUnitCost": 1000,
+            "description": "Oranges",
+            "itemUnitCount": 1
+          },
+          {
+            "upc": "245886",
+            "itemUnitCost": 1000,
+            "salesKey": "SALE",
+            "totalUnitCostAfterDiscount": 1000,
+            "totalUnitCost": 1000,
+            "description": "Carrot",
+            "itemUnitCount": 1
+          },
+          {
+            "upc": "245868",
+            "itemUnitCost": 1000,
+            "salesKey": "SALE",
+            "totalUnitCostAfterDiscount": 1000,
+            "totalUnitCost": 1000,
+            "description": "Pizza",
+            "itemUnitCount": 1
+          },
+          {
+            "upc": "245872",
+            "itemUnitCost": 1000,
+            "salesKey": "SALE",
+            "totalUnitCostAfterDiscount": 1000,
+            "totalUnitCost": 1000,
+            "description": "Wine",
+            "itemUnitCount": 1
+          }
+        ]
+      }
+    },
+    "contentType": "application/json",
+    "customHeaders": []
+  },
+  "response": {
+    "code": 200,
+    "body": {
+      "walletTransactions": [
+        {
+          "walletTransactionId": "440065928",
+          "parentWalletTransactionId": "0",
+          "walletId": "216396239",
+          "reference": "NSTEST123pos2225",
+          "transactionDateTime": "2025-01-29T20:37:03+00:00",
+          "transactionDateTimeOffset": "+00:00",
+          "identityId": null,
+          "identity": null,
+          "type": "SETTLE",
+          "status": "SETTLED",
+          "meta": null,
+          "state": "ORIGINAL",
+          "expiryDate": null,
+          "accounts": [
+            {"accountId": "4093853356", "accountTransactionId": "7909471159"},
+            {"accountId": "4093853356", "accountTransactionId": "7909471160"},
+            {"accountId": "4093853180", "accountTransactionId": "7909471161"},
+            {"accountId": "4093853179", "accountTransactionId": "7909471162"},
+            {"accountId": "4093853181", "accountTransactionId": "7909471163"},
+            {"accountId": "4093853182", "accountTransactionId": "7909471164"},
+            {"accountId": "4093853182", "accountTransactionId": "7909471165"},
+            {"accountId": "4502097869", "accountTransactionId": "7909471166"},
+            {"accountId": "4502097870", "accountTransactionId": "7909471167"},
+            {"accountId": "4502097871", "accountTransactionId": "7909471168"}
+          ],
+          "basket": {
+            "contents": [
+              {
+                "upc": "245874",
+                "itemUnitCost": 1000,
+                "salesKey": "SALE",
+                "totalUnitCostAfterDiscount": 2000,
+                "totalUnitCost": 2000,
+                "description": "Lemonade",
+                "itemUnitCount": 2
+              },
+              {
+                "upc": "245875",
+                "itemUnitCost": 1000,
+                "salesKey": "SALE",
+                "totalUnitCostAfterDiscount": 1000,
+                "totalUnitCost": 1000,
+                "description": "Coffee",
+                "itemUnitCount": 1
+              },
+              {
+                "upc": "245887",
+                "itemUnitCost": 1000,
+                "salesKey": "SALE",
+                "totalUnitCostAfterDiscount": 1000,
+                "totalUnitCost": 1000,
+                "description": "Oranges",
+                "itemUnitCount": 1
+              },
+              {
+                "upc": "245886",
+                "itemUnitCost": 1000,
+                "salesKey": "SALE",
+                "totalUnitCostAfterDiscount": 1000,
+                "totalUnitCost": 1000,
+                "description": "Carrot",
+                "itemUnitCount": 1
+              },
+              {
+                "upc": "245868",
+                "itemUnitCost": 1000,
+                "salesKey": "SALE",
+                "totalUnitCostAfterDiscount": 1000,
+                "totalUnitCost": 1000,
+                "description": "Pizza",
+                "itemUnitCount": 1
+              },
+              {
+                "upc": "245872",
+                "itemUnitCost": 1000,
+                "salesKey": "SALE",
+                "totalUnitCostAfterDiscount": 1000,
+                "totalUnitCost": 1000,
+                "description": "Wine",
+                "itemUnitCount": 1
+              }
+            ],
+            "summary": {
+              "totalItems": 6,
+              "totalBasketValue": 6300,
+              "totalDiscountAmount": {
+                "promotions": 700
+              }
+            },
+            "payment": null
+          },
+          "channel": "api",
+          "location": {
+            "storeId": "outlet1",
+            "storeParentId": "banner1"
+          },
+          "dateCreated": "2025-01-29T20:37:03+00:00",
+          "lastUpdated": "2025-01-29T20:37:03+00:00"
+        }
+      ]
+    },
+    "contentType": "application/json;charset=utf-8"
+  },
+  "atomicOperations": [
+    {
+      "objectType": "walletTransactionEntity",
+      "operationType": "CREATE",
+      "objectValue": {
+        "walletTransactionId": "440065928",
+        "parentWalletTransactionId": "0",
+        "walletId": "216396239",
+        "reference": "NSTEST123pos2225",
+        "transactionDateTime": "2025-01-29T20:37:03+00:00",
+        "transactionDateTimeOffset": "+00:00",
+        "identityId": null,
+        "identity": null,
+        "type": "SETTLE",
+        "status": "SETTLED",
+        "meta": null,
+        "state": "ORIGINAL",
+        "expiryDate": null,
+        "accounts": [],
+        "basket": {
+          "contents": null,
+          "summary": null,
+          "payment": null
+        },
+        "channel": "api",
+        "location": {
+          "storeId": null,
+          "storeParentId": null
+        },
+        "dateCreated": "2025-01-29T20:37:03+00:00",
+        "lastUpdated": "2025-01-29T20:37:03+00:00"
+      }
+    },
+    {
+      "objectType": "walletTransactionEntity",
+      "operationType": "UPDATE",
+      "objectValue": {
+        "walletTransactionId": "440065928",
+        "parentWalletTransactionId": "0",
+        "walletId": "216396239",
+        "reference": "NSTEST123pos2225",
+        "transactionDateTime": "2025-01-29T20:37:03+00:00",
+        "transactionDateTimeOffset": "+00:00",
+        "identityId": null,
+        "identity": null,
+        "type": "SETTLE",
+        "status": "SETTLED",
+        "meta": null,
+        "state": "ORIGINAL",
+        "expiryDate": null,
+        "accounts": [
+          {"accountId": "4093853356", "accountTransactionId": "7909471159"},
+          {"accountId": "4093853356", "accountTransactionId": "7909471160"},
+          {"accountId": "4093853180", "accountTransactionId": "7909471161"},
+          {"accountId": "4093853179", "accountTransactionId": "7909471162"},
+          {"accountId": "4093853181", "accountTransactionId": "7909471163"},
+          {"accountId": "4093853182", "accountTransactionId": "7909471164"},
+          {"accountId": "4093853182", "accountTransactionId": "7909471165"},
+          {"accountId": "4502097869", "accountTransactionId": "7909471166"},
+          {"accountId": "4502097870", "accountTransactionId": "7909471167"},
+          {"accountId": "4502097871", "accountTransactionId": "7909471168"}
+        ],
+        "basket": {
+          "contents": [
+            {
+              "upc": "245874",
+              "itemUnitCost": 1000,
+              "salesKey": "SALE",
+              "totalUnitCostAfterDiscount": 2000,
+              "totalUnitCost": 2000,
+              "description": "Lemonade",
+              "itemUnitCount": 2
+            },
+            {
+              "upc": "245875",
+              "itemUnitCost": 1000,
+              "salesKey": "SALE",
+              "totalUnitCostAfterDiscount": 1000,
+              "totalUnitCost": 1000,
+              "description": "Coffee",
+              "itemUnitCount": 1
+            },
+            {
+              "upc": "245887",
+              "itemUnitCost": 1000,
+              "salesKey": "SALE",
+              "totalUnitCostAfterDiscount": 1000,
+              "totalUnitCost": 1000,
+              "description": "Oranges",
+              "itemUnitCount": 1
+            },
+            {
+              "upc": "245886",
+              "itemUnitCost": 1000,
+              "salesKey": "SALE",
+              "totalUnitCostAfterDiscount": 1000,
+              "totalUnitCost": 1000,
+              "description": "Carrot",
+              "itemUnitCount": 1
+            },
+            {
+              "upc": "245868",
+              "itemUnitCost": 1000,
+              "salesKey": "SALE",
+              "totalUnitCostAfterDiscount": 1000,
+              "totalUnitCost": 1000,
+              "description": "Pizza",
+              "itemUnitCount": 1
+            },
+            {
+              "upc": "245872",
+              "itemUnitCost": 1000,
+              "salesKey": "SALE",
+              "totalUnitCostAfterDiscount": 1000,
+              "totalUnitCost": 1000,
+              "description": "Wine",
+              "itemUnitCount": 1
+            }
+          ],
+          "summary": {
+            "totalItems": 6,
+            "totalBasketValue": 6300,
+            "totalDiscountAmount": {
+              "promotions": 700
+            }
+          },
+          "payment": null
+        },
+        "channel": "api",
+        "location": {
+          "storeId": "outlet1",
+          "storeParentId": "banner1"
+        },
+        "dateCreated": "2025-01-29T20:37:03+00:00",
+        "lastUpdated": "2025-01-29T20:37:03+00:00"
+      }
+    },
+    {
+      "operationType": "UPDATE",
+      "objectType": "walletAccountTransactionEntity",
+      "objectValue": {
+        "account": {
+          "accountId": "4502097869",
+          "campaignId": "100792525",
+          "type": "CONTINUITY",
+          "clientType": "STANDARD",
+          "state": "LOADED",
+          "status": "ACTIVE",
+          "dates": {
+            "start": "2025-01-29T20:37:03+00:00",
+            "end": null
+          },
+          "balances": {
+            "totalSpend": 100,
+            "currentSpend": 50,
+            "transactionCount": 2,
+            "currentTransactions": 1,
+            "totalUnits": 10,
+            "currentUnits": 5
+          }
+        },
+        "event": "CREDIT",
+        "accountTransactionId": "7909471166",
+        "parentAccountTransactionId": "",
+        "source": 1,
+        "balancesBefore": {
+          "totalSpend": 50,
+          "currentSpend": 25,
+          "transactionCount": 1,
+          "currentTransactions": 0,
+          "totalUnits": 5,
+          "currentUnits": 2
+        },
+        "balancesAfter": {
+          "totalSpend": 100,
+          "currentSpend": 50,
+          "transactionCount": 2,
+          "currentTransactions": 1,
+          "totalUnits": 10,
+          "currentUnits": 5
+        },
+        "transactionDetails": {
+          "merchant_store_id": "outlet1",
+          "merchant_store_parent_id": "banner1"
+        },
+        "dateCreated": "2025-01-29T20:37:03+00:00",
+        "lastUpdated": "2025-01-29T20:37:03+00:00"
+      }
+    },
+    {
+      "operationType": "UPDATE",
+      "objectType": "walletAccountTransactionEntity",
+      "objectValue": {
+        "account": {
+          "accountId": "4502097870",
+          "campaignId": "100641543",
+          "type": "QUEST",
+          "clientType": "STANDARD",
+          "state": "LOADED",
+          "status": "ACTIVE",
+          "dates": {
+            "start": "2025-01-29T20:37:03+00:00",
+            "end": null
+          },
+          "balances": {
+            "objectivesMet": 2
+          }
+        },
+        "event": "REDEEM",
+        "accountTransactionId": "7909471167",
+        "parentAccountTransactionId": "",
+        "source": 1,
+        "balancesBefore": {
+          "objectivesMet": 2
+        },
+        "balancesAfter": {
+          "objectivesMet": 2
+        },
+        "transactionDetails": {
+          "merchant_store_id": "outlet1",
+          "merchant_store_parent_id": "banner1"
+        },
+        "dateCreated": "2025-01-29T20:37:03+00:00",
+        "lastUpdated": "2025-01-29T20:37:03+00:00"
+      }
+    },
+    {
+      "operationType": "UPDATE",
+      "objectType": "walletAccountTransactionEntity",
+      "objectValue": {
+        "account": {
+          "accountId": "4502097871",
+          "campaignId": "100641542",
+          "type": "COUPON_STAMP_CARD",
+          "clientType": "STANDARD",
+          "state": "LOADED",
+          "status": "ACTIVE",
+          "dates": {
+            "start": "2025-01-29T20:37:03+00:00",
+            "end": null
+          },
+          "balances": {
+            "available": 5,
+            "refundable": 0
+          }
+        },
+        "event": "CREDIT",
+        "accountTransactionId": "7909471168",
+        "parentAccountTransactionId": "",
+        "source": 1,
+        "balancesBefore": {
+          "available": 4,
+          "refundable": 0
+        },
+        "balancesAfter": {
+          "available": 5,
+          "refundable": 0
+        },
+        "transactionDetails": {
+          "merchant_store_id": "outlet1",
+          "merchant_store_parent_id": "banner1"
+        },
+        "dateCreated": "2025-01-29T20:37:03+00:00",
+        "lastUpdated": "2025-01-29T20:37:03+00:00"
+      }
+    }
+  ],
+  "enrichmentData": {
+    "walletEntity_216396239": {
+      "identities": [
+        {
+          "identityId": "187129875",
+          "walletId": "216396239",
+          "type": "CUSTOMER_ID",
+          "friendlyName": null,
+          "value": "1111111111111124",
+          "safeValue": null,
+          "secret": null,
+          "dates": {
+            "start": "2025-01-29T20:23:00+00:00",
+            "end": null
+          },
+          "meta": [],
+          "state": "DEFAULT",
+          "status": "ACTIVE",
+          "dateCreated": "2025-01-29T20:23:00+00:00",
+          "lastUpdated": "2025-01-29T20:23:00+00:00"
+        }
+      ]
+    }
+  }
+}
