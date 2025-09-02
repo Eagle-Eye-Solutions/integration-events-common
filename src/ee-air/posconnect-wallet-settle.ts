@@ -12,10 +12,11 @@ import {isTierMembershipEntity} from './atomic-operations';
 import {
   isWalletTransactionEntityUpdateSettleSettled,
   isWalletAccountTransactionEntityUpdateRedeemEcoupon,
-  isWalletAccountTransactionEntityUpdateCreditPoints,
+  isWalletAccountTransactionEntityUpdatePoints,
 } from './atomic-operations';
 import AtomicOperations from './atomic-operations';
 import {BaseEventHandlerOpts} from './types';
+import {getPointsAttributesFromWalletAccountTransactionEntity} from './atomic-operations/wallet-account-transaction-entity';
 
 /**
  * Returns an array of events derived from a POSCONNECT.WALLET.SETTLE event.
@@ -35,11 +36,17 @@ export function getPosConnectWalletSettleEventData(
   const redeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdateCreditPoints(op)) {
-      pointsAttributes =
-        AtomicOperations.WalletAccountTransactionEntity.UpdateCreditPoints.getPointsAttributes(
-          op,
-        );
+    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
+      // Always take the latest POINTS balance observed in the operations list
+      try {
+        pointsAttributes =
+          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
+      } catch {
+        // Ignore if balance not available on this op.
+        // By taking the latest POINTS balance observed in the operations list,
+        // we ensure that we always have the most up-to-date balance regardless
+        // of the its type.
+      }
     } else if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);
