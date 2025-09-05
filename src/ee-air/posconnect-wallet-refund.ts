@@ -7,11 +7,11 @@ import {
 } from '..';
 import {POSConnectWalletRefundEventData} from '../types';
 import {BaseEventHandlerOpts} from './types';
+import {getPointsAttributesFromWalletAccountTransactionEntity} from './atomic-operations/wallet-account-transaction-entity';
 import AtomicOperations, {
   isTierMembershipEntity,
-  isWalletAccountTransactionEntityUpdateEarnPoints,
+  isWalletAccountTransactionEntityUpdatePoints,
   isWalletAccountTransactionEntityUpdateRedeemEcoupon,
-  isWalletAccountTransactionEntityUpdateRefundDebitPoints,
   isWalletAccountTransactionEntityUpdateUnredeemEcoupon,
   isWalletTransactionEntityCreateRefundSettled,
 } from './atomic-operations';
@@ -50,19 +50,16 @@ export function getPosConnectWalletRefundEventData(
   const unredeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdateRefundDebitPoints(op)) {
-      // pointsAttributes will be the new balance with total points awarded in
-      // original transaction deducted.
-      pointsAttributes =
-        AtomicOperations.WalletAccountTransactionEntity.UpdateRefundDebitPoints.getPointsAttributes(
-          op,
-        );
-    } else if (isWalletAccountTransactionEntityUpdateEarnPoints(op)) {
-      // if this is present, we are processing a partial refund.
-      pointsAttributes =
-        AtomicOperations.WalletAccountTransactionEntity.UpdateEarnPoints.getPointsAttributes(
-          op,
-        );
+    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
+      try {
+        pointsAttributes =
+          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
+      } catch {
+        // Ignore if balance not available on this op.
+        // By taking the latest POINTS balance observed in the operations list,
+        // we ensure that we always have the most up-to-date balance regardless
+        // of the its type.
+      }
     } else if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);

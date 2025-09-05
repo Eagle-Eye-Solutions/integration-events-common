@@ -9,13 +9,13 @@ import {
 import {BaseEventHandlerOpts} from './types';
 import AtomicOperations, {
   isTierMembershipEntity,
-  isWalletAccountTransactionEntityUpdateCreditPoints,
-  isWalletAccountTransactionEntityUpdateEarnPoints,
+  isWalletAccountTransactionEntityUpdatePoints,
   isWalletAccountTransactionEntityUpdateRedeemEcoupon,
   isWalletTransactionEntityCreateFulfilFulfilled,
   isWalletTransactionEntityUpdateSettleFulfilling,
   isWalletTransactionEntityUpdateSettleSettled,
 } from './atomic-operations';
+import {getPointsAttributesFromWalletAccountTransactionEntity} from './atomic-operations/wallet-account-transaction-entity';
 
 function isInitialPosConnectWalletFulfil(event: EeAirOutboundEvent): boolean {
   if (event.headers.eventName === 'POSCONNECT.WALLET.FULFIL') {
@@ -97,11 +97,16 @@ function getPosConnectWalletFulfilInitialEventData(
   const redeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdateCreditPoints(op)) {
-      pointsAttributes =
-        AtomicOperations.WalletAccountTransactionEntity.UpdateCreditPoints.getPointsAttributes(
-          op,
-        );
+    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
+      try {
+        pointsAttributes =
+          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
+      } catch {
+        // Ignore if balance not available on this op.
+        // By taking the latest POINTS balance observed in the operations list,
+        // we ensure that we always have the most up-to-date balance regardless
+        // of the its type.
+      }
     } else if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);
@@ -151,12 +156,16 @@ function getPosConnectWalletFulfilMiddleEventData(
   const redeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdateCreditPoints(op)) {
-      pointsAttributes =
-        AtomicOperations.WalletAccountTransactionEntity.UpdateCreditPoints.getPointsAttributes(
-          op,
-        );
-      opts.logger.warn({pointsAttributes});
+    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
+      try {
+        pointsAttributes =
+          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
+      } catch {
+        // Ignore if balance not available on this op.
+        // By taking the latest POINTS balance observed in the operations list,
+        // we ensure that we always have the most up-to-date balance regardless
+        // of the its type.
+      }
     } else if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);
@@ -231,11 +240,16 @@ function getPosConnectWalletFulfilFinalEventData(
   const redeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdateEarnPoints(op)) {
-      pointsAttributes =
-        AtomicOperations.WalletAccountTransactionEntity.UpdateCreditPoints.getPointsAttributes(
-          op,
-        );
+    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
+      try {
+        pointsAttributes =
+          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
+      } catch {
+        // Ignore if balance not available on this op.
+        // By taking the latest POINTS balance observed in the operations list,
+        // we ensure that we always have the most up-to-date balance regardless
+        // of the its type.
+      }
     } else if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);
