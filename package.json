@@ -1,6 +1,6 @@
 {
   "name": "@eagleeye-solutions/integration-events-common",
-  "version": "1.0.0-rc.5",
+  "version": "1.1.0",
   "description": "Eagle Eye CDP connector common functionality",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
