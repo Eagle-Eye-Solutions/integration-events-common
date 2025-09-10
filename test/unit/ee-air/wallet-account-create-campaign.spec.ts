@@ -23,6 +23,7 @@ describe('getWalletAccountCreateCampaignEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-22T20:08:38+00:00'),
           dateEnd: new Date('2025-12-31T23:59:00+00:00'),
+          relationships: [],
         },
       ],
       continuityAccounts: [],
@@ -54,6 +55,7 @@ describe('getWalletAccountCreateCampaignEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-22T20:09:14+00:00'),
           dateEnd: new Date('2025-12-31T23:59:00+00:00'),
+          relationships: [],
         },
         {
           accountId: '4083750094',
@@ -64,6 +66,7 @@ describe('getWalletAccountCreateCampaignEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-22T20:09:14Z'),
           dateEnd: new Date('2025-12-31T23:59:00Z'),
+          relationships: [],
         },
         {
           accountId: '4083750095',
@@ -74,6 +77,7 @@ describe('getWalletAccountCreateCampaignEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-22T20:09:14Z'),
           dateEnd: new Date('2025-12-31T23:59:00Z'),
+          relationships: [],
         },
       ],
       continuityAccounts: [],

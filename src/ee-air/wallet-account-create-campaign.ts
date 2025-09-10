@@ -30,9 +30,16 @@ export function getWalletAccountCreateCampaignEventData(
 
   for (const op of event.atomicOperations) {
     if (isWalletAccountTransactionEntityCreateEcoupon(op)) {
-      eventData.coupons.push(
-        getCouponAttributesFromWalletAccountTransactionEntity(op),
-      );
+      const baseCoupon =
+        getCouponAttributesFromWalletAccountTransactionEntity(op);
+      const account: any = (op as any).objectValue?.account;
+      const relationships = account?.relationships;
+      // Include relationships block when present so connectors can flatten OBJECTIVE_OF
+      const couponWithRelationships = relationships
+        ? ({...baseCoupon, relationships} as any)
+        : baseCoupon;
+      // Push, allowing extra field via any
+      (eventData.coupons as any).push(couponWithRelationships);
     } else if (isWalletAccountTransactionEntityCreateContinuity(op)) {
       eventData.continuityAccounts.push(
         getContinuityAttributesFromWalletAccountTransactionEntity(op),
