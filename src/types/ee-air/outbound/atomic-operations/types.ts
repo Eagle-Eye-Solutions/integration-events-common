@@ -63,6 +63,17 @@ export type BaseAccountAttributes = {
  */
 export type CouponAttributes = BaseAccountAttributes & {
   clientType: string;
+  relationships?:
+    | any[]
+    | {
+        OBJECTIVE_OF?: Record<
+          string,
+          Array<{
+            accountId: string;
+            dateCreated: string;
+          }>
+        >;
+      };
 };
 
 /**
