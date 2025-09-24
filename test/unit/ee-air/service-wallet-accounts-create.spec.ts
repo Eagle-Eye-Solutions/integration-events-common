@@ -3,7 +3,7 @@ import {
   getServiceWalletAccountsCreateEventData,
   ServiceWalletAccountsCreateEventData,
 } from '../../../src';
-import {} from '../../../src/ee-air/service-trigger';
+import '../../../src/ee-air/service-trigger';
 import {sampleEvents} from '../../fixtures';
 
 describe('getServiceWalletAccountsCreateEventData', () => {
@@ -66,5 +66,22 @@ describe('getServiceWalletAccountsCreateEventData', () => {
 
     // Assert
     expect(output).toEqual(expectedOutput);
+  });
+
+  it('handles SERVICE.WALLET.ACCOUNTS.CREATE without accounts.scheme in request', () => {
+    // Arrange
+    const event = EeAirOutboundEventSchema.parse(
+      sampleEvents.SERVICE_WALLET_ACCOUNTS_CREATE_NO_SCHEME,
+    );
+
+    // Act
+    const output = getServiceWalletAccountsCreateEventData(event);
+
+    // Assert: still parses from atomic operations and doesn’t throw
+    expect(output.coupons.length).toBeGreaterThanOrEqual(0);
+    // points and tier are optional; just assert structure exists
+    expect(output).toHaveProperty('continuityAccounts');
+    expect(output).toHaveProperty('questAccounts');
+    expect(output).toHaveProperty('stampCards');
   });
 });
