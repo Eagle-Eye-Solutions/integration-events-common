@@ -30,6 +30,7 @@ export {default as TIER_MEMBERSHIP_DEBIT} from './TIER.MEMBERSHIP.DEBIT.json';
 export {default as TIER_MEMBERSHIP_MOVE} from './TIER.MEMBERSHIP.MOVE.json';
 export {default as WALLET_ACCOUNT_CREATE_CAMPAIGN_MULTIPLE} from './WALLET.ACCOUNT.CREATE.CAMPAIGN (multiple).json';
 export {default as WALLET_ACCOUNT_CREATE_CAMPAIGN_SINGLE} from './WALLET.ACCOUNT.CREATE.CAMPAIGN (single).json';
+export {default as WALLET_ACCOUNT_CREATE_CAMPAIGN_WITH_BEHAVIOURAL_ACTION} from './WALLET.ACCOUNT.CREATE.CAMPAIGN (with behavioural action).json';
 export {default as WALLET_ACCOUNT_CREATE_PLAN} from './WALLET.ACCOUNT.CREATE.PLAN.json';
 export {default as WALLET_ACCOUNT_CREATE_SCHEME} from './WALLET.ACCOUNT.CREATE.SCHEME.json';
 export {default as WALLET_ACCOUNT_UPDATE} from './WALLET.ACCOUNT.UPDATE (cancel subscription accounts).json';
