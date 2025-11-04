@@ -181,7 +181,8 @@ export function isWalletAccountTransactionEntityCreateEcoupon(
 ): entity is WalletAccountTransactionEntityCreateEcoupon {
   return (
     isWalletAccountTransactionEntity(entity) &&
-    entity.objectValue.account.type === 'ECOUPON' &&
+    (entity.objectValue.account.type === 'ECOUPON' ||
+      entity.objectValue.account.type === 'BEHAVIOURAL_ACTION') &&
     entity.operationType === 'CREATE' &&
     entity.objectValue.account.clientType !== null &&
     entity.objectValue.account.clientType !== undefined
@@ -215,7 +216,8 @@ export function isWalletAccountTransactionEntityUpdateEcoupon(
 ): entity is WalletAccountTransactionEntityCreateEcoupon {
   return (
     isWalletAccountTransactionEntity(entity) &&
-    entity.objectValue.account.type === 'ECOUPON' &&
+    (entity.objectValue.account.type === 'ECOUPON' ||
+      entity.objectValue.account.type === 'BEHAVIOURAL_ACTION') &&
     entity.operationType === 'UPDATE' &&
     entity.objectValue.account.clientType !== null &&
     entity.objectValue.account.clientType !== undefined
