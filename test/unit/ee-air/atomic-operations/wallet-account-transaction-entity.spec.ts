@@ -22,6 +22,7 @@ describe('AtomicOperations.WalletAccountTransactionEntity.CreateEcoupon.getCoupo
       status: 'ACTIVE',
       dateStart: new Date('2025-01-29T20:23:01.000Z'),
       dateEnd: new Date('2025-12-31T23:59:00.000Z'),
+      relationships: [],
     });
   });
 
@@ -45,6 +46,16 @@ describe('AtomicOperations.WalletAccountTransactionEntity.CreateEcoupon.getCoupo
       status: 'ACTIVE',
       dateEnd: new Date('2026-12-31T23:59:00.000Z'),
       dateStart: new Date('2025-01-22T21:36:54.000Z'),
+      relationships: {
+        ENTITLEMENT_OF: {
+          STANDARD_SUBSCRIPTION: [
+            {
+              accountId: '4083796503',
+              dateCreated: '2025-01-22T21:36:54+00:00',
+            },
+          ],
+        },
+      },
     });
   });
 
@@ -80,6 +91,7 @@ describe('AtomicOperations.WalletAccountTransactionEntity.CreateEcoupon.getCoupo
         status: 'ACTIVE',
         dateStart: new Date('2025-01-29T20:23:01.000Z'),
         dateEnd: null,
+        relationships: [],
       });
     },
   );
@@ -107,6 +119,7 @@ describe('AtomicOperations.WalletAccountTransactionEntity.UpdateRedeemEcoupon.ge
       status: 'USED',
       type: 'ECOUPON',
       value: 100,
+      relationships: [],
     });
   });
 });

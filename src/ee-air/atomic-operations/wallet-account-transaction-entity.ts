@@ -100,6 +100,7 @@ export function getCouponAttributesFromWalletAccountTransactionEntity(
     status: account.status,
     dateStart: parseISO(account.dates.start),
     dateEnd: account.dates.end ? parseISO(account.dates.end) : null,
+    relationships: account.relationships as CouponAttributes['relationships'],
   };
 }
 

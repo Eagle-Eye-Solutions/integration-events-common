@@ -34,6 +34,7 @@ describe('getServiceWalletAccountsCreateEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-29T20:23:00.000Z'),
           dateEnd: new Date('2025-12-31T23:59:00.000Z'),
+          relationships: [],
         },
         {
           accountId: '4093853180',
@@ -44,6 +45,7 @@ describe('getServiceWalletAccountsCreateEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-29T20:23:00.000Z'),
           dateEnd: new Date('2025-12-31T23:59:00.000Z'),
+          relationships: [],
         },
         {
           accountId: '4093853181',
@@ -54,6 +56,7 @@ describe('getServiceWalletAccountsCreateEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-29T20:23:01.000Z'),
           dateEnd: new Date('2025-12-31T23:59:00.000Z'),
+          relationships: [],
         },
       ],
       continuityAccounts: [],

@@ -65,17 +65,24 @@ export class EeAirClient {
         return await response.text();
       }
     } else {
+      const errorContext = {
+        url: requestParams.url,
+        body: requestParams.body,
+        data: await response.text(),
+        headers: JSON.stringify(headers),
+      } as const;
+
+      // In pino v9 the logger's methods accept (obj?, msg?, ...args). Avoid
+      // passing multiple non-object params; include details in the object.
       this.logger.error(
-        `EE API returned error with status: ${
-          response.status
-        } and Unique Call ID: ${getEesCalledUniqueIdHeader(response)}`,
         {
-          url: requestParams.url,
-          body: requestParams.body,
-          data: await response.text(),
-          headers: JSON.stringify(headers),
+          context: errorContext,
+          status: response.status,
+          statusText: response.statusText,
+          uniqueCallId: getEesCalledUniqueIdHeader(response),
+          scope: EeAirClient.name,
         },
-        EeAirClient.name,
+        `EE API returned error`,
       );
       // May need tweaking based on endpoints handled and their expected errors.
       switch (response.status) {

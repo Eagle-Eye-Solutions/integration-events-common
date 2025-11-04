@@ -16,6 +16,16 @@ describe('getServiceTriggerData', () => {
     const expectedOutput: ServiceTriggerEventData = {
       awardedCoupons: [
         {
+          accountId: '4103598329',
+          campaignId: '100633085',
+          clientType: 'BEHAVIOURAL_ACTION',
+          dateEnd: new Date('2038-01-19T03:14:07.000Z'),
+          dateStart: new Date('2025-02-03T20:47:41.000Z'),
+          state: 'LOADED',
+          status: 'ACTIVE',
+          type: 'BEHAVIOURAL_ACTION',
+        },
+        {
           accountId: '',
           campaignId: '100641678',
           clientType: 'OFFER',
@@ -50,7 +60,18 @@ describe('getServiceTriggerData', () => {
       points: {
         pointsBalance: 400,
       },
-      awardedCoupons: [],
+      awardedCoupons: [
+        {
+          accountId: '4103598394',
+          campaignId: '100641681',
+          clientType: 'BEHAVIOURAL_ACTION',
+          dateEnd: new Date('2038-01-19T03:14:07.000Z'),
+          dateStart: new Date('2025-02-03T20:51:02.000Z'),
+          state: 'LOADED',
+          status: 'ACTIVE',
+          type: 'BEHAVIOURAL_ACTION',
+        },
+      ],
       awardedPoints: {
         accountId: '4103598394',
         campaignId: '100641681',

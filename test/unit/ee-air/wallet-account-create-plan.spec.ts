@@ -33,6 +33,16 @@ describe('getWalletAccountCreatePlanEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-22T21:36:54.000Z'),
           dateEnd: new Date('2026-12-31T23:59:00.000Z'),
+          relationships: {
+            ENTITLEMENT_OF: {
+              STANDARD_SUBSCRIPTION: [
+                {
+                  accountId: '4083796503',
+                  dateCreated: '2025-01-22T21:36:54+00:00',
+                },
+              ],
+            },
+          },
         },
         {
           accountId: '4083796505',
@@ -43,6 +53,16 @@ describe('getWalletAccountCreatePlanEventData', () => {
           status: 'ACTIVE',
           dateStart: new Date('2025-01-22T21:36:54.000Z'),
           dateEnd: new Date('2026-12-31T23:59:00.000Z'),
+          relationships: {
+            ENTITLEMENT_OF: {
+              STANDARD_SUBSCRIPTION: [
+                {
+                  accountId: '4083796503',
+                  dateCreated: '2025-01-22T21:36:54+00:00',
+                },
+              ],
+            },
+          },
         },
       ],
     };

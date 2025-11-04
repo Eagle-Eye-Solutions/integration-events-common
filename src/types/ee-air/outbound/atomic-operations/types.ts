@@ -73,6 +73,7 @@ export type CouponAttributes = BaseAccountAttributes & {
             dateCreated: string;
           }>
         >;
+        [key: string]: any;
       };
 };
 

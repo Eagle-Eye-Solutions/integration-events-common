@@ -204,7 +204,7 @@ export type WalletAccountTransactionEntityCreateEcoupon =
   WalletAccountTransactionEntityCreate & {
     objectValue: WalletAccountTransactionEntityCreate['objectValue'] & {
       account: WalletAccountTransactionEntityCreate['objectValue']['account'] & {
-        type: 'ECOUPON';
+        type: 'ECOUPON' | 'BEHAVIOURAL_ACTION';
         clientType: string;
       };
     };
@@ -390,7 +390,7 @@ export type WalletAccountTransactionEntityUpdateEcoupon =
   WalletAccountTransactionEntityUpdate & {
     objectValue: WalletAccountTransactionEntityUpdate['objectValue'] & {
       account: WalletAccountTransactionEntityUpdate['objectValue']['account'] & {
-        type: 'ECOUPON';
+        type: 'ECOUPON' | 'BEHAVIOURAL_ACTION';
         clientType: string;
       };
     };

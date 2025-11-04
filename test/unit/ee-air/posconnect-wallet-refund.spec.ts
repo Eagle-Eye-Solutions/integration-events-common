@@ -41,6 +41,7 @@ describe('getPosConnectWalletRefundEventData', () => {
             dateStart: new Date('2025-02-10T21:59:36.000Z'),
             dateEnd: new Date('2025-02-10T22:00:58.000Z'),
             value: 500,
+            relationships: [],
           },
         ],
         unredeemedCoupons: [
@@ -54,6 +55,7 @@ describe('getPosConnectWalletRefundEventData', () => {
             dateStart: new Date('2025-02-10T21:59:36.000Z'),
             dateEnd: new Date('2025-02-10T22:00:58.000Z'),
             value: 700,
+            relationships: [],
           },
         ],
         transaction: {

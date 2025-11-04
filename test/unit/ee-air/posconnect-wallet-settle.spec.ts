@@ -39,6 +39,7 @@ describe('getPosConnectWalletSettleEventData', () => {
           dateEnd: new Date('2025-01-29T20:37:03.000Z'),
           dateStart: new Date('2025-01-29T20:35:43.000Z'),
           value: 700,
+          relationships: [],
         },
         {
           accountId: '4093853180',
@@ -50,6 +51,7 @@ describe('getPosConnectWalletSettleEventData', () => {
           dateEnd: new Date('2025-12-31T23:59:00.000Z'),
           dateStart: new Date('2025-01-29T20:23:00.000Z'),
           value: 200,
+          relationships: [],
         },
         {
           accountId: '4093853179',
@@ -61,6 +63,7 @@ describe('getPosConnectWalletSettleEventData', () => {
           dateEnd: new Date('2025-12-31T23:59:00.000Z'),
           dateStart: new Date('2025-01-29T20:23:00.000Z'),
           value: 100,
+          relationships: [],
         },
         {
           accountId: '4093853181',
@@ -72,6 +75,7 @@ describe('getPosConnectWalletSettleEventData', () => {
           dateEnd: new Date('2025-12-31T23:59:00.000Z'),
           dateStart: new Date('2025-01-29T20:23:01.000Z'),
           value: 300,
+          relationships: [],
         },
       ],
       points: {

@@ -21,7 +21,7 @@ export function httpLogger(appConfig: ApplicationConfig) {
   const httpLogger = pinoHttp({
     logger,
     serializers: {
-      req: pino.stdSerializers.wrapRequestSerializer(req => {
+      req: (req: any) => {
         const output: {
           id: unknown;
           method?: string;
@@ -39,7 +39,7 @@ export function httpLogger(appConfig: ApplicationConfig) {
         });
 
         return output;
-      }),
+      },
     },
     redact: appConfig.loggerRedactOptions,
   });
