@@ -31,7 +31,7 @@ export class EeAirClient {
 
   public async makeApiRequest(
     requestParams: EeAirRequestParams,
-  ): Promise<unknown> {
+  ): Promise<{data: unknown; calledUniqueId: string | null}> {
     const headers = {
       'Content-Type': 'application/json',
       'X-EES-AUTH-CLIENT-ID': this.clientId,
@@ -51,19 +51,23 @@ export class EeAirClient {
     });
     const t1 = performance.now();
 
+    const calledUniqueId = getEesCalledUniqueIdHeader(response);
+
     this.logger.info(
       `${requestParams.method} ${requestParams.url}: ${response.status} ${response.statusText} (${t1 - t0}ms)`,
     );
 
     if (response.ok) {
       const contentType = response.headers.get('Content-Type');
+      let data: unknown;
       if (contentType && contentType.includes('application/json')) {
-        const responseJson = await response.json();
-        this.logger.debug(`Response Body: ${JSON.stringify(responseJson)}`);
-        return responseJson;
+        data = await response.json();
+        this.logger.debug(`Response Body: ${JSON.stringify(data)}`);
       } else {
-        return await response.text();
+        data = await response.text();
       }
+
+      return {data, calledUniqueId};
     } else {
       const errorContext = {
         url: requestParams.url,
@@ -117,7 +121,7 @@ export class EeAirClient {
       headers: {},
     } as EeAirRequestParams;
 
-    const walletTransaction = await this.makeApiRequest(
+    const {data: walletTransaction} = await this.makeApiRequest(
       getWalletTransactionByIdRequest,
     );
 
