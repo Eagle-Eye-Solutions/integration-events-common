@@ -9,6 +9,7 @@ import {
 import {isGoogleCloudRun, requireGoogleJwt} from './platform';
 import {httpLogger} from './logger';
 import {v4 as uuidv4} from 'uuid';
+import {createNewRelicMiddleware} from './common/newrelic-middleware';
 
 export const DEFAULT_TRACE_ID_NAME = 'x-ees-connector-trace-id';
 export const DEFAULT_INCLUDE_TRACE_ID_IN_HTTP_RESPONSE_HEADERS = true;
@@ -73,6 +74,9 @@ export async function connector(appConfig: ApplicationConfig) {
   }
 
   app.use(httpLogger(appConfig));
+
+  // Middleware de New Relic para capturar atributos personalizados
+  app.use(createNewRelicMiddleware());
 
   app.get('/status', handleStatus);
 
