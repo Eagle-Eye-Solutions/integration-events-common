@@ -89,7 +89,6 @@
     "google-auth-library": "^9.15.0",
     "http-errors": "^2.0.0",
     "memoizee": "^0.4.17",
-    "newrelic": "^13.6.3",
     "pino": "^9.6.0",
     "pino-http": "^10.4.0",
     "pino-pretty": "^13.0.0",
@@ -100,5 +99,8 @@
   "files": [
     "/build/src",
     "/build/test"
-  ]
+  ],
+  "peerDependencies": {
+    "newrelic": "^13.6.3"
+  }
 }
