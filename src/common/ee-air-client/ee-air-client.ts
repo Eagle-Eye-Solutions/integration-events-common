@@ -35,6 +35,7 @@ export class EeAirClient {
     const headers = {
       'Content-Type': 'application/json',
       'X-EES-AUTH-CLIENT-ID': this.clientId,
+      'caller-unique-id': requestParams.headers['called-unique-id'],
       'X-EES-AUTH-HASH': generateAuthenticationHash(
         this.clientSecret,
         requestParams.url,

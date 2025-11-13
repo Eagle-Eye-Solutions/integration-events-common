@@ -1,4 +1,5 @@
 export * from './ee-air-client';
+export * from './newrelic-middleware';
 
 import {EeAirOutboundEvent, AirIdentity} from '../types';
 
