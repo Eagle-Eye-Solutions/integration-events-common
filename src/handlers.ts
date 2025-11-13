@@ -127,6 +127,11 @@ export async function handleEeAirOutboundRequest(
       throw createError.Forbidden();
     }
 
+    const calledUniqueId = req.get('called-unique-id');
+    if (calledUniqueId) {
+      attributes['caller-unique-id'] = calledUniqueId;
+    }
+
     await sendInternalMessage(
       appConfig,
       {
@@ -185,6 +190,11 @@ export async function handleCdpOutboundRequest(
 
     if (!connectorConfig) {
       throw createError.Forbidden();
+    }
+
+    const calledUniqueId = req.get('called-unique-id');
+    if (calledUniqueId) {
+      attributes['caller-unique-id'] = calledUniqueId;
     }
 
     const cdpOutboundEvent: CdpOutboundEvent = {
