@@ -75,7 +75,7 @@ export async function connector(appConfig: ApplicationConfig) {
 
   app.use(httpLogger(appConfig));
 
-  // Middleware de New Relic para capturar atributos personalizados
+  // Middeware to set custom attributes to New Relic transactions
   app.use(createNewRelicMiddleware());
 
   app.get('/status', handleStatus);
