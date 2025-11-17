@@ -12,7 +12,7 @@ export function createNewRelicMiddleware(): RequestHandler {
     req.log.info('Adding New Relic custom attributes');
 
     try {
-      const calledUniqueId = req.get('called-unique-id') || uuidv4();
+      const calledUniqueId = uuidv4();
       const callerUniqueId = req.get('caller-unique-id') || '';
 
       newrelic.addCustomAttribute('called-unique-id', calledUniqueId);
