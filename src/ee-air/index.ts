@@ -16,4 +16,5 @@ export * from './wallet-account-create-plan';
 export * from './wallet-account-update';
 export * from './wallet-account-create-scheme';
 export * from './wallet-account-create-campaign';
+export * from './wallet-account-transaction-redeem';
 export * from './types';

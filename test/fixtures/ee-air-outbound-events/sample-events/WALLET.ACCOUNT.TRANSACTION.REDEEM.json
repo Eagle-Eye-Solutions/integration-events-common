@@ -1,0 +1,187 @@
+{
+  "headers": {
+    "eventName": "WALLET.ACCOUNT.TRANSACTION.REDEEM",
+    "eventDate": "2025-11-10T15:41:15.131566",
+    "eesEnvironmentType": "sandbox-uk",
+    "eesSubsystemId": "wallet.sandbox.uk.eagleeye.com",
+    "callerIp": "35.244.186.249",
+    "unitId": "202316",
+    "unitFriendlyName": "Sample Braze Client 1",
+    "clientId": "xg0jnuu98a5z5flx7e1p",
+    "clientIdFriendlyName": "api",
+    "eesEventId": "09dad9ca-e2d9-40f9-9c4b-4664dff79334",
+    "eesMasterEventId": "aRIHm-4Bzf06HmSbgJEJgAAAAbw",
+    "externalMessageId": null,
+    "eesApiVersion": "2.0"
+  },
+  "request": {
+    "resource": "/wallet/249468043/account/4777717190/redeem",
+    "method": "PATCH",
+    "body": null,
+    "contentType": "application/json",
+    "customHeaders": []
+  },
+  "response": {
+    "code": 200,
+    "body": {
+      "accountTransactionId": "9456782125",
+      "parentAccountTransactionId": null,
+      "accountId": "4777717190",
+      "account": {
+        "accountId": "4777717190",
+        "walletId": "249468043",
+        "campaignId": "100970330",
+        "type": "ECOUPON",
+        "clientType": "OFFER",
+        "status": "USED",
+        "state": "LOADED",
+        "dates": {
+          "start": "2025-11-10T15:12:18+00:00",
+          "end": "2026-12-31T23:59:00+00:00"
+        },
+        "meta": [],
+        "dateCreated": "2025-11-10T15:12:18+00:00",
+        "lastUpdated": "2025-11-10T15:41:15+00:00",
+        "overrides": [],
+        "balances": {
+          "available": 0,
+          "refundable": 0
+        },
+        "relationships": {
+          "OBJECTIVE_OF": {
+            "QUEST": [
+              {
+                "accountId": "4777717188",
+                "dateCreated": "2025-11-10T15:12:18+00:00"
+              }
+            ]
+          }
+        },
+        "mobileWallet": "https://sb.uk.mypass.is/a/4777717190/d6024099d98efb7",
+        "tokens": null,
+        "stats": null,
+        "limits": null,
+        "relatedAccounts": null,
+        "createTransaction": null
+      },
+      "event": "REDEEM",
+      "value": 0,
+      "source": 1,
+      "balancesBefore": {
+        "available": 0,
+        "refundable": 0
+      },
+      "balancesAfter": {
+        "available": 0,
+        "refundable": 0
+      },
+      "transactionDetails": [],
+      "properties": [],
+      "dateCreated": "2025-11-10T15:41:15+00:00",
+      "lastUpdated": "2025-11-10T15:41:15+00:00"
+    },
+    "contentType": "application/json;charset=utf-8"
+  },
+  "atomicOperations": [
+    {
+      "objectType": "walletAccountTransactionEntity",
+      "operationType": "UPDATE",
+      "objectValue": {
+        "accountTransactionId": "9456782125",
+        "parentAccountTransactionId": null,
+        "accountId": "4777717190",
+        "account": {
+          "accountId": "4777717190",
+          "walletId": "249468043",
+          "campaignId": "100970330",
+          "type": "ECOUPON",
+          "clientType": "OFFER",
+          "status": "USED",
+          "state": "LOADED",
+          "dates": {
+            "start": "2025-11-10T15:12:18+00:00",
+            "end": "2026-12-31T23:59:00+00:00"
+          },
+          "meta": [],
+          "dateCreated": "2025-11-10T15:12:18+00:00",
+          "lastUpdated": "2025-11-10T15:41:15+00:00",
+          "overrides": [],
+          "balances": {
+            "available": 0,
+            "refundable": 0
+          },
+          "relationships": {
+            "OBJECTIVE_OF": {
+              "QUEST": [
+                {
+                  "accountId": "4777717188",
+                  "dateCreated": "2025-11-10T15:12:18+00:00"
+                }
+              ]
+            }
+          },
+          "mobileWallet": "https://sb.uk.mypass.is/a/4777717190/d6024099d98efb7"
+        },
+        "event": "REDEEM",
+        "value": 0,
+        "source": 1,
+        "balancesBefore": {
+          "available": 0,
+          "refundable": 0
+        },
+        "balancesAfter": {
+          "available": 0,
+          "refundable": 0
+        },
+        "transactionDetails": [],
+        "properties": [],
+        "dateCreated": "2025-11-10T15:41:15+00:00",
+        "lastUpdated": "2025-11-10T15:41:15+00:00"
+      }
+    }
+  ],
+  "enrichmentData": {
+    "walletEntity_249468043": {
+      "identities": [
+        {
+          "identityId": "201545445",
+          "walletId": "249468043",
+          "type": "CUSTOMER_ID",
+          "friendlyName": null,
+          "value": "1111111111111111_Nov10a",
+          "safeValue": null,
+          "secret": null,
+          "dates": {
+            "start": "2025-11-10T15:12:18+00:00",
+            "end": null
+          },
+          "meta": [],
+          "state": "DEFAULT",
+          "status": "ACTIVE",
+          "dateCreated": "2025-11-10T15:12:18+00:00",
+          "lastUpdated": "2025-11-10T15:12:18+00:00",
+          "mobileWallet": null
+        },
+        {
+          "identityId": "201545446",
+          "walletId": "249468043",
+          "type": "CARD",
+          "friendlyName": null,
+          "value": "1111111111111111_Nov10a",
+          "safeValue": null,
+          "secret": null,
+          "dates": {
+            "start": "2025-11-10T15:12:18+00:00",
+            "end": null
+          },
+          "meta": [],
+          "state": "EARNBURN",
+          "status": "ACTIVE",
+          "dateCreated": "2025-11-10T15:12:18+00:00",
+          "lastUpdated": "2025-11-10T15:12:18+00:00",
+          "mobileWallet": "https://sb.uk.mypass.is/identity/202316/249468043/201545446/9178b07447caeb51c217f64818cb171e00368dc2aff9ad61a43bb9373deec58e"
+        }
+      ]
+    }
+  }
+}
