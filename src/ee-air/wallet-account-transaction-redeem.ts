@@ -3,8 +3,9 @@ import {
   CouponWithValueAttributes,
   WalletAccountTransactionRedeemEventData,
 } from '../types';
-import {isWalletAccountTransactionEntityUpdateRedeemEcoupon} from './atomic-operations';
-import AtomicOperations from './atomic-operations';
+import AtomicOperations, {
+  isWalletAccountTransactionEntityUpdateRedeemEcoupon,
+} from './atomic-operations';
 
 /**
  * Returns data extracted from a WALLET.ACCOUNT.TRANSACTION.REDEEM event.
