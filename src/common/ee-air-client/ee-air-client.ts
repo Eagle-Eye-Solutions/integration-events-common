@@ -87,7 +87,7 @@ export class EeAirClient {
           uniqueCallId: getEesCalledUniqueIdHeader(response),
           scope: EeAirClient.name,
         },
-        `EE API returned error`,
+        'EE API returned error',
       );
       // May need tweaking based on endpoints handled and their expected errors.
       switch (response.status) {

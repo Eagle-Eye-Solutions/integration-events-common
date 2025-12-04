@@ -245,3 +245,14 @@ export type TierMembershipCreateEventData = TierMembershipEventData;
 export type TierMembershipCreditEventData = TierMembershipEventData;
 export type TierMembershipDebitEventData = TierMembershipEventData;
 export type TierMembershipMoveEventData = TierMembershipEventData;
+
+/**
+ * Represents the subset of data received in WALLET.ACCOUNT.TRANSACTION.REDEEM that
+ * is made available to connectors via the getWalletAccountTransactionRedeemEventData API.
+ */
+export type WalletAccountTransactionRedeemEventData = {
+  /**
+   * List of redeemed coupons.
+   */
+  redeemedCoupons: CouponWithValueAttributes[];
+};

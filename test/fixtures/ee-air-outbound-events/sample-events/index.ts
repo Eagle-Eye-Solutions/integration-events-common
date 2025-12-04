@@ -35,6 +35,7 @@ export {default as WALLET_ACCOUNT_CREATE_CAMPAIGN_WITH_BEHAVIOURAL_ACTION} from 
 export {default as WALLET_ACCOUNT_CREATE_PLAN} from './WALLET.ACCOUNT.CREATE.PLAN.json';
 export {default as WALLET_ACCOUNT_CREATE_SCHEME} from './WALLET.ACCOUNT.CREATE.SCHEME.json';
 export {default as WALLET_ACCOUNT_UPDATE} from './WALLET.ACCOUNT.UPDATE (cancel subscription accounts).json';
+export {default as WALLET_ACCOUNT_TRANSACTION_REDEEM} from './WALLET.ACCOUNT.TRANSACTION.REDEEM.json';
 export {default as WALLET_CONSUMER_CREATE} from './WALLET.CONSUMER.CREATE.json';
 export {default as WALLET_CONSUMER_UPDATE} from './WALLET.CONSUMER.UPDATE.json';
 export {default as INVALID_TIER_MEMBERSHIP_CREATE_NO_ENRICHMENT_DATA} from './invalid/TIER.MEMBERSHIP.CREATE-no-enrichment-data.json';
