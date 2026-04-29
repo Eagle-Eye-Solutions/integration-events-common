@@ -57,6 +57,18 @@ describe('getServiceTriggerData', () => {
     );
 
     const expectedOutput: ServiceTriggerEventData = {
+      pointsAccounts: [
+        {
+          accountId: '4102305275',
+          campaignId: '100620987',
+          walletId: '216419576',
+          pointsBalance: 400,
+          type: 'POINTS',
+          clientType: 'RETAILPOINTS',
+          status: 'ACTIVE',
+          state: 'LOADED',
+        },
+      ],
       points: {
         pointsBalance: 400,
       },

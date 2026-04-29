@@ -28,6 +28,18 @@ describe('getPosConnectWalletSettleEventData', () => {
 
     const expectedOutput: POSConnectWalletSettleEventData = {
       currencyCode: 'USD',
+      pointsAccounts: [
+        {
+          accountId: '4093853182',
+          campaignId: '100620987',
+          walletId: '216396239',
+          pointsBalance: 663,
+          type: 'POINTS',
+          clientType: 'RETAILPOINTS',
+          status: 'ACTIVE',
+          state: 'LOADED',
+        },
+      ],
       redeemedCoupons: [
         {
           accountId: '4093853356',

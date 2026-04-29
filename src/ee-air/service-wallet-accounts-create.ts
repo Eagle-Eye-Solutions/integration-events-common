@@ -4,35 +4,39 @@ import {
 } from '../types';
 import {
   getCouponAttributesFromWalletAccountTransactionEntity,
-  getPointsAttributesFromWalletAccountTransactionEntity,
   getTierAttributesFromTierMembershipEntity,
   getContinuityAttributesFromWalletAccountTransactionEntity,
   getQuestAttributesFromWalletAccountTransactionEntity,
   getStampCardAttributesFromWalletAccountTransactionEntity,
   isTierMembershipEntity,
   isWalletAccountTransactionEntityCreateEcoupon,
-  isWalletAccountTransactionEntityCreatePoints,
   isWalletAccountTransactionEntityCreateContinuity,
   isWalletAccountTransactionEntityCreateQuest,
   isWalletAccountTransactionEntityCreateStampCard,
 } from './atomic-operations';
+import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
 
 export function getServiceWalletAccountsCreateEventData(
   eeAirOutboundEvent: EeAirOutboundEvent,
 ): ServiceWalletAccountsCreateEventData {
+  const {pointsAccounts, points} =
+    collectPointsAccountSnapshotsFromAtomicOperations(
+      eeAirOutboundEvent.atomicOperations,
+      'pointsCreatesOnly',
+    );
+
   const eventData: ServiceWalletAccountsCreateEventData = {
     coupons: [],
     continuityAccounts: [],
     questAccounts: [],
     stampCards: [],
+    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
+    ...(points ? {points} : {}),
   };
 
   for (const op of eeAirOutboundEvent.atomicOperations) {
     if (isTierMembershipEntity(op)) {
       eventData.tier = getTierAttributesFromTierMembershipEntity(op);
-    } else if (isWalletAccountTransactionEntityCreatePoints(op)) {
-      eventData.points =
-        getPointsAttributesFromWalletAccountTransactionEntity(op);
     } else if (isWalletAccountTransactionEntityCreateEcoupon(op)) {
       const coupon = getCouponAttributesFromWalletAccountTransactionEntity(op);
       eventData.coupons.push(coupon);

@@ -46,6 +46,18 @@ describe('getPosConnectWalletSpendVoidEventData', () => {
     });
 
     const expectedOutput: POSConnectWalletSpendVoidEventData = {
+      pointsAccounts: [
+        {
+          accountId: '4083750463',
+          campaignId: '100620987',
+          walletId: '216245571',
+          pointsBalance: 56340,
+          type: 'POINTS',
+          clientType: 'RETAILPOINTS',
+          status: 'ACTIVE',
+          state: 'LOADED',
+        },
+      ],
       points: {
         pointsBalance: 56340,
       },

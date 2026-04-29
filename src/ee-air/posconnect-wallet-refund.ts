@@ -1,20 +1,18 @@
 import {
   CouponWithValueAttributes,
   EeAirOutboundEvent,
-  PointsAttributes,
   TierAttributes,
   TransactionAttributes,
 } from '..';
 import {POSConnectWalletRefundEventData} from '../types';
 import {BaseEventHandlerOpts} from './types';
-import {getPointsAttributesFromWalletAccountTransactionEntity} from './atomic-operations/wallet-account-transaction-entity';
 import AtomicOperations, {
   isTierMembershipEntity,
-  isWalletAccountTransactionEntityUpdatePoints,
   isWalletAccountTransactionEntityUpdateRedeemEcoupon,
   isWalletAccountTransactionEntityUpdateUnredeemEcoupon,
   isWalletTransactionEntityCreateRefundSettled,
 } from './atomic-operations';
+import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
 
 /**
  * Returns an array of events derived from a POSCONNECT.WALLET.REFUND event.
@@ -42,25 +40,20 @@ export function getPosConnectWalletRefundEventData(
   event: EeAirOutboundEvent,
   opts: BaseEventHandlerOpts,
 ): POSConnectWalletRefundEventData {
+  const {pointsAccounts, points} =
+    collectPointsAccountSnapshotsFromAtomicOperations(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    );
+
   let transactionAttributes: TransactionAttributes | null = null;
-  let pointsAttributes: PointsAttributes | null = null;
   let tierAttributes: TierAttributes | null = null;
 
   const redeemedCoupons: CouponWithValueAttributes[] = [];
   const unredeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
-      try {
-        pointsAttributes =
-          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
-      } catch {
-        // Ignore if balance not available on this op.
-        // By taking the latest POINTS balance observed in the operations list,
-        // we ensure that we always have the most up-to-date balance regardless
-        // of the its type.
-      }
-    } else if (isTierMembershipEntity(op)) {
+    if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);
     } else if (isWalletAccountTransactionEntityUpdateRedeemEcoupon(op)) {
@@ -107,7 +100,8 @@ export function getPosConnectWalletRefundEventData(
   }
 
   const posConnectWalletRefundEventData: POSConnectWalletRefundEventData = {
-    ...(pointsAttributes ? {points: pointsAttributes} : {}),
+    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
+    ...(points ? {points} : {}),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,

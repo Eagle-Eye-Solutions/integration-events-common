@@ -13,6 +13,18 @@ describe('getPosConnectWalletSpendEventData', () => {
     );
 
     const expectedOutput: POSConnectWalletSpendEventData = {
+      pointsAccounts: [
+        {
+          accountId: '4083750463',
+          campaignId: '100620987',
+          walletId: '216245571',
+          pointsBalance: 25670,
+          type: 'POINTS',
+          clientType: 'RETAILPOINTS',
+          status: 'ACTIVE',
+          state: 'LOADED',
+        },
+      ],
       points: {
         pointsBalance: 25670,
       },

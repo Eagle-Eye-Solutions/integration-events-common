@@ -1,11 +1,9 @@
 import {EeAirOutboundEvent, EeAirClient} from '..';
 import {POSConnectWalletSpendVoidEventData} from '../types';
 import {BaseEventHandlerOpts} from './types';
-import {
-  isWalletAccountTransactionEntityUpdatePoints,
-  isWalletTransactionEntityUpdateSpendVoided,
-} from './atomic-operations';
+import {isWalletTransactionEntityUpdateSpendVoided} from './atomic-operations';
 import AtomicOperations from './atomic-operations';
+import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
 
 /**
  * Returns an array of events derived from a POSCONNECT.WALLET.SETTLE event.
@@ -18,18 +16,21 @@ export async function getPosConnectWalletSpendVoidEventData(
   event: EeAirOutboundEvent,
   opts: BaseEventHandlerOpts,
 ): Promise<POSConnectWalletSpendVoidEventData> {
+  const {pointsAccounts, points} =
+    collectPointsAccountSnapshotsFromAtomicOperations(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    );
+
   const posConnectWalletSpendVoidEventData: POSConnectWalletSpendVoidEventData =
     {
       voided: true,
+      ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
+      ...(points ? {points} : {}),
     };
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
-      posConnectWalletSpendVoidEventData.points =
-        AtomicOperations.WalletAccountTransactionEntity.UpdateEarnPoints.getPointsAttributes(
-          op,
-        );
-    } else if (isWalletTransactionEntityUpdateSpendVoided(op)) {
+    if (isWalletTransactionEntityUpdateSpendVoided(op)) {
       posConnectWalletSpendVoidEventData.transaction =
         AtomicOperations.WalletTransactionEntity.UpdateSpendVoid.getTransactionAttributes(
           op,

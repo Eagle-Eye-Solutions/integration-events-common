@@ -1,8 +1,6 @@
 import {EeAirOutboundEvent} from '..';
 import {ServiceTriggerEventData} from '../types';
 import {
-  isWalletAccountTransactionEntityCreatePoints,
-  getPointsAttributesFromWalletAccountTransactionEntity,
   isTierMembershipEntityUpdate,
   getTierAttributesFromTierMembershipEntity,
   getBehavioralActionAttributesFromWalletAccountTransactionEntity,
@@ -10,6 +8,7 @@ import {
   getCouponAttributesFromWalletAccountTransactionEntity,
   isWalletAccountTransactionEntityCreateEcoupon,
 } from './atomic-operations';
+import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
 
 /**
  * Returns data extracted from a SERVICE.TRIGGER event.
@@ -20,15 +19,20 @@ import {
 export function getServiceTriggerEventData(
   event: EeAirOutboundEvent,
 ): ServiceTriggerEventData {
+  const {pointsAccounts, points} =
+    collectPointsAccountSnapshotsFromAtomicOperations(
+      event.atomicOperations,
+      'pointsCreatesOnly',
+    );
+
   const eventData: ServiceTriggerEventData = {
     awardedCoupons: [],
+    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
+    ...(points ? {points} : {}),
   };
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityCreatePoints(op)) {
-      eventData.points =
-        getPointsAttributesFromWalletAccountTransactionEntity(op);
-    } else if (isTierMembershipEntityUpdate(op)) {
+    if (isTierMembershipEntityUpdate(op)) {
       eventData.tier = getTierAttributesFromTierMembershipEntity(op);
     } else if (isWalletAccountTransactionEntityRedeemBehavioralAction(op)) {
       eventData.awardedPoints =
