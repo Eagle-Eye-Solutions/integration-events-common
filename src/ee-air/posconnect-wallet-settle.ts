@@ -7,12 +7,11 @@ import {
   CouponWithValueAttributes,
   POSConnectWalletSettleEventData,
 } from '../types';
-import {isTierMembershipEntity} from './atomic-operations';
-import {
+import AtomicOperations, {
+  isTierMembershipEntity,
   isWalletTransactionEntityUpdateSettleSettled,
   isWalletAccountTransactionEntityUpdateRedeemEcoupon,
 } from './atomic-operations';
-import AtomicOperations from './atomic-operations';
 import {BaseEventHandlerOpts} from './types';
 import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
 

@@ -1,7 +1,8 @@
 import {EeAirOutboundEvent} from '..';
 import {POSConnectWalletSpendEventData} from '../types';
-import {isWalletTransactionEntityUpdateSpend} from './atomic-operations';
-import AtomicOperations from './atomic-operations';
+import AtomicOperations, {
+  isWalletTransactionEntityUpdateSpend,
+} from './atomic-operations';
 import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
 
 /**

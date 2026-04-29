@@ -16,4 +16,5 @@ module.exports = {
     '<rootDir>/examples/generic-connector/src/**/*.ts',
   ],
   coverageDirectory: '<rootDir>/coverage/unit',
+  setupFilesAfterEnv: ['<rootDir>/test/jest.setup.ts'],
 };

@@ -30,16 +30,21 @@ export function collectPointsAccountSnapshotsFromAtomicOperations(
 } {
   const byAccountId = new Map<string, PointsAccountSnapshot>();
 
-  for (const op of atomicOperations) {
-    const match =
-      mode === 'pointsCreatesOnly'
-        ? isWalletAccountTransactionEntityCreatePoints(op)
-        : mode === 'pointsUpdatesOnly'
-          ? isWalletAccountTransactionEntityUpdatePoints(op)
-          : isWalletAccountTransactionEntityCreatePoints(op) ||
-            isWalletAccountTransactionEntityUpdatePoints(op);
+  const opMatchesMode = (op: AtomicOperation): boolean => {
+    if (mode === 'pointsCreatesOnly') {
+      return isWalletAccountTransactionEntityCreatePoints(op);
+    }
+    if (mode === 'pointsUpdatesOnly') {
+      return isWalletAccountTransactionEntityUpdatePoints(op);
+    }
+    return (
+      isWalletAccountTransactionEntityCreatePoints(op) ||
+      isWalletAccountTransactionEntityUpdatePoints(op)
+    );
+  };
 
-    if (!match) {
+  for (const op of atomicOperations) {
+    if (!opMatchesMode(op)) {
       continue;
     }
     try {
