@@ -1,7 +1,7 @@
 import {EeAirOutboundEvent, ServiceWalletCreateEventData} from '../types';
 
 export function getServiceWalletCreateEventData(
-  eeAirOutboundEvent: EeAirOutboundEvent,
+  _eeAirOutboundEvent: EeAirOutboundEvent,
 ): ServiceWalletCreateEventData {
   const eventData: ServiceWalletCreateEventData = {};
 

@@ -1,8 +1,4 @@
-import {
-  EeAirOutboundEvent,
-  TierAttributes,
-  TransactionAttributes,
-} from '..';
+import {EeAirOutboundEvent, TierAttributes, TransactionAttributes} from '..';
 import {
   CouponWithValueAttributes,
   POSConnectWalletSettleEventData,

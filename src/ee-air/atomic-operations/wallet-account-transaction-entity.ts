@@ -71,10 +71,9 @@ export function getPointsAttributesFromWalletAccountTransactionEntity(
     | WalletAccountTransactionEntityUpdateEarnPoints
     | WalletAccountTransactionEntityUpdateRefundDebitPoints,
 ): PointsAttributes {
-  const snapshot =
-    getPointsAccountSnapshotFromWalletAccountTransactionEntity(
-      walletAccountTransactionEntity,
-    );
+  const snapshot = getPointsAccountSnapshotFromWalletAccountTransactionEntity(
+    walletAccountTransactionEntity,
+  );
   return {
     pointsBalance: snapshot.pointsBalance,
   };

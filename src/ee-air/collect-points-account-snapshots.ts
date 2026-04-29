@@ -48,8 +48,9 @@ export function collectPointsAccountSnapshotsFromAtomicOperations(
       continue;
     }
     try {
-      const snap =
-        getPointsAccountSnapshotFromWalletAccountTransactionEntity(op as any);
+      const snap = getPointsAccountSnapshotFromWalletAccountTransactionEntity(
+        op as any,
+      );
       byAccountId.set(snap.accountId, snap);
     } catch {
       // ignore ops without balances
