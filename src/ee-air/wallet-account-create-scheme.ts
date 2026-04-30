@@ -4,7 +4,7 @@ import {
   isTierMembershipEntity,
   getTierAttributesFromTierMembershipEntity,
 } from './atomic-operations';
-import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
+import {pointsSnapshotFieldsForEvent} from './collect-points-account-snapshots';
 
 /**
  * Returns an array of events derived from a WALLET.ACCOUNT.CREATE.SCHEME event.
@@ -16,15 +16,11 @@ import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-point
 export function getWalletAccountCreateSchemeEventData(
   event: EeAirOutboundEvent,
 ): WalletAccountCreateSchemeEventData {
-  const {pointsAccounts, points} =
-    collectPointsAccountSnapshotsFromAtomicOperations(
+  const eventData: WalletAccountCreateSchemeEventData = {
+    ...pointsSnapshotFieldsForEvent(
       event.atomicOperations,
       'pointsCreatesOnly',
-    );
-
-  const eventData: WalletAccountCreateSchemeEventData = {
-    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
-    ...(points ? {points} : {}),
+    ),
   };
 
   for (const op of event.atomicOperations) {

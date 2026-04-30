@@ -73,3 +73,24 @@ export function collectPointsAccountSnapshotsFromAtomicOperations(
 
   return {pointsAccounts, ...(points ? {points} : {})};
 }
+
+/**
+ * Same data as {@link collectPointsAccountSnapshotsFromAtomicOperations}, shaped for
+ * spreading into outbound event payloads (`pointsAccounts` / `points` only when set).
+ */
+export type PointsSnapshotEventFields = Partial<{
+  pointsAccounts: PointsAccountSnapshot[];
+  points: PointsAttributes;
+}>;
+
+export function pointsSnapshotFieldsForEvent(
+  atomicOperations: readonly AtomicOperation[],
+  mode: CollectPointsSnapshotsMode,
+): PointsSnapshotEventFields {
+  const {pointsAccounts, points} =
+    collectPointsAccountSnapshotsFromAtomicOperations(atomicOperations, mode);
+  return {
+    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
+    ...(points ? {points} : {}),
+  };
+}

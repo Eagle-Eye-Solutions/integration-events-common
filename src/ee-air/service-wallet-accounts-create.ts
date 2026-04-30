@@ -14,24 +14,20 @@ import {
   isWalletAccountTransactionEntityCreateQuest,
   isWalletAccountTransactionEntityCreateStampCard,
 } from './atomic-operations';
-import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
+import {pointsSnapshotFieldsForEvent} from './collect-points-account-snapshots';
 
 export function getServiceWalletAccountsCreateEventData(
   eeAirOutboundEvent: EeAirOutboundEvent,
 ): ServiceWalletAccountsCreateEventData {
-  const {pointsAccounts, points} =
-    collectPointsAccountSnapshotsFromAtomicOperations(
-      eeAirOutboundEvent.atomicOperations,
-      'pointsCreatesOnly',
-    );
-
   const eventData: ServiceWalletAccountsCreateEventData = {
     coupons: [],
     continuityAccounts: [],
     questAccounts: [],
     stampCards: [],
-    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
-    ...(points ? {points} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      eeAirOutboundEvent.atomicOperations,
+      'pointsCreatesOnly',
+    ),
   };
 
   for (const op of eeAirOutboundEvent.atomicOperations) {

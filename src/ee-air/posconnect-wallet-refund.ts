@@ -12,7 +12,7 @@ import AtomicOperations, {
   isWalletAccountTransactionEntityUpdateUnredeemEcoupon,
   isWalletTransactionEntityCreateRefundSettled,
 } from './atomic-operations';
-import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
+import {pointsSnapshotFieldsForEvent} from './collect-points-account-snapshots';
 
 /**
  * Returns an array of events derived from a POSCONNECT.WALLET.REFUND event.
@@ -40,12 +40,6 @@ export function getPosConnectWalletRefundEventData(
   event: EeAirOutboundEvent,
   opts: BaseEventHandlerOpts,
 ): POSConnectWalletRefundEventData {
-  const {pointsAccounts, points} =
-    collectPointsAccountSnapshotsFromAtomicOperations(
-      event.atomicOperations,
-      'pointsUpdatesOnly',
-    );
-
   let transactionAttributes: TransactionAttributes | null = null;
   let tierAttributes: TierAttributes | null = null;
 
@@ -100,8 +94,10 @@ export function getPosConnectWalletRefundEventData(
   }
 
   const posConnectWalletRefundEventData: POSConnectWalletRefundEventData = {
-    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
-    ...(points ? {points} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,

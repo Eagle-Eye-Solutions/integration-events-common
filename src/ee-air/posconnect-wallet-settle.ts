@@ -9,7 +9,7 @@ import AtomicOperations, {
   isWalletAccountTransactionEntityUpdateRedeemEcoupon,
 } from './atomic-operations';
 import {BaseEventHandlerOpts} from './types';
-import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
+import {pointsSnapshotFieldsForEvent} from './collect-points-account-snapshots';
 
 /**
  * Returns an array of events derived from a POSCONNECT.WALLET.SETTLE event.
@@ -22,12 +22,6 @@ export function getPosConnectWalletSettleEventData(
   event: EeAirOutboundEvent,
   opts: BaseEventHandlerOpts,
 ): POSConnectWalletSettleEventData {
-  const {pointsAccounts, points} =
-    collectPointsAccountSnapshotsFromAtomicOperations(
-      event.atomicOperations,
-      'pointsUpdatesOnly',
-    );
-
   let transactionAttributes: TransactionAttributes | null = null;
   let tierAttributes: TierAttributes | null = null;
 
@@ -58,8 +52,10 @@ export function getPosConnectWalletSettleEventData(
   }
 
   const posConnectWalletSettleEventData: POSConnectWalletSettleEventData = {
-    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
-    ...(points ? {points} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,

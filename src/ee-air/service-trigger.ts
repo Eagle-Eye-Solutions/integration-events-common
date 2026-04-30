@@ -8,7 +8,7 @@ import {
   getCouponAttributesFromWalletAccountTransactionEntity,
   isWalletAccountTransactionEntityCreateEcoupon,
 } from './atomic-operations';
-import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
+import {pointsSnapshotFieldsForEvent} from './collect-points-account-snapshots';
 
 /**
  * Returns data extracted from a SERVICE.TRIGGER event.
@@ -19,16 +19,12 @@ import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-point
 export function getServiceTriggerEventData(
   event: EeAirOutboundEvent,
 ): ServiceTriggerEventData {
-  const {pointsAccounts, points} =
-    collectPointsAccountSnapshotsFromAtomicOperations(
-      event.atomicOperations,
-      'pointsCreatesOnly',
-    );
-
   const eventData: ServiceTriggerEventData = {
     awardedCoupons: [],
-    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
-    ...(points ? {points} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsCreatesOnly',
+    ),
   };
 
   for (const op of event.atomicOperations) {

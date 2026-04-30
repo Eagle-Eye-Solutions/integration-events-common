@@ -13,7 +13,7 @@ import AtomicOperations, {
   isWalletTransactionEntityUpdateSettleFulfilling,
   isWalletTransactionEntityUpdateSettleSettled,
 } from './atomic-operations';
-import {collectPointsAccountSnapshotsFromAtomicOperations} from './collect-points-account-snapshots';
+import {pointsSnapshotFieldsForEvent} from './collect-points-account-snapshots';
 
 function isInitialPosConnectWalletFulfil(event: EeAirOutboundEvent): boolean {
   if (event.headers.eventName === 'POSCONNECT.WALLET.FULFIL') {
@@ -88,12 +88,6 @@ function getPosConnectWalletFulfilInitialEventData(
   event: EeAirOutboundEvent,
   opts: BaseEventHandlerOpts,
 ): POSConnectWalletFulfilEventData {
-  const {pointsAccounts, points} =
-    collectPointsAccountSnapshotsFromAtomicOperations(
-      event.atomicOperations,
-      'pointsUpdatesOnly',
-    );
-
   let transactionAttributes: TransactionAttributes | null = null;
   let tierAttributes: TierAttributes | null = null;
 
@@ -124,8 +118,10 @@ function getPosConnectWalletFulfilInitialEventData(
   }
 
   const posConnectWalletSettleEventData: POSConnectWalletFulfilEventData = {
-    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
-    ...(points ? {points} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,
@@ -141,12 +137,6 @@ function getPosConnectWalletFulfilMiddleEventData(
   event: EeAirOutboundEvent,
   opts: BaseEventHandlerOpts,
 ): POSConnectWalletFulfilEventData {
-  const {pointsAccounts, points} =
-    collectPointsAccountSnapshotsFromAtomicOperations(
-      event.atomicOperations,
-      'pointsUpdatesOnly',
-    );
-
   const transactionAttributes: TransactionAttributes = {
     products: [],
   };
@@ -204,8 +194,10 @@ function getPosConnectWalletFulfilMiddleEventData(
   }
 
   const posConnectWalletSettleEventData: POSConnectWalletFulfilEventData = {
-    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
-    ...(points ? {points} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,
@@ -221,12 +213,6 @@ function getPosConnectWalletFulfilFinalEventData(
   event: EeAirOutboundEvent,
   opts: BaseEventHandlerOpts,
 ): POSConnectWalletFulfilEventData {
-  const {pointsAccounts, points} =
-    collectPointsAccountSnapshotsFromAtomicOperations(
-      event.atomicOperations,
-      'pointsUpdatesOnly',
-    );
-
   const transactionAttributes: TransactionAttributes = {
     products: [],
   };
@@ -284,8 +270,10 @@ function getPosConnectWalletFulfilFinalEventData(
   }
 
   const posConnectWalletSettleEventData: POSConnectWalletFulfilEventData = {
-    ...(pointsAccounts.length > 0 ? {pointsAccounts} : {}),
-    ...(points ? {points} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,
