@@ -120,6 +120,18 @@ describe('getPosConnectWalletFulfilEventData', () => {
       eventName: 'POSCONNECT.WALLET.FULFIL (final)',
       event: sampleEvents.POSCONNECT_WALLET_FULFIL_FINAL,
       expectedOutput: {
+        pointsAccounts: [
+          {
+            accountId: '4102294539',
+            campaignId: '100620987',
+            walletId: '216418806',
+            pointsBalance: 1389,
+            type: 'POINTS',
+            clientType: 'RETAILPOINTS',
+            status: 'ACTIVE',
+            state: 'LOADED',
+          },
+        ],
         points: {
           pointsBalance: 1389,
         },

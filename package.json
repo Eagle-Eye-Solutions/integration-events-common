@@ -1,14 +1,14 @@
 {
   "name": "@eagleeye-solutions/integration-events-common",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Eagle Eye CDP connector common functionality",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "scripts": {
     "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "jest -c jest.unit.config.js",
-    "test:integration": "npm run test:integration:examples:generic-connector",
-    "test:integration:examples:generic-connector": "PUBSUB_EMULATOR_HOST=\"${PUBSUB_EMULATOR_HOST:=localhost:$(npm run --silent gcp:pubsub:getPort)}\" jest -c jest.integration.config.js --runInBand",
+    "test:unit": "TZ=UTC NEW_RELIC_APP_NAME=test jest -c jest.unit.config.js",
+    "test:integration": "TZ=UTC NEW_RELIC_APP_NAME=test npm run test:integration:examples:generic-connector",
+    "test:integration:examples:generic-connector": "TZ=UTC NEW_RELIC_APP_NAME=test PUBSUB_EMULATOR_HOST=\"${PUBSUB_EMULATOR_HOST:=localhost:$(npm run --silent gcp:pubsub:getPort)}\" jest -c jest.integration.config.js --runInBand",
     "gcp:pubsub:start": "docker-compose -f examples/generic-connector/test/integration/docker-compose.yaml up -d",
     "gcp:pubsub:getPort": "docker-compose -f examples/generic-connector/test/integration/docker-compose.yaml ps --format json | jq '. | .Publishers[] | select(.TargetPort==8085) | .PublishedPort'",
     "gcp:pubsub:stop": "docker-compose -f examples/generic-connector/test/integration/docker-compose.yaml down",

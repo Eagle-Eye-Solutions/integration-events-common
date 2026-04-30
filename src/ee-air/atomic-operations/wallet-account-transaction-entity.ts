@@ -1,6 +1,7 @@
 import {parseISO} from 'date-fns';
 import {
   PointsAttributes,
+  PointsAccountSnapshot,
   CouponAttributes,
   CouponWithValueAttributes,
   StandardSubscriptionAttributes,
@@ -30,13 +31,13 @@ import {
   RedeemedBehavioralActionAttributes,
 } from '../../types';
 
-export function getPointsAttributesFromWalletAccountTransactionEntity(
+export function getPointsAccountSnapshotFromWalletAccountTransactionEntity(
   walletAccountTransactionEntity:
     | WalletAccountTransactionEntityCreatePoints
     | WalletAccountTransactionEntityUpdateCreditPoints
     | WalletAccountTransactionEntityUpdateEarnPoints
     | WalletAccountTransactionEntityUpdateRefundDebitPoints,
-): PointsAttributes {
+): PointsAccountSnapshot {
   const account = walletAccountTransactionEntity.objectValue.account;
   const balances = account.balances;
 
@@ -47,13 +48,35 @@ export function getPointsAttributesFromWalletAccountTransactionEntity(
     balances.current !== undefined
   ) {
     return {
+      accountId: account.accountId,
+      campaignId: account.campaignId,
+      walletId: account.walletId,
       pointsBalance: balances.current,
+      type: account.type,
+      clientType: account.clientType ?? null,
+      status: account.status,
+      state: account.state,
     };
   } else {
     throw new Error(
       'Points balance not available in walletAccountTransactionEntity',
     );
   }
+}
+
+export function getPointsAttributesFromWalletAccountTransactionEntity(
+  walletAccountTransactionEntity:
+    | WalletAccountTransactionEntityCreatePoints
+    | WalletAccountTransactionEntityUpdateCreditPoints
+    | WalletAccountTransactionEntityUpdateEarnPoints
+    | WalletAccountTransactionEntityUpdateRefundDebitPoints,
+): PointsAttributes {
+  const snapshot = getPointsAccountSnapshotFromWalletAccountTransactionEntity(
+    walletAccountTransactionEntity,
+  );
+  return {
+    pointsBalance: snapshot.pointsBalance,
+  };
 }
 
 export function getBehavioralActionAttributesFromWalletAccountTransactionEntity(

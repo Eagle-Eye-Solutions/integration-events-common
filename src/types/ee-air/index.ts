@@ -1,5 +1,6 @@
 import {
   PointsAttributes,
+  PointsAccountSnapshot,
   TierAttributes,
   TransactionAttributes,
   CouponAttributes,
@@ -46,6 +47,10 @@ export type POSConnectWalletSettleEventData = {
   questRedemption?: QuestAttributes[];
   stampCardProgression?: StampCardAttributes[];
   stampCardRedemption?: StampCardAttributes[];
+  /**
+   * Per POINTS account balances after this event (multi-scheme).
+   */
+  pointsAccounts?: PointsAccountSnapshot[];
   points?: PointsAttributes;
   tier?: TierAttributes;
   transaction?: TransactionAttributes;
@@ -58,6 +63,7 @@ export type POSConnectWalletSettleEventData = {
  * is made available to connectors via the getPosConnectWalletFulfilEventData API.
  */
 export type POSConnectWalletFulfilEventData = {
+  pointsAccounts?: PointsAccountSnapshot[];
   points?: PointsAttributes;
   tier?: TierAttributes;
   transaction?: TransactionAttributes;
@@ -72,6 +78,7 @@ export type POSConnectWalletFulfilEventData = {
  * is made available to connectors via the getPosConnectWalletRefundEventData API.
  */
 export type POSConnectWalletRefundEventData = {
+  pointsAccounts?: PointsAccountSnapshot[];
   points?: PointsAttributes;
   tier?: TierAttributes;
   transaction?: TransactionAttributes;
@@ -85,6 +92,7 @@ export type POSConnectWalletRefundEventData = {
  * is made available to connectors via the getPosConnectWalletSpendEventData API.
  */
 export type POSConnectWalletSpendEventData = {
+  pointsAccounts?: PointsAccountSnapshot[];
   points?: PointsAttributes;
   tier?: number;
   transaction?: SpendTransactionAttributes;
@@ -137,6 +145,10 @@ export type WalletAccountUpdateEventData = {
  */
 export type WalletAccountCreateSchemeEventData = {
   /**
+   * Per POINTS account balances after scheme account creation (multi-scheme).
+   */
+  pointsAccounts?: PointsAccountSnapshot[];
+  /**
    * Points account balance, if available.
    */
   points?: PointsAttributes;
@@ -175,6 +187,10 @@ export type WalletAccountCreateCampaignEventData = {
 
 export type ServiceTriggerEventData = {
   /**
+   * Per POINTS account balances after the trigger (multi-scheme).
+   */
+  pointsAccounts?: PointsAccountSnapshot[];
+  /**
    * New points balances.
    */
   points?: PointsAttributes;
@@ -198,6 +214,10 @@ export type ServiceTriggerEventData = {
 export type ServiceWalletCreateEventData = {};
 
 export type ServiceWalletAccountsCreateEventData = {
+  /**
+   * Per POINTS account created or updated in this event (multi-scheme).
+   */
+  pointsAccounts?: PointsAccountSnapshot[];
   /**
    * New points balances.
    */

@@ -2,6 +2,24 @@ export type PointsAttributes = {
   pointsBalance: number;
 };
 
+/**
+ * Full snapshot of a POINTS wallet account from AIR atomic operations, used for
+ * multi-scheme loyalty (one wallet may have multiple POINTS accounts).
+ *
+ * Legacy {@link PointsAttributes} remains the balance-only shape; use
+ * `legacyPointsFromLastPointsOperation` to derive the historical single-field balance.
+ */
+export type PointsAccountSnapshot = {
+  accountId: string;
+  campaignId: string;
+  walletId: string;
+  pointsBalance: number;
+  type: string;
+  clientType: string | null;
+  status: string;
+  state: string;
+};
+
 export type RedeemedBehavioralActionAttributes = {
   points: number;
   accountId: string;

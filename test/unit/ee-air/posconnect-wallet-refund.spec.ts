@@ -19,6 +19,18 @@ describe('getPosConnectWalletRefundEventData', () => {
       eventName: 'POSCONNECT.WALLET.REFUND (partial)',
       event: sampleEvents.POSCONNECT_WALLET_REFUND_PARTIAL,
       expectedOutput: {
+        pointsAccounts: [
+          {
+            accountId: '4102294539',
+            campaignId: '100620987',
+            walletId: '216418806',
+            pointsBalance: 1371,
+            type: 'POINTS',
+            clientType: 'RETAILPOINTS',
+            status: 'ACTIVE',
+            state: 'LOADED',
+          },
+        ],
         points: {
           pointsBalance: 1371,
         },
@@ -83,6 +95,18 @@ describe('getPosConnectWalletRefundEventData', () => {
       eventName: 'POSCONNECT.WALLET.REFUND (full)',
       event: sampleEvents.POSCONNECT_WALLET_REFUND_FULL,
       expectedOutput: {
+        pointsAccounts: [
+          {
+            accountId: '4102294539',
+            campaignId: '100620987',
+            walletId: '216418806',
+            pointsBalance: 1326,
+            type: 'POINTS',
+            clientType: 'RETAILPOINTS',
+            status: 'ACTIVE',
+            state: 'LOADED',
+          },
+        ],
         points: {
           pointsBalance: 1326,
         },

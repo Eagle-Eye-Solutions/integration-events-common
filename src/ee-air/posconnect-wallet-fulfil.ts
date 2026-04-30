@@ -1,7 +1,6 @@
 import {
   EeAirOutboundEvent,
   CouponWithValueAttributes,
-  PointsAttributes,
   TierAttributes,
   TransactionAttributes,
   POSConnectWalletFulfilEventData,
@@ -9,13 +8,12 @@ import {
 import {BaseEventHandlerOpts} from './types';
 import AtomicOperations, {
   isTierMembershipEntity,
-  isWalletAccountTransactionEntityUpdatePoints,
   isWalletAccountTransactionEntityUpdateRedeemEcoupon,
   isWalletTransactionEntityCreateFulfilFulfilled,
   isWalletTransactionEntityUpdateSettleFulfilling,
   isWalletTransactionEntityUpdateSettleSettled,
 } from './atomic-operations';
-import {getPointsAttributesFromWalletAccountTransactionEntity} from './atomic-operations/wallet-account-transaction-entity';
+import {pointsSnapshotFieldsForEvent} from './collect-points-account-snapshots';
 
 function isInitialPosConnectWalletFulfil(event: EeAirOutboundEvent): boolean {
   if (event.headers.eventName === 'POSCONNECT.WALLET.FULFIL') {
@@ -91,23 +89,12 @@ function getPosConnectWalletFulfilInitialEventData(
   opts: BaseEventHandlerOpts,
 ): POSConnectWalletFulfilEventData {
   let transactionAttributes: TransactionAttributes | null = null;
-  let pointsAttributes: PointsAttributes | null = null;
   let tierAttributes: TierAttributes | null = null;
 
   const redeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
-      try {
-        pointsAttributes =
-          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
-      } catch {
-        // Ignore if balance not available on this op.
-        // By taking the latest POINTS balance observed in the operations list,
-        // we ensure that we always have the most up-to-date balance regardless
-        // of the its type.
-      }
-    } else if (isTierMembershipEntity(op)) {
+    if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);
     } else if (isWalletAccountTransactionEntityUpdateRedeemEcoupon(op)) {
@@ -131,7 +118,10 @@ function getPosConnectWalletFulfilInitialEventData(
   }
 
   const posConnectWalletSettleEventData: POSConnectWalletFulfilEventData = {
-    ...(pointsAttributes ? {points: pointsAttributes} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,
@@ -150,23 +140,12 @@ function getPosConnectWalletFulfilMiddleEventData(
   const transactionAttributes: TransactionAttributes = {
     products: [],
   };
-  let pointsAttributes: PointsAttributes | null = null;
   let tierAttributes: TierAttributes | null = null;
 
   const redeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
-      try {
-        pointsAttributes =
-          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
-      } catch {
-        // Ignore if balance not available on this op.
-        // By taking the latest POINTS balance observed in the operations list,
-        // we ensure that we always have the most up-to-date balance regardless
-        // of the its type.
-      }
-    } else if (isTierMembershipEntity(op)) {
+    if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);
     } else if (isWalletAccountTransactionEntityUpdateRedeemEcoupon(op)) {
@@ -215,7 +194,10 @@ function getPosConnectWalletFulfilMiddleEventData(
   }
 
   const posConnectWalletSettleEventData: POSConnectWalletFulfilEventData = {
-    ...(pointsAttributes ? {points: pointsAttributes} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,
@@ -234,23 +216,12 @@ function getPosConnectWalletFulfilFinalEventData(
   const transactionAttributes: TransactionAttributes = {
     products: [],
   };
-  let pointsAttributes: PointsAttributes | null = null;
   let tierAttributes: TierAttributes | null = null;
 
   const redeemedCoupons: CouponWithValueAttributes[] = [];
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
-      try {
-        pointsAttributes =
-          getPointsAttributesFromWalletAccountTransactionEntity(op as any);
-      } catch {
-        // Ignore if balance not available on this op.
-        // By taking the latest POINTS balance observed in the operations list,
-        // we ensure that we always have the most up-to-date balance regardless
-        // of the its type.
-      }
-    } else if (isTierMembershipEntity(op)) {
+    if (isTierMembershipEntity(op)) {
       tierAttributes =
         AtomicOperations.TierMembershipEntity.getTierAttributes(op);
     } else if (isWalletAccountTransactionEntityUpdateRedeemEcoupon(op)) {
@@ -299,7 +270,10 @@ function getPosConnectWalletFulfilFinalEventData(
   }
 
   const posConnectWalletSettleEventData: POSConnectWalletFulfilEventData = {
-    ...(pointsAttributes ? {points: pointsAttributes} : {}),
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
     ...(tierAttributes ? {tier: tierAttributes} : {}),
     ...(transactionAttributes ? {transaction: transactionAttributes} : {}),
     redeemedCoupons,

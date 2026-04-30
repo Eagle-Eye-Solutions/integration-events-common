@@ -1,10 +1,9 @@
 import {EeAirOutboundEvent} from '..';
 import {POSConnectWalletSpendEventData} from '../types';
-import {
-  isWalletAccountTransactionEntityUpdatePoints,
+import AtomicOperations, {
   isWalletTransactionEntityUpdateSpend,
 } from './atomic-operations';
-import AtomicOperations from './atomic-operations';
+import {pointsSnapshotFieldsForEvent} from './collect-points-account-snapshots';
 
 /**
  * Returns an array of events derived from a POSCONNECT.WALLET.SETTLE event.
@@ -16,15 +15,15 @@ import AtomicOperations from './atomic-operations';
 export function getPosConnectWalletSpendEventData(
   event: EeAirOutboundEvent,
 ): POSConnectWalletSpendEventData {
-  const posConnectWalletSpendEventData: POSConnectWalletSpendEventData = {};
+  const posConnectWalletSpendEventData: POSConnectWalletSpendEventData = {
+    ...pointsSnapshotFieldsForEvent(
+      event.atomicOperations,
+      'pointsUpdatesOnly',
+    ),
+  };
 
   for (const op of event.atomicOperations) {
-    if (isWalletAccountTransactionEntityUpdatePoints(op)) {
-      posConnectWalletSpendEventData.points =
-        AtomicOperations.WalletAccountTransactionEntity.UpdateEarnPoints.getPointsAttributes(
-          op,
-        );
-    } else if (isWalletTransactionEntityUpdateSpend(op)) {
+    if (isWalletTransactionEntityUpdateSpend(op)) {
       posConnectWalletSpendEventData.transaction =
         AtomicOperations.WalletTransactionEntity.UpdateSpend.getTransactionAttributes(
           op,

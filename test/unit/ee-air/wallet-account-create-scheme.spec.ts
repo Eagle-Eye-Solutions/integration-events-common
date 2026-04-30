@@ -13,6 +13,18 @@ describe('getWalletAccountCreateSchemeEventData', () => {
     );
 
     const expectedOutput: WalletAccountCreateSchemeEventData = {
+      pointsAccounts: [
+        {
+          accountId: '4093853258',
+          campaignId: '100620987',
+          walletId: '216396269',
+          pointsBalance: 0,
+          type: 'POINTS',
+          clientType: 'RETAILPOINTS',
+          status: 'ACTIVE',
+          state: 'EARNBURN',
+        },
+      ],
       points: {
         pointsBalance: 0,
       },
