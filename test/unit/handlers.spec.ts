@@ -135,6 +135,7 @@ describe.each([
         },
         {
           'x-ees-connector-trace-id': 'some-id',
+          'caller-unique-id': 'some-external-key',
         },
         expect.anything(),
       );
@@ -226,6 +227,7 @@ describe.each([
         },
         {
           'x-ees-connector-trace-id': 'some-id',
+          'caller-unique-id': 'some-external-key',
         },
         expect.anything(),
       );

@@ -13,7 +13,6 @@ export const EeAirRequestParamsSchema = z.object({
   url: z.string(),
   headers: z.record(z.string(), z.string()),
   body: z.string().optional(),
-  callerUniqueId: z.string().optional(),
 });
 
 export type EeAirRequestParams = z.infer<typeof EeAirRequestParamsSchema>;

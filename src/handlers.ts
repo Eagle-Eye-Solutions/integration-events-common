@@ -93,10 +93,14 @@ export async function handleEeAirOutboundRequest(
   const appConfig = res.app.get('appConfig') as ApplicationConfig;
   const connectorId = req.params.connectorId;
   const externalKey = req.get('X-Auth-Token');
+  const calledUniqueId = req.get('called-unique-id');
+  const callerUniqueId = req.get('caller-unique-id');
 
   req.log.info(
     {
       'ee-air-outbound-request': req.body,
+      'called-unique-id': calledUniqueId,
+      'caller-unique-id': callerUniqueId,
       connectorId,
     },
     `ee-air-outbound-request: method=${req.method}, url=${req.originalUrl} connectorId=${connectorId}`,
@@ -127,6 +131,10 @@ export async function handleEeAirOutboundRequest(
       throw createError.Forbidden();
     }
 
+    if (calledUniqueId) {
+      attributes['caller-unique-id'] = calledUniqueId;
+    }
+
     await sendInternalMessage(
       appConfig,
       {
@@ -152,11 +160,15 @@ export async function handleCdpOutboundRequest(
   const appConfig = res.app.get('appConfig') as ApplicationConfig;
   const connectorId = req.params.connectorId;
   const externalKey = req.get('X-Auth-Token');
+  const calledUniqueId = req.get('called-unique-id');
+  const callerUniqueId = req.get('caller-unique-id');
 
   req.log.info(
     {
       'cdp-outbound-request': req.body,
       connectorId,
+      'called-unique-id': calledUniqueId,
+      'caller-unique-id': callerUniqueId,
     },
     `cdp-outbound-request: method=${req.method}, url=${req.originalUrl}, connectorId=${connectorId}`,
   );
@@ -185,6 +197,10 @@ export async function handleCdpOutboundRequest(
 
     if (!connectorConfig) {
       throw createError.Forbidden();
+    }
+
+    if (calledUniqueId) {
+      attributes['caller-unique-id'] = calledUniqueId;
     }
 
     const cdpOutboundEvent: CdpOutboundEvent = {
