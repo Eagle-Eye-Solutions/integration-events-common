@@ -45,6 +45,7 @@ describe.each([
         headers: {
           'Content-Type': 'application/json',
           'X-EES-AUTH-CLIENT-ID': 'some-client-id',
+          'X-EES-CALLER-UNIQUE-ID': '',
           'X-EES-AUTH-HASH':
             '01ec08cfb3aa78bc8fcec38ed1d4298d3c44eb7b19647e817c30b7ff628bb180',
         },

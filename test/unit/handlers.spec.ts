@@ -98,6 +98,11 @@ describe.each([
         originalUrl: requestPath,
         log: mockLogger,
         id: 'some-id',
+        traceIds: {
+          originUniqueId: 'some-origin-id',
+          callerUniqueId: 'some-origin-id',
+          calledUniqueId: 'some-called-id',
+        },
       } as unknown as Request;
 
       const res = {
@@ -135,7 +140,43 @@ describe.each([
         },
         {
           'x-ees-connector-trace-id': 'some-id',
+          'origin-unique-id': 'some-origin-id',
+          'called-unique-id': 'some-called-id',
         },
+        expect.anything(),
+      );
+    });
+
+    it('omits origin-unique-id from PubSub attributes when traceIds is not set', async () => {
+      // Arrange
+      const req = {
+        params: {connectorId: 'some-connector-id'},
+        get: jest.fn().mockReturnValue('some-external-key'),
+        body: requestBody,
+        originalUrl: requestPath,
+        log: mockLogger,
+        id: 'some-id',
+      } as unknown as Request;
+
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        send: jest.fn(),
+        app: {get: jest.fn().mockReturnValue(mockAppConfig)},
+        set: jest.fn().mockReturnThis(),
+      } as unknown as Response;
+
+      fetchMock.mockResponse(async () => ({
+        status: 200,
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(connectorConfig),
+      }));
+
+      await handleEeAirOutboundRequest(req, res);
+
+      expect(sendInternalMessage).toHaveBeenCalledWith(
+        mockAppConfig,
+        expect.anything(),
+        {'x-ees-connector-trace-id': 'some-id'},
         expect.anything(),
       );
     });
@@ -189,6 +230,9 @@ describe.each([
         originalUrl: requestPath,
         log: mockLogger,
         id: 'some-id',
+        traceIds: {
+          calledUniqueId: 'some-called-id',
+        },
       } as unknown as Request;
 
       const res = {
@@ -226,6 +270,7 @@ describe.each([
         },
         {
           'x-ees-connector-trace-id': 'some-id',
+          'called-unique-id': 'some-called-id',
         },
         expect.anything(),
       );

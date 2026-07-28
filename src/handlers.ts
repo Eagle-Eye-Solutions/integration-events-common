@@ -114,6 +114,12 @@ export async function handleEeAirOutboundRequest(
 
     const requestBody = req.body;
     attributes[appConfig.traceIdName] = `${req.id}`;
+    if (req.traceIds?.originUniqueId) {
+      attributes['origin-unique-id'] = req.traceIds.originUniqueId;
+    }
+    if (req.traceIds?.calledUniqueId) {
+      attributes['called-unique-id'] = req.traceIds.calledUniqueId;
+    }
 
     const connectorConfig = await getConnectorConfig({
       appConfig,
@@ -174,6 +180,12 @@ export async function handleCdpOutboundRequest(
     const requestBody = CdpOutboundRequestBodySchema.parse(req.body);
 
     attributes[appConfig.traceIdName] = `${req.id}`;
+    if (req.traceIds?.originUniqueId) {
+      attributes['origin-unique-id'] = req.traceIds.originUniqueId;
+    }
+    if (req.traceIds?.calledUniqueId) {
+      attributes['called-unique-id'] = req.traceIds.calledUniqueId;
+    }
 
     const connectorConfig = await getConnectorConfig({
       appConfig,

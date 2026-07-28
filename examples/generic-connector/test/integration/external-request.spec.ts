@@ -123,6 +123,7 @@ describe('External request processing', () => {
             // that here.
             'x-ees-connector-trace-id':
               response.headers['x-ees-connector-trace-id'],
+            'called-unique-id': expect.stringMatching(UUID_REGEX),
           },
           data: {
             type: 'cdp-outbound-event',
@@ -225,6 +226,8 @@ describe('External request processing', () => {
         {
           attributes: {
             'x-ees-connector-trace-id': '3c1067fe-8eb8-4541-88f6-9d677618d0a9',
+            'origin-unique-id': '3c1067fe-8eb8-4541-88f6-9d677618d0a9',
+            'called-unique-id': expect.stringMatching(UUID_REGEX),
           },
           data: {
             type: 'ee-air-outbound-event',

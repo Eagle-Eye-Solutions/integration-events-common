@@ -11,6 +11,68 @@ const mockLogger = {
 } as unknown as Logger;
 
 describe('EeAirClient', () => {
+  describe('makeApiRequest', () => {
+    beforeEach(() => {
+      fetchMock.resetMocks();
+    });
+
+    it('includes X-EES-CALLER-UNIQUE-ID in outbound headers when callerUniqueId is supplied', async () => {
+      const client = new EeAirClient(
+        'some-client-id',
+        'some-client-secret',
+        {
+          wallet: 'https://example.org/wallet',
+          pos: 'https://example.org/pos',
+          resources: 'https://example.org/resources',
+        },
+        mockLogger,
+      );
+
+      fetchMock.mockResponseOnce(JSON.stringify({ok: true}), {
+        headers: {'Content-Type': 'application/json'},
+      });
+
+      await client.makeApiRequest({
+        method: 'POST',
+        url: 'https://example.org/wallet/services/trigger',
+        headers: {'Content-Type': 'application/json'},
+        body: '{}',
+        callerUniqueId: 'my-caller-id',
+      });
+
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      const [, options] = (fetchMock as unknown as jest.Mock).mock.calls[0];
+      expect(options.headers['X-EES-CALLER-UNIQUE-ID']).toBe('my-caller-id');
+    });
+
+    it('sends an empty X-EES-CALLER-UNIQUE-ID when callerUniqueId is not supplied', async () => {
+      const client = new EeAirClient(
+        'some-client-id',
+        'some-client-secret',
+        {
+          wallet: 'https://example.org/wallet',
+          pos: 'https://example.org/pos',
+          resources: 'https://example.org/resources',
+        },
+        mockLogger,
+      );
+
+      fetchMock.mockResponseOnce(JSON.stringify({ok: true}), {
+        headers: {'Content-Type': 'application/json'},
+      });
+
+      await client.makeApiRequest({
+        method: 'POST',
+        url: 'https://example.org/wallet/services/trigger',
+        headers: {'Content-Type': 'application/json'},
+        body: '{}',
+      });
+
+      const [, options] = (fetchMock as unknown as jest.Mock).mock.calls[0];
+      expect(options.headers['X-EES-CALLER-UNIQUE-ID']).toBe('');
+    });
+  });
+
   const eeAirClient = new EeAirClient(
     'some-client-id',
     'some-client-secret',

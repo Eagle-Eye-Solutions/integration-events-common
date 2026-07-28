@@ -43,6 +43,8 @@ export const defaultLogRequestHeadersAllowList = [
   'x-forwarded-proto',
   'called-unique-id',
   'caller-unique-id',
+  'origin-unique-id',
+  'x-ees-caller-unique-id',
 ] as const;
 
 export const defaultLoggerRedactOptions = [];

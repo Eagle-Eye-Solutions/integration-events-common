@@ -9,7 +9,11 @@ import {
 import {isGoogleCloudRun, requireGoogleJwt} from './platform';
 import {httpLogger} from './logger';
 import {v4 as uuidv4} from 'uuid';
-import {createNewRelicMiddleware} from './common/newrelic-middleware';
+import {
+  createExternalInboundNrMiddleware,
+  createOutboundNrMiddleware,
+  createPubSubNrMiddleware,
+} from './common/newrelic-middleware';
 
 export const DEFAULT_TRACE_ID_NAME = 'x-ees-connector-trace-id';
 export const DEFAULT_INCLUDE_TRACE_ID_IN_HTTP_RESPONSE_HEADERS = true;
@@ -75,8 +79,16 @@ export async function connector(appConfig: ApplicationConfig) {
 
   app.use(httpLogger(appConfig));
 
-  // Middeware to set custom attributes to New Relic transactions
-  app.use(createNewRelicMiddleware());
+  // Route-aware middleware to set traceable headers and New Relic custom attributes
+  app.use(
+    `/in/${appConfig.configPlatform.toLowerCase()}`,
+    createExternalInboundNrMiddleware(),
+  );
+  app.use(
+    `/out/${appConfig.configPlatform.toLowerCase()}`,
+    createOutboundNrMiddleware(),
+  );
+  app.use(appConfig.routes.internal.path, createPubSubNrMiddleware());
 
   app.get('/status', handleStatus);
 
