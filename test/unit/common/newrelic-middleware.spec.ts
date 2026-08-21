@@ -49,7 +49,7 @@ describe('createExternalInboundNrMiddleware', () => {
     const req = makeReq({get: jest.fn().mockReturnValue(undefined)});
     const res = makeRes();
 
-    middleware(req, res, next);
+    void middleware(req, res, next);
 
     expect(next).toHaveBeenCalledTimes(1);
     expect(req.traceIds).toBeDefined();
@@ -62,20 +62,22 @@ describe('createExternalInboundNrMiddleware', () => {
 
   it('does not call newrelic.addCustomAttribute when ENABLE_NEW_RELIC is not true', () => {
     const middleware = createExternalInboundNrMiddleware();
-    middleware(makeReq(), makeRes(), next);
+    void middleware(makeReq(), makeRes(), next);
     expect(newrelic.addCustomAttribute).not.toHaveBeenCalled();
   });
 
   it('when origin-unique-id header is present, all three fields are set', () => {
     const middleware = createExternalInboundNrMiddleware();
     const req = makeReq({
-      get: jest.fn().mockImplementation((h: string) =>
-        h === 'origin-unique-id' ? 'test-origin-id' : undefined,
-      ),
+      get: jest
+        .fn()
+        .mockImplementation((h: string) =>
+          h === 'origin-unique-id' ? 'test-origin-id' : undefined,
+        ),
     });
     const res = makeRes();
 
-    middleware(req, res, next);
+    void middleware(req, res, next);
 
     expect(req.traceIds!.originUniqueId).toBe('test-origin-id');
     expect(req.traceIds!.callerUniqueId).toBe('test-origin-id');
@@ -94,7 +96,7 @@ describe('createExternalInboundNrMiddleware', () => {
     const req = makeReq({get: jest.fn().mockReturnValue(undefined)});
     const res = makeRes();
 
-    middleware(req, res, next);
+    void middleware(req, res, next);
 
     expect(req.traceIds!.originUniqueId).toBeUndefined();
     expect(req.traceIds!.callerUniqueId).toBeUndefined();
@@ -107,11 +109,13 @@ describe('createExternalInboundNrMiddleware', () => {
   it('never reads called-unique-id from the request — always generates fresh', () => {
     const middleware = createExternalInboundNrMiddleware();
     const req = makeReq({
-      get: jest.fn().mockImplementation((h: string) =>
-        h === 'called-unique-id' ? 'attacker-supplied-id' : undefined,
-      ),
+      get: jest
+        .fn()
+        .mockImplementation((h: string) =>
+          h === 'called-unique-id' ? 'attacker-supplied-id' : undefined,
+        ),
     });
-    middleware(req, makeRes(), next);
+    void middleware(req, makeRes(), next);
     expect(req.traceIds!.calledUniqueId).not.toBe('attacker-supplied-id');
     expect(req.traceIds!.calledUniqueId).toMatch(UUID_REGEX);
   });
@@ -121,13 +125,15 @@ describe('createExternalInboundNrMiddleware', () => {
     const childLogger = {info: jest.fn(), error: jest.fn(), child: jest.fn()};
     const childMock = jest.fn().mockReturnValue(childLogger);
     const req = makeReq({
-      get: jest.fn().mockImplementation((h: string) =>
-        h === 'origin-unique-id' ? 'some-origin' : undefined,
-      ),
+      get: jest
+        .fn()
+        .mockImplementation((h: string) =>
+          h === 'origin-unique-id' ? 'some-origin' : undefined,
+        ),
       log: {info: jest.fn(), error: jest.fn(), child: childMock} as any,
     });
 
-    createExternalInboundNrMiddleware()(req, makeRes(), next);
+    void createExternalInboundNrMiddleware()(req, makeRes(), next);
 
     expect(childMock).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -147,12 +153,14 @@ describe('createExternalInboundNrMiddleware', () => {
     it('calls newrelic.addCustomAttribute for all three fields when origin is present', () => {
       const middleware = createExternalInboundNrMiddleware();
       const req = makeReq({
-        get: jest.fn().mockImplementation((h: string) =>
-          h === 'origin-unique-id' ? 'test-origin-id' : undefined,
-        ),
+        get: jest
+          .fn()
+          .mockImplementation((h: string) =>
+            h === 'origin-unique-id' ? 'test-origin-id' : undefined,
+          ),
       });
 
-      middleware(req, makeRes(), next);
+      void middleware(req, makeRes(), next);
 
       expect(newrelic.addCustomAttribute).toHaveBeenCalledWith(
         'origin-unique-id',
@@ -170,7 +178,7 @@ describe('createExternalInboundNrMiddleware', () => {
 
     it('only calls addCustomAttribute for called-unique-id when origin is absent', () => {
       const middleware = createExternalInboundNrMiddleware();
-      middleware(makeReq(), makeRes(), next);
+      void middleware(makeReq(), makeRes(), next);
       expect(newrelic.addCustomAttribute).toHaveBeenCalledTimes(1);
       expect(newrelic.addCustomAttribute).toHaveBeenCalledWith(
         'called-unique-id',
@@ -189,7 +197,7 @@ describe('createOutboundNrMiddleware', () => {
     const middleware = createOutboundNrMiddleware();
     const req = makeReq({body: {headers: {eesEventId: 'ees-123'}}});
 
-    middleware(req, makeRes(), next);
+    void middleware(req, makeRes(), next);
 
     expect(req.traceIds!.originUniqueId).toBe('ees-123');
     expect(req.traceIds!.callerUniqueId).toBe('ees-123');
@@ -198,14 +206,18 @@ describe('createOutboundNrMiddleware', () => {
 
   it('does not call newrelic.addCustomAttribute when ENABLE_NEW_RELIC is not true', () => {
     const middleware = createOutboundNrMiddleware();
-    middleware(makeReq({body: {headers: {eesEventId: 'ees-123'}}}), makeRes(), next);
+    void middleware(
+      makeReq({body: {headers: {eesEventId: 'ees-123'}}}),
+      makeRes(),
+      next,
+    );
     expect(newrelic.addCustomAttribute).not.toHaveBeenCalled();
   });
 
   it('still generates called-unique-id when eesEventId is absent', () => {
     const middleware = createOutboundNrMiddleware();
     const req = makeReq({body: {headers: {}}});
-    middleware(req, makeRes(), next);
+    void middleware(req, makeRes(), next);
     expect(req.traceIds!.originUniqueId).toBeUndefined();
     expect(req.traceIds!.calledUniqueId).toMatch(UUID_REGEX);
   });
@@ -218,7 +230,7 @@ describe('createOutboundNrMiddleware', () => {
     it('calls newrelic.addCustomAttribute for all three fields', () => {
       const middleware = createOutboundNrMiddleware();
       const req = makeReq({body: {headers: {eesEventId: 'ees-123'}}});
-      middleware(req, makeRes(), next);
+      void middleware(req, makeRes(), next);
 
       expect(newrelic.addCustomAttribute).toHaveBeenCalledWith(
         'origin-unique-id',
@@ -254,7 +266,7 @@ describe('createPubSubNrMiddleware', () => {
       },
     });
 
-    middleware(req, makeRes(), next);
+    void middleware(req, makeRes(), next);
 
     expect(req.traceIds!.originUniqueId).toBe('origin-abc');
     expect(req.traceIds!.callerUniqueId).toBe('prev-called-xyz');
@@ -263,7 +275,7 @@ describe('createPubSubNrMiddleware', () => {
 
   it('does not call newrelic.addCustomAttribute when ENABLE_NEW_RELIC is not true', () => {
     const middleware = createPubSubNrMiddleware();
-    middleware(
+    void middleware(
       makeReq({body: {message: {attributes: {'called-unique-id': 'xyz'}}}}),
       makeRes(),
       next,
@@ -277,7 +289,7 @@ describe('createPubSubNrMiddleware', () => {
       body: {message: {attributes: {'called-unique-id': 'prev-xyz'}}},
     });
 
-    middleware(req, makeRes(), next);
+    void middleware(req, makeRes(), next);
 
     expect(req.traceIds!.originUniqueId).toBeUndefined();
     expect(req.traceIds!.callerUniqueId).toBe('prev-xyz');
@@ -286,7 +298,7 @@ describe('createPubSubNrMiddleware', () => {
   it('always generates a fresh called-unique-id', () => {
     const middleware = createPubSubNrMiddleware();
     const req = makeReq({body: {message: {attributes: {}}}});
-    middleware(req, makeRes(), next);
+    void middleware(req, makeRes(), next);
     expect(req.traceIds!.calledUniqueId).toMatch(UUID_REGEX);
   });
 
@@ -308,7 +320,7 @@ describe('createPubSubNrMiddleware', () => {
         },
       });
 
-      middleware(req, makeRes(), next);
+      void middleware(req, makeRes(), next);
 
       expect(newrelic.addCustomAttribute).toHaveBeenCalledWith(
         'origin-unique-id',

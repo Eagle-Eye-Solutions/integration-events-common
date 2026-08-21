@@ -25,7 +25,9 @@ function setTraceIds(
     }
   }
 
-  const logFields: Record<string, string> = {'called-unique-id': calledUniqueId};
+  const logFields: Record<string, string> = {
+    'called-unique-id': calledUniqueId,
+  };
   if (originUniqueId) logFields['origin-unique-id'] = originUniqueId;
   if (callerUniqueId) logFields['caller-unique-id'] = callerUniqueId;
   req.log = req.log.child(logFields);
@@ -66,8 +68,7 @@ export function createOutboundNrMiddleware(): RequestHandler {
 // PubSub message attributes and generates a fresh called-unique-id.
 export function createPubSubNrMiddleware(): RequestHandler {
   return (req: Request, res: Response, next: NextFunction) => {
-    const attrs: Record<string, string> =
-      req.body?.message?.attributes ?? {};
+    const attrs: Record<string, string> = req.body?.message?.attributes ?? {};
     const originUniqueId = attrs['origin-unique-id'] || undefined;
     const callerUniqueId = attrs['called-unique-id'] || undefined;
     const calledUniqueId = uuidv4();
