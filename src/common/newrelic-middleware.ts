@@ -45,7 +45,7 @@ export function createExternalInboundNrMiddleware(): RequestHandler {
   return (req: Request, res: Response, next: NextFunction) => {
     const originUniqueId =
       req.get('origin-unique-id') ||
-      (req.id !== null ? String(req.id) : undefined);
+      (req.id !== undefined ? String(req.id) : undefined);
     const callerUniqueId = originUniqueId;
     const calledUniqueId = uuidv4();
     setTraceIds(req, res, originUniqueId, callerUniqueId, calledUniqueId);
