@@ -38,11 +38,14 @@ function setTraceIds(
 }
 
 // For /in/ routes — External Connector receiving from a CDP platform.
-// origin-unique-id is only set when the external platform provides it;
-// caller-unique-id mirrors it at the first hop.
+// Prefers the origin-unique-id header (for future use), then falls back to req.id
+// which is set per-platform: mParticle uses req.body.id (batch UUID), others use a
+// generated UUID set by defaultCdpRequestIdMiddleware.
 export function createExternalInboundNrMiddleware(): RequestHandler {
   return (req: Request, res: Response, next: NextFunction) => {
-    const originUniqueId = req.get('origin-unique-id') || undefined;
+    const originUniqueId =
+      req.get('origin-unique-id') ||
+      (req.id !== null ? String(req.id) : undefined);
     const callerUniqueId = originUniqueId;
     const calledUniqueId = uuidv4();
     setTraceIds(req, res, originUniqueId, callerUniqueId, calledUniqueId);

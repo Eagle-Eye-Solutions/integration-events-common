@@ -91,7 +91,7 @@ describe('createExternalInboundNrMiddleware', () => {
     );
   });
 
-  it('when origin-unique-id is absent, neither origin nor caller are set on traceIds or headers', () => {
+  it('when origin-unique-id is absent and req.id is not set, neither origin nor caller are set on traceIds or headers', () => {
     const middleware = createExternalInboundNrMiddleware();
     const req = makeReq({get: jest.fn().mockReturnValue(undefined)});
     const res = makeRes();
@@ -104,6 +104,41 @@ describe('createExternalInboundNrMiddleware', () => {
       'origin-unique-id',
       expect.anything(),
     );
+  });
+
+  it('when origin-unique-id header is absent but req.id is set, req.id is used as origin and caller', () => {
+    const middleware = createExternalInboundNrMiddleware();
+    const req = makeReq({
+      get: jest.fn().mockReturnValue(undefined),
+      id: 'req-id-from-cdp',
+    } as any);
+    const res = makeRes();
+
+    void middleware(req, res, next);
+
+    expect(req.traceIds!.originUniqueId).toBe('req-id-from-cdp');
+    expect(req.traceIds!.callerUniqueId).toBe('req-id-from-cdp');
+    expect(req.traceIds!.calledUniqueId).toMatch(UUID_REGEX);
+    expect(res.set).toHaveBeenCalledWith('origin-unique-id', 'req-id-from-cdp');
+    expect(res.set).toHaveBeenCalledWith('caller-unique-id', 'req-id-from-cdp');
+  });
+
+  it('origin-unique-id header takes precedence over req.id', () => {
+    const middleware = createExternalInboundNrMiddleware();
+    const req = makeReq({
+      get: jest
+        .fn()
+        .mockImplementation((h: string) =>
+          h === 'origin-unique-id' ? 'header-origin' : undefined,
+        ),
+      id: 'req-id-ignored',
+    } as any);
+    const res = makeRes();
+
+    void middleware(req, res, next);
+
+    expect(req.traceIds!.originUniqueId).toBe('header-origin');
+    expect(req.traceIds!.callerUniqueId).toBe('header-origin');
   });
 
   it('never reads called-unique-id from the request — always generates fresh', () => {

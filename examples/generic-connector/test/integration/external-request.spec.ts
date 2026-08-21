@@ -123,6 +123,9 @@ describe('External request processing', () => {
             // that here.
             'x-ees-connector-trace-id':
               response.headers['x-ees-connector-trace-id'],
+            // origin-unique-id falls back to req.id (= x-ees-connector-trace-id) for
+            // CDP-initiated flows that don't supply an origin-unique-id header.
+            'origin-unique-id': response.headers['x-ees-connector-trace-id'],
             'called-unique-id': expect.stringMatching(UUID_REGEX),
           },
           data: {
