@@ -19,5 +19,6 @@ jobs:
           node-version-file: .nvmrc
           registry-url: 'https://registry.npmjs.org'
           package-manager-cache: false
+      - run: npm install -g npm@11.5.1 --ignore-scripts
       - run: npm ci
       - run: npm publish --access public --provenance
