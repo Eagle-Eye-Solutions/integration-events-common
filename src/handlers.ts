@@ -9,7 +9,7 @@ import {
   CdpOutboundRequestBodySchema,
   FormattedError,
 } from './types';
-import {TemporaryDeliveryFailure} from './exceptions';
+import {SilentAcknowledgement, TemporaryDeliveryFailure} from './exceptions';
 import {sendInternalMessage} from './platform';
 import {ZodError} from 'zod';
 import {
@@ -254,6 +254,14 @@ export async function handleInternalMessage(req: Request, res: Response) {
 
     res.status(200).send({status: 'OK'});
   } catch (error) {
+    if (error instanceof SilentAcknowledgement) {
+      req.log.info(
+        error,
+        'Message silently acknowledged — AIR returned 404 (identity or trigger not found)',
+      );
+      res.status(200).send({status: 200});
+      return;
+    }
     req.log.error(error);
     if (error instanceof TemporaryDeliveryFailure) {
       throw createError.InternalServerError();

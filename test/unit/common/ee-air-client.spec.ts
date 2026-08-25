@@ -1,5 +1,9 @@
 import fetchMock from 'jest-fetch-mock';
 import {EeAirClient} from '../../../src/common';
+import {
+  PermanentDeliveryFailure,
+  SilentAcknowledgement,
+} from '../../../src/exceptions';
 import {Logger} from '../../../src/logger';
 
 fetchMock.enableMocks();
@@ -7,6 +11,7 @@ fetchMock.enableMocks();
 const mockLogger = {
   debug: jest.fn(),
   info: jest.fn(),
+  warn: jest.fn(),
   error: jest.fn(),
 } as unknown as Logger;
 
@@ -43,6 +48,30 @@ describe('EeAirClient', () => {
       expect(fetchMock).toHaveBeenCalledTimes(1);
       const [, options] = (fetchMock as unknown as jest.Mock).mock.calls[0];
       expect(options.headers['X-EES-CALLER-UNIQUE-ID']).toBe('my-caller-id');
+    });
+
+    it('throws SilentAcknowledgement when AIR returns 404', async () => {
+      const client = new EeAirClient(
+        'some-client-id',
+        'some-client-secret',
+        {
+          wallet: 'https://example.org/wallet',
+          pos: 'https://example.org/pos',
+          resources: 'https://example.org/resources',
+        },
+        mockLogger,
+      );
+
+      fetchMock.mockResponseOnce('Not Found', {status: 404});
+
+      await expect(
+        client.makeApiRequest({
+          method: 'POST',
+          url: 'https://example.org/wallet/services/trigger',
+          headers: {'Content-Type': 'application/json'},
+          body: '{}',
+        }),
+      ).rejects.toThrow(SilentAcknowledgement);
     });
 
     it('sends an empty X-EES-CALLER-UNIQUE-ID when callerUniqueId is not supplied', async () => {
@@ -158,6 +187,17 @@ describe('EeAirClient', () => {
         walletId: '216245571',
         walletTransactionId: '437907485',
       });
+    });
+
+    it('throws PermanentDeliveryFailure (not SilentAcknowledgement) when AIR returns 404', async () => {
+      fetchMock.mockResponseOnce('Not Found', {status: 404});
+
+      await expect(
+        eeAirClient.getWalletTransactionById(
+          'some-wallet-id',
+          'some-transaction-id',
+        ),
+      ).rejects.toThrow(PermanentDeliveryFailure);
     });
 
     it('throws an error if parsing of the response fails', async () => {

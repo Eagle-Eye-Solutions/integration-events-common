@@ -12,3 +12,5 @@ export class EeApiException extends Error {
 export class TemporaryDeliveryFailure extends Error {}
 
 export class PermanentDeliveryFailure extends Error {}
+
+export class SilentAcknowledgement extends Error {}

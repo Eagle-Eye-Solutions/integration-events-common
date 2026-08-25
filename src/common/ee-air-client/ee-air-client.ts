@@ -6,6 +6,7 @@ import {
 } from '../../types';
 import {
   PermanentDeliveryFailure,
+  SilentAcknowledgement,
   TemporaryDeliveryFailure,
 } from '../../exceptions';
 import {generateAuthenticationHash, getEesCalledUniqueIdHeader} from './utils';
@@ -79,29 +80,30 @@ export class EeAirClient {
 
       // In pino v9 the logger's methods accept (obj?, msg?, ...args). Avoid
       // passing multiple non-object params; include details in the object.
-      this.logger.error(
-        {
-          context: errorContext,
-          status: response.status,
-          statusText: response.statusText,
-          uniqueCallId: getEesCalledUniqueIdHeader(response),
-          scope: EeAirClient.name,
-        },
-        'EE API returned error',
-      );
-      // May need tweaking based on endpoints handled and their expected errors.
+      const logContext = {
+        context: errorContext,
+        status: response.status,
+        statusText: response.statusText,
+        uniqueCallId: getEesCalledUniqueIdHeader(response),
+        scope: EeAirClient.name,
+      };
+
       switch (response.status) {
         case 404:
-          throw new PermanentDeliveryFailure(
-            "The customer identity doesn't exist in EE AIR Platform.",
+          this.logger.warn(logContext, 'EE API returned error');
+          throw new SilentAcknowledgement(
+            "The customer identity or trigger reference doesn't exist in EE AIR Platform.",
           );
         case 401:
+          this.logger.error(logContext, 'EE API returned error');
           throw new PermanentDeliveryFailure('401 Unauthorized');
         case 400:
+          this.logger.error(logContext, 'EE API returned error');
           throw new PermanentDeliveryFailure(
             'The request could not be processed by the EE AIR Platform.',
           );
         default:
+          this.logger.error(logContext, 'EE API returned error');
           throw new TemporaryDeliveryFailure(
             'The request failed to be processed by the EE AIR Platform due to an unexpected error.',
           );
@@ -122,10 +124,16 @@ export class EeAirClient {
       headers: {},
     } as EeAirRequestParams;
 
-    const {data: walletTransaction} = await this.makeApiRequest(
-      getWalletTransactionByIdRequest,
-    );
-
-    return WalletTransactionEntityObjectValueSchema.parse(walletTransaction);
+    try {
+      const {data: walletTransaction} = await this.makeApiRequest(
+        getWalletTransactionByIdRequest,
+      );
+      return WalletTransactionEntityObjectValueSchema.parse(walletTransaction);
+    } catch (error) {
+      if (error instanceof SilentAcknowledgement) {
+        throw new PermanentDeliveryFailure(error.message);
+      }
+      throw error;
+    }
   }
 }

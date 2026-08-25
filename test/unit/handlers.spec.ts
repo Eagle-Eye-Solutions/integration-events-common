@@ -3,11 +3,17 @@ import {Request, Response} from 'express';
 import {
   handleEeAirOutboundRequest,
   handleCdpOutboundRequest,
+  handleInternalMessage,
   getConnectorConfig,
 } from '../../src/handlers';
 import {ApplicationConfig} from '../../src/types';
 import {sendInternalMessage} from '../../src/platform/index';
 import {Logger} from '../../src/logger';
+import {
+  PermanentDeliveryFailure,
+  SilentAcknowledgement,
+  TemporaryDeliveryFailure,
+} from '../../src/exceptions';
 import {
   mockOutConnectorConfig,
   mockInConnectorConfig,
@@ -829,5 +835,89 @@ describe('getConnectorConfig', () => {
       ...mockOutConnectorConfig,
       unitId: 'y',
     });
+  });
+});
+
+describe('handleInternalMessage', () => {
+  const internalMessage = {
+    type: 'ee-air-inbound-event' as const,
+    connectorConfig: mockInConnectorConfig,
+    payload: {},
+  };
+  const attributes = {};
+
+  function makeReqRes(handlerMock: jest.Mock) {
+    const appConfig: ApplicationConfig = {
+      ...mockAppConfig,
+      routes: {
+        internal: {
+          path: '/internal',
+          getInternalMessageFromRequest: jest
+            .fn()
+            .mockReturnValue({message: internalMessage, attributes}),
+          handlers: {
+            'cdp-outbound-event': jest.fn(),
+            'cdp-inbound-event': jest.fn(),
+            'ee-air-inbound-event': handlerMock,
+            'ee-air-outbound-event': jest.fn(),
+          },
+        },
+      },
+      handlePermanentMessageDeliveryFailure: jest
+        .fn()
+        .mockResolvedValue(undefined),
+    };
+
+    const req = {
+      log: mockLogger,
+    } as unknown as Request;
+
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+      app: {get: jest.fn().mockReturnValue(appConfig)},
+    } as unknown as Response;
+
+    return {req, res, appConfig};
+  }
+
+  it('responds 200 and skips DLQ when handler throws SilentAcknowledgement', async () => {
+    const handlerMock = jest
+      .fn()
+      .mockRejectedValue(new SilentAcknowledgement('identity not found'));
+    const {req, res, appConfig} = makeReqRes(handlerMock);
+
+    await handleInternalMessage(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.send).toHaveBeenCalledTimes(1);
+    expect(
+      appConfig.handlePermanentMessageDeliveryFailure,
+    ).not.toHaveBeenCalled();
+  });
+
+  it('throws HTTP 500 when handler throws TemporaryDeliveryFailure', async () => {
+    const handlerMock = jest
+      .fn()
+      .mockRejectedValue(new TemporaryDeliveryFailure('upstream unavailable'));
+    const {req, res} = makeReqRes(handlerMock);
+
+    await expect(handleInternalMessage(req, res)).rejects.toThrow();
+    expect(res.status).not.toHaveBeenCalled();
+  });
+
+  it('responds 200 and sends to DLQ when handler throws PermanentDeliveryFailure', async () => {
+    const handlerMock = jest
+      .fn()
+      .mockRejectedValue(new PermanentDeliveryFailure('bad request'));
+    const {req, res, appConfig} = makeReqRes(handlerMock);
+
+    await handleInternalMessage(req, res);
+
+    expect(
+      appConfig.handlePermanentMessageDeliveryFailure,
+    ).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.send).toHaveBeenCalledTimes(1);
   });
 });
