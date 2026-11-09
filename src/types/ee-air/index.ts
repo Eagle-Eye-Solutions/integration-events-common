@@ -34,6 +34,10 @@ export enum EeAirEventTypes {
   serviceTrigger = 'SERVICE.TRIGGER',
   posconnectWalletSpend = 'POSCONNECT.WALLET.SPEND',
   posconnectWalletSpendVoid = 'POSCONNECT.WALLET.SPEND.VOID',
+  walletAccountTransactionCredit = 'WALLET.ACCOUNT.TRANSACTION.CREDIT',
+  serviceWalletTransactionCredit = 'SERVICE.WALLET.TRANSACTION.CREDIT',
+  serviceWalletTransactionRedeemCredit = 'SERVICE.WALLET.TRANSACTION.REDEEM.CREDIT',
+  posconnectAccountCredit = 'POSCONNECT.ACCOUNT.CREDIT',
 }
 
 /**
