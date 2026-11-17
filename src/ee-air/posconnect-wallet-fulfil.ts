@@ -107,6 +107,7 @@ function getPosConnectWalletFulfilInitialEventData(
       transactionAttributes =
         AtomicOperations.WalletTransactionEntity.UpdateSettleFulfilling.getTransactionAttributes(
           op,
+          opts.logger,
         );
     }
   }
@@ -158,6 +159,7 @@ function getPosConnectWalletFulfilMiddleEventData(
       const fulfilledTransactionAttributes =
         AtomicOperations.WalletTransactionEntity.CreateFulfilFulfilled.getTransactionAttributes(
           op,
+          opts.logger,
         );
 
       mergeTransactionAttributes(transactionAttributes, {
@@ -173,6 +175,7 @@ function getPosConnectWalletFulfilMiddleEventData(
       const completeTransactionAttributes =
         AtomicOperations.WalletTransactionEntity.UpdateSettleFulfilling.getTransactionAttributes(
           op,
+          opts.logger,
         );
 
       mergeTransactionAttributes(transactionAttributes, {
@@ -238,6 +241,7 @@ function getPosConnectWalletFulfilFinalEventData(
       const {transactionReference, transactionDate} =
         AtomicOperations.WalletTransactionEntity.UpdateSettleSettled.getTransactionAttributes(
           op,
+          opts.logger,
         );
       mergeTransactionAttributes(transactionAttributes, {
         originalTransactionReference: transactionReference,
@@ -247,6 +251,7 @@ function getPosConnectWalletFulfilFinalEventData(
       const fulfilledTransactionAttributes =
         AtomicOperations.WalletTransactionEntity.CreateFulfilFulfilled.getTransactionAttributes(
           op,
+          opts.logger,
         );
 
       mergeTransactionAttributes(transactionAttributes, {

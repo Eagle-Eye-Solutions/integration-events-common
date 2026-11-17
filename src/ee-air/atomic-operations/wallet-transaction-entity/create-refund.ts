@@ -1,3 +1,4 @@
+import {Logger} from '../../../logger';
 import {
   TransactionAttributes,
   WalletTransactionEntityCreateRefundSettled,
@@ -19,10 +20,11 @@ function getTotalPointsDeducted(
 
 export function getTransactionAttributesFromWalletTransactionEntityCreatRefund(
   entity: WalletTransactionEntityCreateRefundSettled,
+  logger?: Logger,
 ): TransactionAttributes {
   const transactionAttributes: TransactionAttributes = {
     storeLocation: getStoreLocationAttributes(entity),
-    products: getProductAttributes(entity),
+    products: getProductAttributes(entity, logger),
     totalBasketValueAfterDiscount: getTotalBasketValueAfterDiscount(entity),
     totalPointsDeducted: getTotalPointsDeducted(entity),
     transactionReference: entity.objectValue.reference,

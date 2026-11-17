@@ -66,6 +66,7 @@ export function getPosConnectWalletRefundEventData(
       transactionAttributes =
         AtomicOperations.WalletTransactionEntity.CreateRefundSettled.getTransactionAttributes(
           op,
+          opts.logger,
         );
     }
   }

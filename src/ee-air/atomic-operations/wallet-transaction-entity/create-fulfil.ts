@@ -1,4 +1,5 @@
 import {parseISO} from 'date-fns';
+import {Logger} from '../../../logger';
 import {
   TransactionAttributes,
   WalletTransactionEntityCreateFulfilFulfilled,
@@ -13,10 +14,11 @@ import {
 
 export function getTransactionAttributesFromWalletTransactionEntityCreateFulfil(
   entity: WalletTransactionEntityCreateFulfilFulfilled,
+  logger?: Logger,
 ): TransactionAttributes {
   const transactionAttributes: TransactionAttributes = {
     storeLocation: getStoreLocationAttributes(entity),
-    products: getProductAttributes(entity),
+    products: getProductAttributes(entity, logger),
     totalBasketValueAfterDiscount: getTotalBasketValueAfterDiscount(entity),
     discountsReceived: getDiscountsReceived(entity),
     totalPointsEarned: getTotalPointsEarned(entity),

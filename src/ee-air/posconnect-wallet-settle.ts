@@ -41,6 +41,7 @@ export function getPosConnectWalletSettleEventData(
       transactionAttributes =
         AtomicOperations.WalletTransactionEntity.UpdateSettleSettled.getTransactionAttributes(
           op,
+          opts.logger,
         );
     }
   }

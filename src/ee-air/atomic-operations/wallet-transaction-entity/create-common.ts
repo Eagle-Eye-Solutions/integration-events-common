@@ -1,20 +1,26 @@
+import {Logger} from '../../../logger';
 import {WalletTransactionEntityCreate, ProductAttributes} from '../../../types';
+import {capBasketContents} from './common';
 
 export function getProductAttributes(
   entity: WalletTransactionEntityCreate,
+  logger?: Logger,
 ): ProductAttributes[] {
   if (entity.objectValue.basket.contents) {
-    const products: ProductAttributes[] =
-      entity.objectValue.basket.contents.map(product => {
-        return {
-          upc: product.upc,
-          description: product.description,
-          itemUnitCost: product.itemUnitCost,
-          totalUnitCostAfterDiscount: product.totalUnitCostAfterDiscount,
-          totalUnitCost: product.totalUnitCost,
-          itemUnitCount: product.itemUnitCount,
-        };
-      });
+    const products: ProductAttributes[] = capBasketContents(
+      entity.objectValue.basket.contents,
+      logger,
+      {transactionReference: entity.objectValue.reference},
+    ).map(product => {
+      return {
+        upc: product.upc,
+        description: product.description,
+        itemUnitCost: product.itemUnitCost,
+        totalUnitCostAfterDiscount: product.totalUnitCostAfterDiscount,
+        totalUnitCost: product.totalUnitCost,
+        itemUnitCount: product.itemUnitCount,
+      };
+    });
 
     return products;
   } else {
